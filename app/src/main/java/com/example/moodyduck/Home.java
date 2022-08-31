@@ -55,6 +55,7 @@ public class Home extends AppCompatActivity {
                 animFab();
             }
         });
+
         bnv.setSelectedItemId(R.id.registros);
         bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
