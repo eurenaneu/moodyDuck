@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ciano" >
+    android:background="@color/ciano">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -13,8 +13,8 @@
         android:layout_gravity="bottom"
         android:background="#00000000"
         app:backgroundTint="#00000000"
-        app:fabCradleMargin="0dp"
         app:elevation="0dp"
+        app:fabCradleMargin="0dp"
         app:fabCradleRoundedCornerRadius="0dp"
         app:fabCradleVerticalOffset="0dp">
 
@@ -32,7 +32,54 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/fabOntem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/cianoescuro"
+        app:elevation="4dp"
+        app:shapeAppearanceOverlay="@style/FAB_Style"
+        app:srcCompat="@drawable/ic_ontem"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabHoje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="100dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/cianoescuro"
+        app:elevation="4dp"
+        app:shapeAppearanceOverlay="@style/FAB_Style"
+        app:srcCompat="@drawable/ic_hoje"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabOutro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/cianoescuro"
+        app:elevation="4dp"
+        app:shapeAppearanceOverlay="@style/FAB_Style"
+        app:srcCompat="@drawable/calendar"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

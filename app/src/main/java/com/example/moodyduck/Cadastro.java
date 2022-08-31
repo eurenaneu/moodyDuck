@@ -21,7 +21,7 @@ public class Cadastro extends AppCompatActivity {
         aviso = findViewById(R.id.avisoSenhas);
         senha = findViewById(R.id.campoSenha);
         confirma = findViewById(R.id.campoConfirma);
-        fab = findViewById(R.id.floatingActionButton);
+        fab = findViewById(R.id.fab);
         aviso.setVisibility(View.GONE);
     }
 
