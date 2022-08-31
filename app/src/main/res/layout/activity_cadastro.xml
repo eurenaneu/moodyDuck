@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ciano"
+    tools:context=".Cadastro">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_redondoo" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/qckbold"
+        android:text="Comece sua\nexperiência!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Preencha os campos abaixo:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Nome:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/campoUser"
+        app:layout_constraintEnd_toEndOf="@+id/campoUser"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoUser" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Endereço de e-mail:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/campoEmail"
+        app:layout_constraintEnd_toEndOf="@+id/campoEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoEmail" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Senha:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/campoSenha"
+        app:layout_constraintEnd_toEndOf="@+id/campoSenha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoSenha" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Confirmar senha:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/campoConfirma"
+        app:layout_constraintEnd_toEndOf="@+id/campoConfirma"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoConfirma" />
+
+    <TextView
+        android:id="@+id/avisoSenhas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Senhas não coincidem"
+        android:textAlignment="center"
+        android:textColor="@color/aviso"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/campoConfirma"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoConfirma"
+        app:layout_constraintTop_toBottomOf="@+id/campoConfirma" />
+
+    <EditText
+        android:id="@+id/campoUser"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/campo"
+        android:ems="10"
+        android:fontFamily="@font/qcksemi"
+        android:hint="Nome de usuário"
+        android:inputType="textPersonName"
+        android:textColor="@color/ciano"
+        android:textColorHint="@color/ciano"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/campoEmail"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/campo"
+        android:ems="10"
+        android:fontFamily="@font/qcksemi"
+        android:hint="Endereço de e-mail"
+        android:inputType="textPersonName"
+        android:textColor="@color/ciano"
+        android:textColorHint="@color/ciano"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/campoSenha"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="244dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/campo"
+        android:ems="10"
+        android:fontFamily="@font/qcksemi"
+        android:hint="••••••••••••"
+        android:inputType="textPassword"
+        android:textColor="@color/ciano"
+        android:textColorHint="@color/ciano"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/campoConfirma"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="340dp"
+        android:background="@drawable/campo"
+        android:ems="10"
+        android:fontFamily="@font/qcksemi"
+        android:hint="••••••••••••"
+        android:inputType="textPassword"
+        android:textColor="@color/ciano"
+        android:textColorHint="@color/ciano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="266dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/qckbold"
+        android:letterSpacing="0"
+        android:paddingTop="0dp"
+        android:text="Cadastrar"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24dp"
+        android:onClick="irHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoConfirma" />
+</androidx.constraintlayout.widget.ConstraintLayout>

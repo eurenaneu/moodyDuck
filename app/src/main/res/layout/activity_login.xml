@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ciano"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/app_pato" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/qckbold"
+        android:text="É bom te ver de novo!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Preencha os campos abaixo:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Endereço de e-mail:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/campoEmail"
+        app:layout_constraintEnd_toEndOf="@+id/campoEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoEmail" />
+
+    <EditText
+        android:id="@+id/campoEmail"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="156dp"
+        android:background="@drawable/campo"
+        android:ems="10"
+        android:fontFamily="@font/qcksemi"
+        android:hint="Endereço de e-mail"
+        android:inputType="textPersonName"
+        android:textColor="@color/ciano"
+        android:textColorHint="@color/ciano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/txtSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/qcksemi"
+        android:text="Senha:"
+        android:textAlignment="center"
+        android:textColor="@color/amalero"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/campoSenha"
+        app:layout_constraintEnd_toEndOf="@+id/campoSenha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoSenha" />
+
+    <EditText
+        android:id="@+id/campoSenha"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="244dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/campo"
+        android:ems="10"
+        android:fontFamily="@font/qcksemi"
+        android:hint="••••••••••••"
+        android:inputType="textPersonName"
+        android:textColor="@color/ciano"
+        android:textColorHint="@color/ciano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="266dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/qckbold"
+        android:letterSpacing="0"
+        android:paddingTop="0dp"
+        android:text="Acessar"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:drawableStart="@drawable/checkbox_custom"
+        android:drawablePadding="6dp"
+        android:paddingStart="0dp"
+        android:checked="false"
+        android:fontFamily="@font/qcksemi"
+        android:paddingLeft="5dp"
+        android:text="Lembrar minha senha"
+        android:textColor="@color/amalero"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/campoSenha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoSenha"
+        app:layout_constraintTop_toBottomOf="@+id/campoSenha" />
+</androidx.constraintlayout.widget.ConstraintLayout>
