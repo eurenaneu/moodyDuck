@@ -65,15 +65,12 @@ public class Home extends AppCompatActivity {
                         return true;
                     case R.id.estatisticas:
                         startActivity(new Intent(Home.this, Stats.class));
-                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.calendario:
                         startActivity(new Intent(Home.this, Calendario.class));
-                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.config:
                         startActivity(new Intent(Home.this, Config.class));
-                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
