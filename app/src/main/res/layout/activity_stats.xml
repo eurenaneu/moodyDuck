@@ -8,6 +8,13 @@
     tools:context=".Stats">
 
     <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#4D000000" />
+
+    <View
         android:layout_width="360dp"
         android:layout_height="260dp"
         android:background="@drawable/chart"
@@ -20,9 +27,9 @@
         android:id="@+id/linechart"
         android:layout_width="330dp"
         android:layout_height="230dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
