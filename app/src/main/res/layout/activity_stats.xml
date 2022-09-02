@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
-        android:background="#4D000000" />
+        android:background="#4D000000"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="360dp"
