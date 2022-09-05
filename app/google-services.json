@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "533939301958",
+    "firebase_url": "https://moodydb-10a43-default-rtdb.firebaseio.com",
+    "project_id": "moodydb-10a43",
+    "storage_bucket": "moodydb-10a43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533939301958:android:467b2e34b075f5ff10e447",
+        "android_client_info": {
+          "package_name": "com.example.moodyduck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533939301958-7h53e6lrp3kokobb5h1q742gocn36tgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfF7JmZWBZE0JL5XadEnWgX-6F7OpZtWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533939301958-7h53e6lrp3kokobb5h1q742gocn36tgg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

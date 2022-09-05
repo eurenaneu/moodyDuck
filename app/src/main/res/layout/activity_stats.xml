@@ -13,7 +13,23 @@
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:background="#4D000000"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="41dp" />
+
+    <TextView
+        android:id="@+id/mesAno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/qckbold"
+        android:text="Relatório Mensal"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_anchor="@+id/view3"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
 
     <View
         android:layout_width="360dp"
