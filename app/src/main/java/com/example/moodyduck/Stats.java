@@ -8,8 +8,11 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -26,8 +29,8 @@ import java.util.Calendar;
 
 public class Stats extends AppCompatActivity {
     LineChart lc;
-    ArrayList lineArrayList;
-    int bd = 0;
+    ArrayList lineArrayList = new ArrayList<>();
+    int bd;
     DatabaseReference ref;
     Calendar c = Calendar.getInstance();
 
@@ -36,9 +39,7 @@ public class Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_stats);
-        lc = findViewById(R.id.linechart);
-        lineArrayList = new ArrayList();
-        getData();
+        lineArrayList = new ArrayList<>();
         LineDataSet lineDataset = new LineDataSet(lineArrayList, "");
         lineDataset.setValueTextColor(ContextCompat.getColor(this, R.color.amalero));
         lineDataset.setValueTextSize(16);
@@ -62,18 +63,37 @@ public class Stats extends AppCompatActivity {
         lc.setDoubleTapToZoomEnabled(false);
         lc.setBorderColor(Color.WHITE);
         lc.getLegend().setEnabled(false);
+        inicializar();
     }
 
-    public void getData(){
-        String[] nomeMes = new String[]{"janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
-        ref = FirebaseDatabase.getInstance().getReference().child(nomeMes[c.get(Calendar.MONTH)]+"-"+c.get(Calendar.YEAR));
+    public void inicializar(){
+        lc = findViewById(R.id.linechart);
+    }
+
+    /*public void montaGrafico(View view){
+        barChart.clear();
+        for(int i = 0; i < integerArrayList.size(); i++) {
+            barArrayList.add(new BarEntry(i, integerArrayList.get(i)));
+        }
+        BarDataSet barDataset = new BarDataSet(barArrayList, "");
+        barDataset.setColors(Color.WHITE);
+        barDataset.setValueTextColor(Color.BLACK);
+        barDataset.setValueTextSize(16f);
+        BarData barData = new BarData(barDataset);
+        barChart.setData(barData);
+
+    }
+    public void visualizarDados(){
         ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    bd = (int) dataSnapshot.getValue();
-                    lineArrayList.add(new BarEntry(1f, bd));
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    for(int i = 0; i <= snapshot.getChildrenCount(); i++) {
+                        test = Integer.parseInt(snapshot.getValue().toString());
+                        integerArrayList.add(test);
+                    }
                 }
+
             }
 
             @Override
@@ -81,19 +101,5 @@ public class Stats extends AppCompatActivity {
 
             }
         });
-
-        lineArrayList.add(new BarEntry(1f, bd));
-        lineArrayList.add(new BarEntry(2f, 2));
-        lineArrayList.add(new BarEntry(3f, 4));
-        lineArrayList.add(new BarEntry(4f, 8));
-        lineArrayList.add(new BarEntry(5f, 16));
-        lineArrayList.add(new BarEntry(6f, 32));
-        lineArrayList.add(new BarEntry(7f, 64));
-        lineArrayList.add(new BarEntry(8f, 128));
-        lineArrayList.add(new BarEntry(9f, 256));
-        lineArrayList.add(new BarEntry(10f, 512));
-        lineArrayList.add(new BarEntry(11f, 1024));
-        lineArrayList.add(new BarEntry(12f, 2048));
-        lineArrayList.add(new BarEntry(13f, 4096));
-    }
+    }*/
 }
