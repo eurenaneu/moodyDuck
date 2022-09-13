@@ -32,6 +32,7 @@
         app:layout_constraintTop_toTopOf="@+id/view3" />
 
     <View
+        android:id="@+id/view4"
         android:layout_width="360dp"
         android:layout_height="260dp"
         android:background="@drawable/chart"

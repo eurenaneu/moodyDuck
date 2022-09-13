@@ -9,11 +9,14 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
@@ -26,12 +29,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Stats extends AppCompatActivity {
-    LineChart lc;
-    ArrayList lineArrayList = new ArrayList<>();
-    int bd;
-    DatabaseReference ref;
+    List<Entry> lineArrayList = new ArrayList<>();
+    ArrayList<Integer> integerArrayList = new ArrayList<>();
+    LineChart lineChart;
+    Button b;
+    int data;
+    Timer timer = null;
+    long tempo = 10000;
     Calendar c = Calendar.getInstance();
 
     @Override
@@ -39,58 +48,67 @@ public class Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_stats);
+        lineChart = findViewById(R.id.linechart);
+        lineChart.setNoDataText("Nenhum registro no momento :)");
+        lineChart.setNoDataTextColor(Color.rgb(255,250,185));
+        lineChart.getDescription().setEnabled(false);
+        lineChart.setTouchEnabled(false);
+        lineChart.setPinchZoom(false);
+        lineChart.getAxisRight().setEnabled(false);
+        lineChart.getAxisLeft().setEnabled(false);
+        lineChart.getXAxis().setEnabled(false);
+        lineChart.getAxisRight().setDrawGridLines(false);
+        lineChart.getAxisLeft().setDrawGridLines(false);
+        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.setDoubleTapToZoomEnabled(false);
+        lineChart.setBorderColor(Color.WHITE);
+        lineChart.getLegend().setEnabled(false);
+        visualizarDados();
+        if(timer == null){
+            timer = new Timer();
+            TimerTask tarefa = new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        montaGrafico();
+                    } catch (Exception e){
+
+                    }
+                }
+            };
+            timer.scheduleAtFixedRate(tarefa, tempo, tempo);
+        }
+    }
+
+    public void montaGrafico(){
+        lineChart.clear();
         lineArrayList = new ArrayList<>();
+        for(int i = 0; i < integerArrayList.size(); i++) {
+            lineArrayList.add(new BarEntry(i, integerArrayList.get(i)));
+        }
         LineDataSet lineDataset = new LineDataSet(lineArrayList, "");
+        lineDataset.setColors(Color.WHITE);
+        lineDataset.setValueTextSize(14);
         lineDataset.setValueTextColor(ContextCompat.getColor(this, R.color.amalero));
-        lineDataset.setValueTextSize(16);
         Typeface tf = Typeface.createFromAsset(this.getAssets(), "qckbold.ttf");
         lineDataset.setValueTypeface(tf);
         lineDataset.setDrawCircles(false);
         lineDataset.setColor(ContextCompat.getColor(this, R.color.amalero));
         LineData lineData = new LineData(lineDataset);
-        lc.setNoDataText("Nenhum registro até agora :)");
-        lc.setNoDataTextColor(Color.rgb(255,250,185));
-        lc.setData(lineData);
-        lc.getDescription().setEnabled(false);
-        lc.setTouchEnabled(false);
-        lc.setPinchZoom(false);
-        lc.getAxisRight().setEnabled(false);
-        lc.getAxisLeft().setEnabled(false);
-        lc.getXAxis().setEnabled(false);
-        lc.getAxisRight().setDrawGridLines(false);
-        lc.getAxisLeft().setDrawGridLines(false);
-        lc.getXAxis().setDrawGridLines(false);
-        lc.setDoubleTapToZoomEnabled(false);
-        lc.setBorderColor(Color.WHITE);
-        lc.getLegend().setEnabled(false);
-        inicializar();
-    }
-
-    public void inicializar(){
-        lc = findViewById(R.id.linechart);
-    }
-
-    /*public void montaGrafico(View view){
-        barChart.clear();
-        for(int i = 0; i < integerArrayList.size(); i++) {
-            barArrayList.add(new BarEntry(i, integerArrayList.get(i)));
-        }
-        BarDataSet barDataset = new BarDataSet(barArrayList, "");
-        barDataset.setColors(Color.WHITE);
-        barDataset.setValueTextColor(Color.BLACK);
-        barDataset.setValueTextSize(16f);
-        BarData barData = new BarData(barDataset);
-        barChart.setData(barData);
+        lineChart.setData(lineData);
+        lineChart.invalidate();
 
     }
     public void visualizarDados(){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("teste");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                integerArrayList = new ArrayList<>();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     for(int i = 0; i <= snapshot.getChildrenCount(); i++) {
-                        test = Integer.parseInt(snapshot.getValue().toString());
-                        integerArrayList.add(test);
+                        data = Integer.parseInt(snapshot.getValue().toString());
+                        integerArrayList.add(data);
                     }
                 }
 
@@ -101,5 +119,5 @@ public class Stats extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 }
