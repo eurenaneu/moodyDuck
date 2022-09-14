@@ -56,6 +56,30 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        fabOntem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Ontem";
+                startActivity(new Intent(Home.this, AddRegistro.class));
+            }
+        });
+
+        fabHoje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Hoje";
+                startActivity(new Intent(Home.this, AddRegistro.class));
+            }
+        });
+
+        fabOutro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Outro dia";
+                startActivity(new Intent(Home.this, AddRegistro.class));
+            }
+        });
+
         bnv.setSelectedItemId(R.id.registros);
         bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -65,6 +89,7 @@ public class Home extends AppCompatActivity {
                         return true;
                     case R.id.estatisticas:
                         startActivity(new Intent(Home.this, Stats.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.calendario:
                         startActivity(new Intent(Home.this, Calendario.class));

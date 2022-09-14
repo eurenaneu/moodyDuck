@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -20,6 +24,9 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,11 +44,17 @@ public class Stats extends AppCompatActivity {
     List<Entry> lineArrayList = new ArrayList<>();
     ArrayList<Integer> integerArrayList = new ArrayList<>();
     LineChart lineChart;
-    Button b;
     int data;
     Timer timer = null;
     long tempo = 10000;
     Calendar c = Calendar.getInstance();
+
+    //nav
+    Animation fabOpen, fabClose, fabUp, fabDown;
+    BottomNavigationView bnv;
+    FloatingActionButton fabio, fabHoje, fabOutro, fabOntem;
+    boolean estaAberto = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +77,58 @@ public class Stats extends AppCompatActivity {
         lineChart.setBorderColor(Color.WHITE);
         lineChart.getLegend().setEnabled(false);
         visualizarDados();
+        inicializarNav();
+        fabio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animFab();
+            }
+        });
+
+        fabOntem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Ontem";
+                startActivity(new Intent(Stats.this, AddRegistro.class));
+            }
+        });
+
+        fabHoje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Hoje";
+                startActivity(new Intent(Stats.this, AddRegistro.class));
+            }
+        });
+
+        fabOutro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Outro dia";
+                startActivity(new Intent(Stats.this, AddRegistro.class));
+            }
+        });
+
+        bnv.setSelectedItemId(R.id.estatisticas);
+        bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.registros:
+                        startActivity(new Intent(Stats.this, Home.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.estatisticas:
+                        return true;
+                    case R.id.calendario:
+                        return true;
+                    case R.id.config:
+                        startActivity(new Intent(Stats.this, Config.class));
+                        return true;
+                }
+                return false;
+            }
+        });
         if(timer == null){
             timer = new Timer();
             TimerTask tarefa = new TimerTask() {
@@ -78,6 +143,20 @@ public class Stats extends AppCompatActivity {
             };
             timer.scheduleAtFixedRate(tarefa, tempo, tempo);
         }
+    }
+
+    public void inicializarNav(){
+        bnv = findViewById(R.id.bottom_nav);
+        fabio = findViewById(R.id.fab);
+        fabOntem = findViewById(R.id.fabOntem);
+        fabHoje = findViewById(R.id.fabHoje);
+        fabOutro = findViewById(R.id.fabOutro);
+
+        //anims
+        fabOpen = AnimationUtils.loadAnimation(this, R.anim.anim_open);
+        fabClose = AnimationUtils.loadAnimation(this, R.anim.anim_close);
+        fabUp = AnimationUtils.loadAnimation(this, R.anim.anim_cima);
+        fabDown = AnimationUtils.loadAnimation(this, R.anim.anim_baixo);
     }
 
     public void montaGrafico(){
@@ -119,5 +198,27 @@ public class Stats extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void animFab(){
+        if (estaAberto){
+            fabio.startAnimation(fabClose);
+            fabOntem.startAnimation(fabDown);
+            fabHoje.startAnimation(fabDown);
+            fabOutro.startAnimation(fabDown);
+            fabOntem.setClickable(false);
+            fabHoje.setClickable(false);
+            fabOutro.setClickable(false);
+            estaAberto = false;
+        } else {
+            fabio.startAnimation(fabOpen);
+            fabOntem.startAnimation(fabUp);
+            fabHoje.startAnimation(fabUp);
+            fabOutro.startAnimation(fabUp);
+            fabOntem.setClickable(true);
+            fabHoje.setClickable(true);
+            fabOutro.setClickable(true);
+            estaAberto = true;
+        }
     }
 }

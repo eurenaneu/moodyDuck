@@ -1,16 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.MoodyDuck" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/ciano</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/ciano</item>
-        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.MoodyDuckSecondary" parent="Theme.MoodyDuck">
+        <item name="android:statusBarColor">#598580</item>
+    </style>
+
+
+    <style name="Theme.MoodyDuck.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MoodyDuck.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MoodyDuck.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="navBar_Style" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/qck</item>
+    </style>
+    <style name="FAB_Style" parent="ShapeAppearanceOverlay.Material3.FloatingActionButton">
+        <item name="cornerSize">20%</item>
     </style>
 </resources>

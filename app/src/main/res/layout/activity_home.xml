@@ -27,7 +27,7 @@
             app:itemIconSize="25dp"
             app:itemIconTint="@drawable/mauri"
             app:itemTextColor="@drawable/mauri"
-            app:labelVisibilityMode="auto"
+            app:labelVisibilityMode="unlabeled"
             app:menu="@menu/menu_home" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
