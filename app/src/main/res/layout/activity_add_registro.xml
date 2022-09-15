@@ -42,4 +42,80 @@
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <ImageButton
+        android:id="@+id/imageFeliz"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="90dp"
+        android:adjustViewBounds="true"
+        android:background="@color/amalero"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/imageNeutro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvData"
+        app:srcCompat="@drawable/placeholder_feliz" />
+
+    <ImageButton
+        android:id="@+id/imageNeutro"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="90dp"
+        android:adjustViewBounds="true"
+        android:background="@color/amalero"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvData"
+        app:srcCompat="@drawable/placeholder_neutro" />
+
+    <ImageButton
+        android:id="@+id/imageTriste"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="90dp"
+        android:adjustViewBounds="true"
+        android:background="@color/amalero"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageNeutro"
+        app:layout_constraintTop_toBottomOf="@+id/tvData"
+        app:srcCompat="@drawable/placeholder_triste" />
+
+    <TextView
+        android:id="@+id/txtFeliz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="alegria"
+        android:fontFamily="@font/qckbold"
+        android:textColor="@color/amalero"
+        app:layout_constraintEnd_toEndOf="@+id/imageFeliz"
+        app:layout_constraintStart_toStartOf="@+id/imageFeliz"
+        app:layout_constraintTop_toBottomOf="@+id/imageFeliz" />
+
+    <TextView
+        android:id="@+id/txtNeutro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="neutro :|"
+        android:fontFamily="@font/qckbold"
+        android:textColor="@color/amalero"
+        app:layout_constraintEnd_toEndOf="@+id/imageNeutro"
+        app:layout_constraintStart_toStartOf="@+id/imageNeutro"
+        app:layout_constraintTop_toBottomOf="@+id/imageNeutro" />
+
+    <TextView
+        android:id="@+id/txtTriste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="depressao :cc"
+        android:fontFamily="@font/qckbold"
+        android:textColor="@color/amalero"
+        app:layout_constraintEnd_toEndOf="@+id/imageTriste"
+        app:layout_constraintStart_toStartOf="@+id/imageTriste"
+        app:layout_constraintTop_toBottomOf="@+id/imageTriste" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
