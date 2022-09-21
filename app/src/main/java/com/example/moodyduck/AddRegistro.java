@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import android.widget.TimePicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -139,5 +137,9 @@ public class AddRegistro extends AppCompatActivity {
             timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             timePickerDialog.updateTime(hora, min);
             timePickerDialog.show();
+    }
+
+    public void comecarRegistro(View v){
+        startActivity(new Intent(this, FormRegistro.class));
     }
 }

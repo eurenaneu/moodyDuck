@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoodyDuck">
         <activity
+            android:name=".FormRegistro"
+            android:exported="false" />
+        <activity
             android:name=".AddRegistro"
             android:exported="false" />
         <activity

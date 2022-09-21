@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/boxregistro.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/chart.xml" value="0.2203125" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/coisa.xml" value="0.2203125" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/mauri.xml" value="0.2203125" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/shape_create.xml" value="0.2203125" />
-        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_add_registro.xml" value="0.25" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_add_registro.xml" value="0.33" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_cadastro.xml" value="0.75" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_form_registro.xml" value="0.5" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_jogoda_velha.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_stats.xml" value="0.25" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/menu/menu_home.xml" value="0.20416666666666666" />
