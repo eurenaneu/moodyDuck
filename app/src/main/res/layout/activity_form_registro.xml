@@ -1,171 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/ciano"
-    tools:context=".FormRegistro">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/bVoltar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="31dp"
-        android:background="@drawable/ic_ontem"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ciano"
+        tools:context=".FormRegistro">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:fontFamily="@font/qckbold"
-        android:text="O que você tem feito?"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/bVoltar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="31dp"
+            android:background="@drawable/ic_ontem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/viewSocial"
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxregistro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/qckbold"
+            android:text="O que você tem feito?"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tituloSocial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/qckbold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="Social"
-        android:textColor="@color/amalero"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/viewSocial"
-        app:layout_constraintTop_toTopOf="@+id/viewSocial" />
+        <View
+            android:id="@+id/viewSocial"
+            android:layout_width="350dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxregistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-    <View
-        android:id="@+id/viewPassatempo"
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxregistro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSocial" />
+        <TextView
+            android:id="@+id/tituloSocial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Social"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewSocial"
+            app:layout_constraintTop_toTopOf="@+id/viewSocial" />
 
-    <TextView
-        android:id="@+id/tituloPassatempo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/qckbold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="Passatempo"
-        android:textColor="@color/amalero"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/viewPassatempo"
-        app:layout_constraintTop_toTopOf="@+id/viewPassatempo" />
+        <View
+            android:id="@+id/viewPassatempo"
+            android:layout_width="350dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxregistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewSocial" />
 
-    <View
-        android:id="@+id/viewSono"
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxregistro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPassatempo" />
+        <TextView
+            android:id="@+id/tituloPassatempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Passatempo"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewPassatempo"
+            app:layout_constraintTop_toTopOf="@+id/viewPassatempo" />
 
-    <TextView
-        android:id="@+id/tituloSono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/qckbold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="Sono"
-        android:textColor="@color/amalero"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/viewSono"
-        app:layout_constraintTop_toTopOf="@+id/viewSono" />
+        <View
+            android:id="@+id/viewSono"
+            android:layout_width="350dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxregistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPassatempo" />
 
-    <View
-        android:id="@+id/viewAlimentacao"
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxregistro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSono" />
+        <TextView
+            android:id="@+id/tituloSono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Sono"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewSono"
+            app:layout_constraintTop_toTopOf="@+id/viewSono" />
 
-    <TextView
-        android:id="@+id/tituloAlimentacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/qckbold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="Alimentação"
-        android:textColor="@color/amalero"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/viewAlimentacao"
-        app:layout_constraintTop_toTopOf="@+id/viewAlimentacao" />
+        <View
+            android:id="@+id/viewAlimentacao"
+            android:layout_width="350dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxregistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewSono" />
 
-    <View
-        android:id="@+id/viewSaude"
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxregistro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewAlimentacao" />
+        <TextView
+            android:id="@+id/tituloAlimentacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Alimentação"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewAlimentacao"
+            app:layout_constraintTop_toTopOf="@+id/viewAlimentacao" />
 
-    <TextView
-        android:id="@+id/tituloSaude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/qckbold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="Saúde"
-        android:textColor="@color/amalero"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/viewSaude"
-        app:layout_constraintTop_toTopOf="@+id/viewSaude" />
+        <View
+            android:id="@+id/viewSaude"
+            android:layout_width="350dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxregistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewAlimentacao" />
 
-    <View
-        android:id="@+id/viewTarefas"
-        android:layout_width="350dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/boxregistro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSaude" />
+        <TextView
+            android:id="@+id/tituloSaude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Saúde"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewSaude"
+            app:layout_constraintTop_toTopOf="@+id/viewSaude" />
 
-    <TextView
-        android:id="@+id/tituloTarefas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/qckbold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="Tarefas"
-        android:textColor="@color/amalero"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/viewTarefas"
-        app:layout_constraintTop_toTopOf="@+id/viewTarefas" />
+        <View
+            android:id="@+id/viewTarefas"
+            android:layout_width="350dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boxregistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewSaude" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tituloTarefas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Tarefas"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewTarefas"
+            app:layout_constraintTop_toTopOf="@+id/viewTarefas" />
+
+        <View
+            android:id="@+id/viewObjetivos"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boxnotes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloObjetivos" />
+
+        <TextView
+            android:id="@+id/tituloObjetivos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Objetivos"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewObjetivos"
+            app:layout_constraintTop_toBottomOf="@+id/viewTarefas" />
+
+        <View
+            android:id="@+id/viewAnotacoes"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boxnotes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAnotacoes" />
+
+        <TextView
+            android:id="@+id/tituloAnotacoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Anotações"
+            android:textColor="@color/amalero"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewAnotacoes"
+            app:layout_constraintTop_toBottomOf="@+id/viewObjetivos" />
+
+        <ImageButton
+            android:id="@+id/bSalvar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="120dp"
+            android:background="@drawable/ph_salvar"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewAnotacoes" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/qckbold"
+            android:background="@color/transparent"
+            android:hint="Adicionar nota"
+            android:inputType="textPersonName"
+            android:textSize="14sp"
+            android:textColor="#70B2AA"
+            android:textColorHint="#70B2AA"
+            app:layout_constraintBottom_toBottomOf="@+id/viewAnotacoes"
+            app:layout_constraintEnd_toEndOf="@+id/viewAnotacoes"
+            app:layout_constraintStart_toStartOf="@+id/viewAnotacoes"
+            app:layout_constraintTop_toTopOf="@+id/viewAnotacoes" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/qckbold"
+            android:text="Salvar"
+            android:textColor="@color/amalero"
+            app:layout_constraintEnd_toEndOf="@+id/bSalvar"
+            app:layout_constraintStart_toStartOf="@+id/bSalvar"
+            app:layout_constraintTop_toBottomOf="@+id/bSalvar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
