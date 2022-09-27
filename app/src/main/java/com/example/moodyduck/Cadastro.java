@@ -29,3 +29,5 @@ public class Cadastro extends AppCompatActivity {
         startActivity(new Intent(this, Home.class));
     }
 }
+
+// aoaooaoaoa vida de gado
