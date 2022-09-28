@@ -4,26 +4,41 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cadastro extends AppCompatActivity {
-    TextView aviso;
-    EditText email, senha, confirma;
+    EditText nome, email, senha, confirma;
     FloatingActionButton fab;
+    TextView aviso;
+    String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
         aviso = findViewById(R.id.avisoSenhas);
+        nome = findViewById(R.id.campoUser);
         email = findViewById(R.id.campoEmail);
         senha = findViewById(R.id.campoSenha);
         confirma = findViewById(R.id.campoConfirma);
@@ -31,23 +46,51 @@ public class Cadastro extends AppCompatActivity {
         aviso.setVisibility(View.GONE);
     }
 
-    public void irHome(View v){
+    public void irHome(){
         startActivity(new Intent(this, Home.class));
     }
 
-    public void cadastrarUser(View v){
+    public void cadastrarUser(View v) {
         String e = email.getText().toString();
         String s = senha.getText().toString();
-        String cs = confirma.getText().toString();
-        if(s != cs) {
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // OPA AOP AOP AOP AOP OPA OPA OPA OPA OPA OPA
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    salvarUser(e, s);
+                    Snackbar snackbar = Snackbar.make(v, "OPA", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                    irHome();
+                } else {
+                    String erro;
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        erro = "Digite uma senha com, no mínimo, 6 caracteres";
+                    } catch (FirebaseAuthUserCollisionException e) {
+                        erro = "Essa conta já está cadastrada";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        erro = "E-mail inválido";
+                    } catch (Exception e) {
+                        erro = "Erro desconhecido";
                     }
+                    Snackbar snackbar = Snackbar.make(v, erro, Snackbar.LENGTH_SHORT);
+                    snackbar.setTextColor(Color.WHITE);
+                    snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
+                    snackbar.show();
                 }
-            });
-        }
+            }
+        });
+    }
+
+    public void salvarUser(String e, String s){
+        String u = nome.getText().toString();
+        Map<String, Object> usuarios = new HashMap<>();
+        usuarios.put("nome", u);
+        usuarios.put("email", e);
+        usuarios.put("senha", s);
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.child("Users").child(userId).setValue(usuarios);
     }
 }

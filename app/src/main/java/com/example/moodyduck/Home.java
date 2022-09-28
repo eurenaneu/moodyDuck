@@ -1,8 +1,10 @@
 package com.example.moodyduck;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -99,6 +101,17 @@ public class Home extends AppCompatActivity {
                         return true;
                 }
                 return false;
+            }
+        });
+    }
+
+    public void onBackPressed(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Deseja deslogar?").setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Home.this, MainActivity.class));
+                finish();
             }
         });
     }
