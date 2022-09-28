@@ -199,7 +199,7 @@
         android:layout_marginTop="35dp"
         android:fontFamily="@font/qckbold"
         android:letterSpacing="0"
-        android:onClick="irHome"
+        android:onClick="cadastrarUser"
         android:paddingTop="0dp"
         android:text="Cadastrar"
         android:textAlignment="center"
