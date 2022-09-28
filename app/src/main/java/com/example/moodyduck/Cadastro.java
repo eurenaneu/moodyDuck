@@ -44,7 +44,7 @@ public class Cadastro extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        //continuar depois
+                        // OPA AOP AOP AOP AOP OPA OPA OPA OPA OPA OPA
                     }
                 }
             });
