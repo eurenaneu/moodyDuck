@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/drawable/shape_create.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_config.xml" value="0.33" />
+        <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_login.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_main.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_stats.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/boxdata.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/boxnotes.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/boxregistro.xml" value="0.20260416666666667" />
