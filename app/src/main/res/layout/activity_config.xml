@@ -34,10 +34,10 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="106dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3"
         tools:srcCompat="@tools:sample/avatars" />
@@ -52,5 +52,163 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/txtDados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/qckbold"
+        android:text="Seus dados"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        tools:layout_editor_absoluteY="128dp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/qckbold"
+        android:text="email, senha"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/txtDados"
+        app:layout_constraintTop_toBottomOf="@+id/txtDados" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="324dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/shape_create"
+        android:text="Objetivos"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#B3D9D4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewSpacer" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="324dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/shape_create"
+        android:text="Relatório Semanal"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#B3D9D4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="324dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/shape_create"
+        android:text="Relatório Mensal"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#B3D9D4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="324dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/shape_create"
+        android:text="Lembretes"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#B3D9D4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="324dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/shape_create"
+        android:text="Horário"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#B3D9D4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="324dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/shape_create"
+        android:text="Editar Humor"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#B3D9D4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="324dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/shape_create"
+        android:text="Editar Atividades"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#B3D9D4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
