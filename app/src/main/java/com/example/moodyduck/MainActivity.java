@@ -19,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
         alexandre.setText(Html.fromHtml(text));
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.moveTaskToBack(true);
+    }
+
     public void irCadastro(View v){
         startActivity(new Intent(this, Cadastro.class));
     }

@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -85,6 +87,9 @@ public class Cadastro extends AppCompatActivity {
 
     public void salvarUser(String e, String s){
         String u = nome.getText().toString();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(u).build();
+        user.updateProfile(profileUpdates);
         Map<String, Object> usuarios = new HashMap<>();
         usuarios.put("nome", u);
         usuarios.put("email", e);

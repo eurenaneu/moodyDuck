@@ -4,20 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.components.Lazy;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
 
@@ -26,6 +28,7 @@ public class Home extends AppCompatActivity {
     TextView t;
     Animation fabOpen, fabClose, fabUp, fabDown;
     BottomNavigationView bnv;
+    AlertDialog alerta;
     FloatingActionButton fabio, fabHoje, fabOutro, fabOntem;
     boolean estaAberto = false;
 
@@ -107,13 +110,19 @@ public class Home extends AppCompatActivity {
 
     public void onBackPressed(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Deseja deslogar?").setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+        View view = getLayoutInflater().inflate(R.layout.custom_dialog, null);
+        Button deslogar = view.findViewById(R.id.bDeslogar);
+        deslogar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
                 startActivity(new Intent(Home.this, MainActivity.class));
                 finish();
+                FirebaseAuth.getInstance().signOut();
             }
         });
+        builder.setView(view);
+        alerta = builder.create();
+        alerta.show();
     }
 
     public void animFab(){
