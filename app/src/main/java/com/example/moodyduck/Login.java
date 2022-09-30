@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -25,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
     EditText email, senha;
+    CheckBox cbp;
     ProgressBar pB;
 
     @Override
@@ -34,11 +38,21 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.campoEmail);
         senha = findViewById(R.id.campoSenha);
         pB = findViewById(R.id.progressBar);
+        cbp = findViewById(R.id.checkBox);
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        String checkbox = preferences.getString("lembrarSenha", "");
+        if(checkbox.equals("true")){
+            startActivity(new Intent(Login.this, Home.class));
+        } else if(checkbox.equals("false")){
+
+        }
 
     }
+
     public void logarUser(View v) {
         String e = email.getText().toString();
         String s = senha.getText().toString();
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -62,6 +76,25 @@ public class Login extends AppCompatActivity {
                     snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
                     snackbar.setTextColor(Color.WHITE);
                     snackbar.show();
+                }
+            }
+        });
+
+        cbp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences ("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString ("lembrarSenha", "true");
+                    editor.apply();
+                    Toast.makeText (Login.this, "checked", Toast.LENGTH_SHORT).show();
+                }else if (!compoundButton.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("lembrarSenha", "false");
+                    editor.apply();
+                    Toast.makeText ( Login.this, "checked", Toast.LENGTH_SHORT).show();
                 }
             }
         });

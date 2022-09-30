@@ -14,6 +14,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,16 +27,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class AddRegistro extends AppCompatActivity {
+    String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
+    SimpleDateFormat f24 = new SimpleDateFormat("HH:mm");
     DatePickerDialog.OnDateSetListener setListener;
     Calendar c = Calendar.getInstance();
+    Date dataHoraAtual = new Date();
     int dia, mes, ano, hora, min;
     String data, horario;
+    static String tData;
     TextView tvData;
     Button bVoltar;
-    SimpleDateFormat f24 = new SimpleDateFormat("HH:mm");
-    String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};/* = getResources().getStringArray(R.array.nomeMes);*/
-    Date dataHoraAtual = new Date();
-    static String tData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +112,9 @@ public class AddRegistro extends AppCompatActivity {
                 } else {
                     data = tData + ", " + dayOfMonth + " de " + nomeMes[month];
                 }
+                dia = dayOfMonth;
+                ano = year;
+                mes = month;
                 tvData.setText(data);
                 setarHorario();
             }
@@ -140,6 +149,10 @@ public class AddRegistro extends AppCompatActivity {
     }
 
     public void comecarRegistro(View v){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //Toast.makeText(this, user.getUid(), Toast.LENGTH_SHORT).show();
+        ref.child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).setValue(3);
         startActivity(new Intent(this, FormRegistro.class));
     }
 }

@@ -34,21 +34,24 @@
     <View
         android:id="@+id/view4"
         android:layout_width="360dp"
-        android:layout_height="260dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/chart"
         app:layout_constraintBottom_toBottomOf="@+id/linechart"
         app:layout_constraintEnd_toEndOf="@+id/linechart"
         app:layout_constraintStart_toStartOf="@+id/linechart"
-        app:layout_constraintTop_toTopOf="@+id/linechart" />
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/linechart"
         android:layout_width="330dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintBottom_toBottomOf="@id/view4"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="wrap_content"
@@ -143,5 +146,17 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/qckbold"
+        android:text="Gráfico de humor mensal"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="@+id/view4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

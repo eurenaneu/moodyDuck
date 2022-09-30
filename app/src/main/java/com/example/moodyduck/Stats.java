@@ -119,11 +119,14 @@ public class Stats extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.estatisticas:
-                        return true;
+                        break;
                     case R.id.calendario:
+                        startActivity(new Intent(Stats.this, Calendario.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.config:
                         startActivity(new Intent(Stats.this, Config.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;

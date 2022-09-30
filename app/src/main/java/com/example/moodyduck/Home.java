@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -112,12 +113,23 @@ public class Home extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.custom_dialog, null);
         Button deslogar = view.findViewById(R.id.bDeslogar);
+        Button naoDeslogar = view.findViewById(R.id.bFake);
         deslogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("lembrarSenha", "false");
+                editor.apply();
                 startActivity(new Intent(Home.this, MainActivity.class));
                 finish();
                 FirebaseAuth.getInstance().signOut();
+            }
+        });
+        naoDeslogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alerta.dismiss();
             }
         });
         builder.setView(view);
