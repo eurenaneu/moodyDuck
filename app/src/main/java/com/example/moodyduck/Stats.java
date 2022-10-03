@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -16,15 +15,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
+
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -36,7 +32,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -46,17 +41,18 @@ import java.util.TimerTask;
 public class Stats extends AppCompatActivity {
     List<Entry> lineArrayList = new ArrayList<>();
     ArrayList<Integer> integerArrayList = new ArrayList<>();
+    Button bProximo, bAnterior;
     LineChart lineChart;
-    int data;
+    int data, p;
     Timer timer = null;
-    long tempo = 10000;
+    long tempo = 5000;
     Calendar c = Calendar.getInstance();
 
     //nav
-    Animation fabOpen, fabClose, fabUp, fabDown;
     BottomNavigationView bnv;
-    FloatingActionButton fabio, fabHoje, fabOutro, fabOntem;
     boolean estaAberto = false;
+    Animation fabOpen, fabClose, fabUp, fabDown;
+    FloatingActionButton fabio, fabHoje, fabOutro, fabOntem;
 
 
     @Override
@@ -64,6 +60,8 @@ public class Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_stats);
+        bAnterior = findViewById(R.id.bAnterior);
+        bProximo = findViewById(R.id.bProximo);
         lineChart = findViewById(R.id.linechart);
         lineChart.setNoDataText("Nenhum registro no momento :)");
         lineChart.setNoDataTextColor(Color.rgb(255,250,185));
@@ -151,6 +149,17 @@ public class Stats extends AppCompatActivity {
         }
     }
 
+    public void mudarMes(View v){
+        if(bProximo.isPressed()){
+            p++;
+        }
+        else if(bAnterior.isPressed()){
+            p--;
+        }
+        visualizarDados();
+        //Toast.makeText(this, ano+", "+mes, Toast.LENGTH_SHORT).show();
+    }
+
     public void onBackPressed(){
         startActivity(new Intent(this, Home.class));
         finish();
@@ -194,9 +203,19 @@ public class Stats extends AppCompatActivity {
     public void visualizarDados(){
         String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String ano = String.valueOf(c.get(Calendar.YEAR)-2);
-        String mes = nomeMes[c.get(Calendar.MONTH)-2];
-        Toast.makeText(this, ano+", "+mes, Toast.LENGTH_SHORT).show();
+        String ano = String.valueOf(c.get(Calendar.YEAR));
+        String mes = nomeMes[c.get(Calendar.MONTH)+p];
+        int r = 0;
+        if(c.get(Calendar.MONTH)+p == 0){
+            p = 0;
+            r--;
+            //ano = String.valueOf(c.get(Calendar.YEAR)+r);
+            Toast.makeText(this, String.valueOf(c.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
+        }
+        /*if (!ano.equals(c.get(Calendar.YEAR))){
+            mes = nomeMes[11+p];
+        }*/
+        Toast.makeText(this, ano+", "+mes+" - "+p, Toast.LENGTH_SHORT).show();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
