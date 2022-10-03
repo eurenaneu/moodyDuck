@@ -39,6 +39,10 @@ public class Login extends AppCompatActivity {
         senha = findViewById(R.id.campoSenha);
         pB = findViewById(R.id.progressBar);
         cbp = findViewById(R.id.checkBox);
+        lembrarSenha();
+    }
+
+    public void lembrarSenha(){
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String checkbox = preferences.getString("lembrarSenha", "");
         if(checkbox.equals("true")){
@@ -47,6 +51,22 @@ public class Login extends AppCompatActivity {
 
         }
 
+        cbp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (compoundButton.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences ("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString ("lembrarSenha", "true");
+                    editor.apply();
+                }else if (!compoundButton.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("lembrarSenha", "false");
+                    editor.apply();
+                }
+            }
+        });
     }
 
     public void logarUser(View v) {
@@ -76,25 +96,6 @@ public class Login extends AppCompatActivity {
                     snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
                     snackbar.setTextColor(Color.WHITE);
                     snackbar.show();
-                }
-            }
-        });
-
-        cbp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (compoundButton.isChecked()){
-                    SharedPreferences preferences = getSharedPreferences ("checkbox", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString ("lembrarSenha", "true");
-                    editor.apply();
-                    Toast.makeText (Login.this, "checked", Toast.LENGTH_SHORT).show();
-                }else if (!compoundButton.isChecked()) {
-                    SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("lembrarSenha", "false");
-                    editor.apply();
-                    Toast.makeText ( Login.this, "checked", Toast.LENGTH_SHORT).show();
                 }
             }
         });

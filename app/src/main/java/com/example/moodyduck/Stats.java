@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -27,6 +28,8 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -148,6 +151,12 @@ public class Stats extends AppCompatActivity {
         }
     }
 
+    public void onBackPressed(){
+        startActivity(new Intent(this, Home.class));
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
     public void inicializarNav(){
         bnv = findViewById(R.id.bottom_nav);
         fabio = findViewById(R.id.fab);
@@ -181,8 +190,14 @@ public class Stats extends AppCompatActivity {
         lineChart.invalidate();
 
     }
+
     public void visualizarDados(){
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("teste");
+        String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String ano = String.valueOf(c.get(Calendar.YEAR)-2);
+        String mes = nomeMes[c.get(Calendar.MONTH)-2];
+        Toast.makeText(this, ano+", "+mes, Toast.LENGTH_SHORT).show();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
