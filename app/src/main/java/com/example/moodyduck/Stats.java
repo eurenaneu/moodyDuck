@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -39,11 +40,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Stats extends AppCompatActivity {
+    String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
     List<Entry> lineArrayList = new ArrayList<>();
     ArrayList<Integer> integerArrayList = new ArrayList<>();
+    TextView tTitulo;
     Button bProximo, bAnterior;
     LineChart lineChart;
-    int data, p;
+    int data, p, r;
     Timer timer = null;
     long tempo = 5000;
     Calendar c = Calendar.getInstance();
@@ -60,23 +63,11 @@ public class Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_stats);
+        tTitulo = findViewById(R.id.txtGraphTitle);
         bAnterior = findViewById(R.id.bAnterior);
         bProximo = findViewById(R.id.bProximo);
-        lineChart = findViewById(R.id.linechart);
-        lineChart.setNoDataText("Nenhum registro no momento :)");
-        lineChart.setNoDataTextColor(Color.rgb(255,250,185));
-        lineChart.getDescription().setEnabled(false);
-        lineChart.setTouchEnabled(false);
-        lineChart.setPinchZoom(false);
-        lineChart.getAxisRight().setEnabled(false);
-        lineChart.getAxisLeft().setEnabled(false);
-        lineChart.getXAxis().setEnabled(false);
-        lineChart.getAxisRight().setDrawGridLines(false);
-        lineChart.getAxisLeft().setDrawGridLines(false);
-        lineChart.getXAxis().setDrawGridLines(false);
-        lineChart.setDoubleTapToZoomEnabled(false);
-        lineChart.setBorderColor(Color.WHITE);
-        lineChart.getLegend().setEnabled(false);
+        tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+", "+c.get(Calendar.YEAR));
+        setupGrafico();
         visualizarDados();
         inicializarNav();
         fabio.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +140,24 @@ public class Stats extends AppCompatActivity {
         }
     }
 
+    public void setupGrafico(){
+        lineChart = findViewById(R.id.linechart);
+        lineChart.setNoDataText("Nenhum registro no momento :)");
+        lineChart.setNoDataTextColor(Color.rgb(255,250,185));
+        lineChart.getDescription().setEnabled(false);
+        lineChart.setTouchEnabled(false);
+        lineChart.setPinchZoom(false);
+        lineChart.getAxisRight().setEnabled(false);
+        lineChart.getAxisLeft().setEnabled(false);
+        lineChart.getXAxis().setEnabled(false);
+        lineChart.getAxisRight().setDrawGridLines(false);
+        lineChart.getAxisLeft().setDrawGridLines(false);
+        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.setDoubleTapToZoomEnabled(false);
+        lineChart.setBorderColor(Color.WHITE);
+        lineChart.getLegend().setEnabled(false);
+    }
+
     public void mudarMes(View v){
         if(bProximo.isPressed()){
             p++;
@@ -201,20 +210,27 @@ public class Stats extends AppCompatActivity {
     }
 
     public void visualizarDados(){
-        String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String ano = String.valueOf(c.get(Calendar.YEAR));
-        String mes = nomeMes[c.get(Calendar.MONTH)+p];
-        int r = 0;
-        if(c.get(Calendar.MONTH)+p == 0){
-            p = 0;
-            r--;
-            //ano = String.valueOf(c.get(Calendar.YEAR)+r);
-            Toast.makeText(this, String.valueOf(c.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
+        String mes = "";
+        if(c.get(Calendar.YEAR)-r != c.get(Calendar.YEAR)){
+            try {
+                mes = nomeMes[11 + p];
+            } catch (Exception e){
+                r++;
+                p = 0;
+                mes = nomeMes[11+p];
+            }
+        } else {
+            try {
+                mes = nomeMes[c.get(Calendar.MONTH) + p];
+            } catch (Exception e) {
+                r++;
+                p = 0;
+                mes = nomeMes[11+p];
+            }
         }
-        /*if (!ano.equals(c.get(Calendar.YEAR))){
-            mes = nomeMes[11+p];
-        }*/
+        String ano = String.valueOf(c.get(Calendar.YEAR)-r);
+        tTitulo.setText(mes+", "+ano);
         Toast.makeText(this, ano+", "+mes+" - "+p, Toast.LENGTH_SHORT).show();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
         ref.addValueEventListener(new ValueEventListener() {
