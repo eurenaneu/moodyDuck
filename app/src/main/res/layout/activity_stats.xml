@@ -24,8 +24,6 @@
         android:text="Relatório Mensal"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_anchor="@+id/view3"
-        app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view3"
@@ -172,11 +170,10 @@
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <Button
-        android:id="@+id/bAnterior"
+        android:id="@+id/bBack"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="15dp"
-        android:onClick="mudarMes"
         android:background="@drawable/ic_seta_esquerda"
         app:backgroundTint="@color/ciano"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
@@ -184,11 +181,10 @@
         app:layout_constraintTop_toTopOf="@+id/view5" />
 
     <Button
-        android:id="@+id/bProximo"
+        android:id="@+id/bNext"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="15dp"
-        android:onClick="mudarMes"
         android:background="@drawable/ic_seta_direita"
         app:backgroundTint="@color/ciano"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
@@ -201,9 +197,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="mes passado"
-        app:layout_constraintBottom_toBottomOf="@+id/bAnterior"
-        app:layout_constraintStart_toEndOf="@+id/bAnterior"
-        app:layout_constraintTop_toTopOf="@+id/bAnterior" />
+        android:fontFamily="@font/qckbold"
+        android:textColor="@color/ciano"
+        app:layout_constraintBottom_toBottomOf="@+id/bBack"
+        app:layout_constraintStart_toEndOf="@+id/bBack"
+        app:layout_constraintTop_toTopOf="@+id/bBack" />
 
     <TextView
         android:id="@+id/txtProximo"
@@ -211,8 +209,26 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:text="proximo ou atual"
-        app:layout_constraintBottom_toBottomOf="@+id/bProximo"
-        app:layout_constraintEnd_toStartOf="@+id/bProximo"
-        app:layout_constraintTop_toTopOf="@+id/bProximo" />
+        android:textColor="@color/ciano"
+        android:fontFamily="@font/qckbold"
+        app:layout_constraintBottom_toBottomOf="@+id/bNext"
+        app:layout_constraintEnd_toStartOf="@+id/bNext"
+        app:layout_constraintTop_toTopOf="@+id/bNext" />
+
+    <View
+        android:id="@+id/bProximo"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:onClick="mudarMes"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
+
+    <View
+        android:id="@+id/bAnterior"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:onClick="mudarMes"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

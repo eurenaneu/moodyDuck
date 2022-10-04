@@ -14,7 +14,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -44,7 +43,7 @@ public class Stats extends AppCompatActivity {
     List<Entry> lineArrayList = new ArrayList<>();
     ArrayList<Integer> integerArrayList = new ArrayList<>();
     TextView tTitulo, tProximo, tAnterior;
-    Button bProximo, bAnterior;
+    View bProximo, bAnterior;
     LineChart lineChart;
     int data, p, r;
     Timer timer = null;
@@ -144,8 +143,7 @@ public class Stats extends AppCompatActivity {
 
     public void setupGrafico(){
         lineChart = findViewById(R.id.linechart);
-        lineChart.setNoDataText("Nenhum registro no momento :)");
-        lineChart.setNoDataTextColor(Color.rgb(255,250,185));
+        lineChart.setNoDataText("");
         lineChart.getDescription().setEnabled(false);
         lineChart.setTouchEnabled(false);
         lineChart.setPinchZoom(false);
@@ -161,14 +159,13 @@ public class Stats extends AppCompatActivity {
     }
 
     public void mudarMes(View v){
+        String mes = "";
         if(bProximo.isPressed()){
             p++;
         }
         else if(bAnterior.isPressed()){
             p--;
         }
-        visualizarDados();
-        //Toast.makeText(this, ano+", "+mes, Toast.LENGTH_SHORT).show();
     }
 
     public void onBackPressed(){
@@ -214,9 +211,9 @@ public class Stats extends AppCompatActivity {
     public void visualizarDados(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String mes = "";
+        //ano menor que o atual
         if(c.get(Calendar.YEAR)-r != c.get(Calendar.YEAR)){
             try {
-                Toast.makeText(this, "try do if", Toast.LENGTH_SHORT).show();
                 mes = nomeMes[11 + p];
                 if (mes.equals("janeiro")) {
                     tAnterior.setText("dezembro");
@@ -229,8 +226,7 @@ public class Stats extends AppCompatActivity {
                 } else {
                     tProximo.setText(nomeMes[11 + p + 1]);
                 }
-            } catch (Exception e){
-                Toast.makeText(this, "catch do if", Toast.LENGTH_SHORT).show();
+            } catch (ArrayIndexOutOfBoundsException e){
                 r++;
                 p = 0;
                 mes = nomeMes[11 + p];
@@ -246,6 +242,7 @@ public class Stats extends AppCompatActivity {
                     tProximo.setText(nomeMes[11 + p + 1]);
                 }
             }
+            // ano atual
         } else {
             try {
                 mes = nomeMes[c.get(Calendar.MONTH) + p];
@@ -254,16 +251,17 @@ public class Stats extends AppCompatActivity {
                 } else {
                     tAnterior.setText(nomeMes[c.get(Calendar.MONTH)+p-1]);
                 }
+                bProximo.setEnabled(true);
 
                 if(mes.equals("dezembro")){
                     tProximo.setText("janeiro");
                 } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
+                    bProximo.setEnabled(false);
                     tProximo.setText("mês atual");
                 } else {
                     tProximo.setText(nomeMes[c.get(Calendar.MONTH)+p+1]);
                 }
-            } catch (Exception e) {
-                Toast.makeText(this, "catch do else", Toast.LENGTH_SHORT).show();
+            } catch (ArrayIndexOutOfBoundsException e) {
                 r++;
                 p = 0;
                 mes = nomeMes[11+p];
@@ -272,10 +270,12 @@ public class Stats extends AppCompatActivity {
                 } else {
                     tAnterior.setText(nomeMes[11 + p - 1]);
                 }
+                bProximo.setEnabled(true);
 
                 if(mes.equals("dezembro")){
                     tProximo.setText("janeiro");
                 } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
+                    bProximo.setEnabled(false);
                     tProximo.setText("mês atual");
                 } else {
                     tProximo.setText(nomeMes[11 + p + 1]);
