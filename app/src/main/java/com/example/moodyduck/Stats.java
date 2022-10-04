@@ -43,7 +43,7 @@ public class Stats extends AppCompatActivity {
     String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
     List<Entry> lineArrayList = new ArrayList<>();
     ArrayList<Integer> integerArrayList = new ArrayList<>();
-    TextView tTitulo;
+    TextView tTitulo, tProximo, tAnterior;
     Button bProximo, bAnterior;
     LineChart lineChart;
     int data, p, r;
@@ -63,6 +63,8 @@ public class Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_stats);
+        tProximo = findViewById(R.id.txtProximo);
+        tAnterior = findViewById(R.id.txtAnterior);
         tTitulo = findViewById(R.id.txtGraphTitle);
         bAnterior = findViewById(R.id.bAnterior);
         bProximo = findViewById(R.id.bProximo);
@@ -214,24 +216,74 @@ public class Stats extends AppCompatActivity {
         String mes = "";
         if(c.get(Calendar.YEAR)-r != c.get(Calendar.YEAR)){
             try {
+                Toast.makeText(this, "try do if", Toast.LENGTH_SHORT).show();
                 mes = nomeMes[11 + p];
+                if (mes.equals("janeiro")) {
+                    tAnterior.setText("dezembro");
+                } else {
+                    tAnterior.setText(nomeMes[11 + p - 1]);
+                }
+
+                if(mes.equals("dezembro")){
+                    tProximo.setText("janeiro");
+                } else {
+                    tProximo.setText(nomeMes[11 + p + 1]);
+                }
             } catch (Exception e){
+                Toast.makeText(this, "catch do if", Toast.LENGTH_SHORT).show();
                 r++;
                 p = 0;
-                mes = nomeMes[11+p];
+                mes = nomeMes[11 + p];
+                if(mes.equals("janeiro")){
+                    tAnterior.setText("dezembro");
+                } else {
+                    tAnterior.setText(nomeMes[11 + p - 1]);
+                }
+
+                if(mes.equals("dezembro")){
+                    tProximo.setText("janeiro");
+                } else {
+                    tProximo.setText(nomeMes[11 + p + 1]);
+                }
             }
         } else {
             try {
                 mes = nomeMes[c.get(Calendar.MONTH) + p];
+                if(nomeMes[c.get(Calendar.MONTH)+p].equals("janeiro")){
+                    tAnterior.setText("dezembro");
+                } else {
+                    tAnterior.setText(nomeMes[c.get(Calendar.MONTH)+p-1]);
+                }
+
+                if(mes.equals("dezembro")){
+                    tProximo.setText("janeiro");
+                } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
+                    tProximo.setText("mês atual");
+                } else {
+                    tProximo.setText(nomeMes[c.get(Calendar.MONTH)+p+1]);
+                }
             } catch (Exception e) {
+                Toast.makeText(this, "catch do else", Toast.LENGTH_SHORT).show();
                 r++;
                 p = 0;
                 mes = nomeMes[11+p];
+                if(nomeMes[11+p].equals("janeiro")){
+                    tAnterior.setText("dezembro");
+                } else {
+                    tAnterior.setText(nomeMes[11 + p - 1]);
+                }
+
+                if(mes.equals("dezembro")){
+                    tProximo.setText("janeiro");
+                } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
+                    tProximo.setText("mês atual");
+                } else {
+                    tProximo.setText(nomeMes[11 + p + 1]);
+                }
             }
         }
         String ano = String.valueOf(c.get(Calendar.YEAR)-r);
         tTitulo.setText(mes+", "+ano);
-        Toast.makeText(this, ano+", "+mes+" - "+p, Toast.LENGTH_SHORT).show();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
         ref.addValueEventListener(new ValueEventListener() {
             @Override

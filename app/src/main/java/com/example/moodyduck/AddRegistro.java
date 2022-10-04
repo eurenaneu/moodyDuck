@@ -23,6 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -83,6 +86,16 @@ public class AddRegistro extends AppCompatActivity {
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AddRegistro.this, android.R.style.Theme_Holo_Dialog_MinWidth,setListener,ano,mes,dia);
                 datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+                String md = "01/01/2000 00:00:01";
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date date = null;
+                try {
+                    date = sdf.parse(md);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long minDate = date.getTime();
+                datePickerDialog.getDatePicker().setMinDate(minDate);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 datePickerDialog.show();
             }
