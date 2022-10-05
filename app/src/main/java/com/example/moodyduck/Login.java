@@ -73,31 +73,40 @@ public class Login extends AppCompatActivity {
         String e = email.getText().toString();
         String s = senha.getText().toString();
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    pB.setVisibility(View.VISIBLE);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            startActivity(new Intent(Login.this, Home.class));
-                        }
-                        },3000);
-                } else {
-                    String erro;
+        if(e.trim().isEmpty() || s.trim().isEmpty()){
+            Snackbar snackbar = Snackbar.make(v, "Campos vazios", Snackbar.LENGTH_SHORT);
+            snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
+            snackbar.setTextColor(Color.WHITE);
+            snackbar.show();
+        }
 
-                    try{
-                        throw task.getException();
-                    } catch (Exception e){
-                        erro = "Erro desconhecido ao se logar";
+        else {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        pB.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(Login.this, Home.class));
+                            }
+                        }, 3000);
+                    } else {
+                        String erro;
+
+                        try {
+                            throw task.getException();
+                        } catch (Exception e) {
+                            erro = "Erro desconhecido ao se logar";
+                        }
+                        Snackbar snackbar = Snackbar.make(v, erro, Snackbar.LENGTH_SHORT);
+                        snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
+                        snackbar.setTextColor(Color.WHITE);
+                        snackbar.show();
                     }
-                    Snackbar snackbar = Snackbar.make(v, erro, Snackbar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
-                    snackbar.setTextColor(Color.WHITE);
-                    snackbar.show();
                 }
-            }
-        });
+            });
+        }
     }
 }

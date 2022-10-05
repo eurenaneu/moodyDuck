@@ -1,5 +1,6 @@
 package com.example.moodyduck;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -9,17 +10,22 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,9 +39,10 @@ public class AddRegistro extends AppCompatActivity {
     String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
     SimpleDateFormat f24 = new SimpleDateFormat("HH:mm");
     DatePickerDialog.OnDateSetListener setListener;
+    ImageButton bFeliz, bNeutro, bTriste;
     Calendar c = Calendar.getInstance();
     Date dataHoraAtual = new Date();
-    int dia, mes, ano, hora, min;
+    int dia, mes, ano, hora, min, h;
     String data, horario;
     static String tData;
     TextView tvData;
@@ -47,6 +54,9 @@ public class AddRegistro extends AppCompatActivity {
         setContentView(R.layout.activity_add_registro);
         tvData = findViewById(R.id.tvData);
         bVoltar = findViewById(R.id.bVoltar);
+        bFeliz = findViewById(R.id.imageFeliz);
+        bNeutro = findViewById(R.id.imageNeutro);
+        bTriste = findViewById(R.id.imageTriste);
         dia = c.get(Calendar.DAY_OF_MONTH);
         mes = c.get(Calendar.MONTH);
         ano = c.get(Calendar.YEAR);
@@ -58,6 +68,27 @@ public class AddRegistro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        bFeliz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comecarRegistro("feliz");
+            }
+        });
+
+        bNeutro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comecarRegistro("neutro");
+            }
+        });
+
+        bTriste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comecarRegistro("triste");
             }
         });
     }
@@ -161,11 +192,31 @@ public class AddRegistro extends AppCompatActivity {
             timePickerDialog.show();
     }
 
-    public void comecarRegistro(View v){
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    public void comecarRegistro(String humor){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //Toast.makeText(this, user.getUid(), Toast.LENGTH_SHORT).show();
-        ref.child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).setValue(3);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference path = ref.child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).child(humor);
+        path.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    h = Integer.parseInt(snapshot.getValue().toString());
+                    Toast.makeText(getApplicationContext(), String.valueOf(h), Toast.LENGTH_SHORT).show();
+                    h++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                path.setValue(h);
+            }
+        }, 2000);
         startActivity(new Intent(this, FormRegistro.class));
     }
 }

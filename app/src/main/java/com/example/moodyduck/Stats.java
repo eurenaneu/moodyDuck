@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -34,7 +36,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,9 +50,9 @@ public class Stats extends AppCompatActivity {
     TextView tTitulo, tProximo, tAnterior;
     View bProximo, bAnterior;
     LineChart lineChart;
-    int data, p, r;
+    int p, r;
     Timer timer = null;
-    long tempo = 5000;
+    long tempo = 4000;
     Calendar c = Calendar.getInstance();
 
     //nav
@@ -158,16 +163,6 @@ public class Stats extends AppCompatActivity {
         lineChart.getLegend().setEnabled(false);
     }
 
-    public void mudarMes(View v){
-        String mes = "";
-        if(bProximo.isPressed()){
-            p++;
-        }
-        else if(bAnterior.isPressed()){
-            p--;
-        }
-    }
-
     public void onBackPressed(){
         startActivity(new Intent(this, Home.class));
         finish();
@@ -186,6 +181,15 @@ public class Stats extends AppCompatActivity {
         fabClose = AnimationUtils.loadAnimation(this, R.anim.anim_close);
         fabUp = AnimationUtils.loadAnimation(this, R.anim.anim_cima);
         fabDown = AnimationUtils.loadAnimation(this, R.anim.anim_baixo);
+    }
+
+    public void mudarMes(View v){
+        if(bProximo.isPressed()){
+            p++;
+        }
+        else if(bAnterior.isPressed()){
+            p--;
+        }
     }
 
     public void montaGrafico(){
@@ -284,25 +288,40 @@ public class Stats extends AppCompatActivity {
         }
         String ano = String.valueOf(c.get(Calendar.YEAR)-r);
         tTitulo.setText(mes+", "+ano);
+
+        ArrayList<Integer> mediaDia;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
-        ref.addValueEventListener(new ValueEventListener() {
+
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                integerArrayList = new ArrayList<>();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    for(int i = 0; i <= snapshot.getChildrenCount(); i++) {
-                        data = Integer.parseInt(snapshot.getValue().toString());
-                        integerArrayList.add(data);
-                    }
+            public void run() {
+                for(int j = 0; j <= 31; j++) {
+                    ref.child(String.valueOf(j)).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            integerArrayList = new ArrayList<>();
+                            ArrayList<Integer> humoresDia = new ArrayList<>();
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                for (int i = 0; i <= snapshot.getChildrenCount(); i++) {
+                                    int data = Integer.parseInt(snapshot.getValue().toString());
+                                    humoresDia.add(data);
+                                    //integerArrayList.add(data);
+                                }
+                                integerArrayList.add(Collections.max(humoresDia));
+                                Toast.makeText(getApplicationContext(), String.valueOf(integerArrayList), Toast.LENGTH_SHORT).show();
+                                humoresDia.clear();
+                                //float m = (mediaDia.get(0) + mediaDia.get(1))/3;
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
-
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        }, 2000);
     }
 
     public void animFab(){
