@@ -289,39 +289,44 @@ public class Stats extends AppCompatActivity {
         String ano = String.valueOf(c.get(Calendar.YEAR)-r);
         tTitulo.setText(mes+", "+ano);
 
-        ArrayList<Integer> mediaDia;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                for(int j = 0; j <= 31; j++) {
-                    ref.child(String.valueOf(j)).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            integerArrayList = new ArrayList<>();
-                            ArrayList<Integer> humoresDia = new ArrayList<>();
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                for (int i = 0; i <= snapshot.getChildrenCount(); i++) {
-                                    int data = Integer.parseInt(snapshot.getValue().toString());
-                                    humoresDia.add(data);
-                                    //integerArrayList.add(data);
-                                }
-                                integerArrayList.add(Collections.max(humoresDia));
-                                Toast.makeText(getApplicationContext(), String.valueOf(integerArrayList), Toast.LENGTH_SHORT).show();
-                                humoresDia.clear();
-                                //float m = (mediaDia.get(0) + mediaDia.get(1))/3;
+        for(int j = 0; j < 32; j++) {
+            ref.child(String.valueOf(j)).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    integerArrayList = new ArrayList<>();
+                    ArrayList<Double> arrayMedia = new ArrayList<>();
+
+                    double m = 0;
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        int c = 0;
+                        for (int i = 0; i <= snapshot.getChildrenCount(); i++) {
+
+                            double data = Double.parseDouble(String.valueOf(snapshot.getValue()));
+                            arrayMedia.add(data);
+
+                            Toast.makeText(getApplicationContext(), String.valueOf(arrayMedia.get(0)), Toast.LENGTH_SHORT).show();
+                            //integerArrayList.add((int) m);
+                            if(c == 2){
+                                m = (arrayMedia.get(0) + arrayMedia.get(1) + arrayMedia.get(2)) / 3;
                             }
+                            c++;
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
+                        //Toast.makeText(getApplicationContext(), m+"", Toast.LENGTH_SHORT).show();
+                        if(c == 3) {
+                            arrayMedia.clear();
                         }
-                    });
+                    }
+
                 }
-            }
-        }, 2000);
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
 
     public void animFab(){
