@@ -316,6 +316,7 @@ public class Stats extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(), m+"", Toast.LENGTH_SHORT).show();
                         if(c == 3) {
                             arrayMedia.clear();
+                            c = 0;
                         }
                     }
 
