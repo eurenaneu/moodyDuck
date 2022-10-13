@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -70,8 +71,8 @@ public class Stats extends AppCompatActivity {
         tProximo = findViewById(R.id.txtProximo);
         tAnterior = findViewById(R.id.txtAnterior);
         tTitulo = findViewById(R.id.txtGraphTitle);
-        bAnterior = findViewById(R.id.bAnterior);
-        bProximo = findViewById(R.id.bProximo);
+        bAnterior = findViewById(R.id.bBack);
+        bProximo = findViewById(R.id.bNext);
         tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+", "+c.get(Calendar.YEAR));
         setupGrafico();
         visualizarDados();
@@ -153,7 +154,8 @@ public class Stats extends AppCompatActivity {
         lineChart.setTouchEnabled(false);
         lineChart.setPinchZoom(false);
         lineChart.getAxisRight().setEnabled(false);
-        lineChart.getAxisLeft().setEnabled(false);
+        YAxis yAxis = lineChart.getAxisLeft();
+        yAxis.setEnabled(true);
         lineChart.getXAxis().setEnabled(false);
         lineChart.getAxisRight().setDrawGridLines(false);
         lineChart.getAxisLeft().setDrawGridLines(false);
@@ -183,13 +185,16 @@ public class Stats extends AppCompatActivity {
         fabDown = AnimationUtils.loadAnimation(this, R.anim.anim_baixo);
     }
 
-    public void mudarMes(View v){
-        if(bProximo.isPressed()){
-            p++;
-        }
-        else if(bAnterior.isPressed()){
-            p--;
-        }
+    public void avançarMes(View v){
+        p++;
+        visualizarDados();
+        Toast.makeText(getApplicationContext(), "somou", Toast.LENGTH_SHORT).show();
+    }
+
+    public void voltarMes(View v){
+        p--;
+        visualizarDados();
+        Toast.makeText(getApplicationContext(), "diminuiu", Toast.LENGTH_SHORT).show();
     }
 
     public void montaGrafico(){
@@ -200,8 +205,7 @@ public class Stats extends AppCompatActivity {
         }
         LineDataSet lineDataset = new LineDataSet(lineArrayList, "");
         lineDataset.setColors(Color.WHITE);
-        lineDataset.setValueTextSize(14);
-        lineDataset.setValueTextColor(ContextCompat.getColor(this, R.color.amalero));
+        lineDataset.setDrawValues(false);
         Typeface tf = Typeface.createFromAsset(this.getAssets(), "qckbold.ttf");
         lineDataset.setValueTypeface(tf);
         lineDataset.setDrawCircles(false);
@@ -255,12 +259,10 @@ public class Stats extends AppCompatActivity {
                 } else {
                     tAnterior.setText(nomeMes[c.get(Calendar.MONTH)+p-1]);
                 }
-                bProximo.setEnabled(true);
 
                 if(mes.equals("dezembro")){
                     tProximo.setText("janeiro");
                 } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
-                    bProximo.setEnabled(false);
                     tProximo.setText("mês atual");
                 } else {
                     tProximo.setText(nomeMes[c.get(Calendar.MONTH)+p+1]);
@@ -274,12 +276,10 @@ public class Stats extends AppCompatActivity {
                 } else {
                     tAnterior.setText(nomeMes[11 + p - 1]);
                 }
-                bProximo.setEnabled(true);
 
                 if(mes.equals("dezembro")){
                     tProximo.setText("janeiro");
                 } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
-                    bProximo.setEnabled(false);
                     tProximo.setText("mês atual");
                 } else {
                     tProximo.setText(nomeMes[11 + p + 1]);
@@ -291,31 +291,48 @@ public class Stats extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
 
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
         for(int j = 0; j < 32; j++) {
+
+            integerArrayList = new ArrayList<>();
+
             ref.child(String.valueOf(j)).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    integerArrayList = new ArrayList<>();
-                    ArrayList<Double> arrayMedia = new ArrayList<>();
+                    ArrayList<Integer> arrayMedia = new ArrayList<>();
 
-                    double m = 0;
+                    double m;
+                    int c = 0;
+
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        int c = 0;
                         for (int i = 0; i <= snapshot.getChildrenCount(); i++) {
-
-                            double data = Double.parseDouble(String.valueOf(snapshot.getValue()));
-                            arrayMedia.add(data);
-
-                            Toast.makeText(getApplicationContext(), String.valueOf(arrayMedia.get(0)), Toast.LENGTH_SHORT).show();
-                            //integerArrayList.add((int) m);
-                            if(c == 2){
-                                m = (arrayMedia.get(0) + arrayMedia.get(1) + arrayMedia.get(2)) / 3;
-                            }
                             c++;
-                        }
-                        //Toast.makeText(getApplicationContext(), m+"", Toast.LENGTH_SHORT).show();
-                        if(c == 3) {
-                            arrayMedia.clear();
+                            //Toast.makeText(getApplicationContext(), c+"", Toast.LENGTH_SHORT).show();
+                            int data = Integer.parseInt(String.valueOf(snapshot.getValue()));
+                            arrayMedia.add(data);
+                            if(c == 3){
+                                int resultado = Collections.max(arrayMedia);
+                                if(resultado == arrayMedia.get(0) && resultado == arrayMedia.get(1) && resultado == arrayMedia.get(2)) {
+                                    Toast.makeText(getApplicationContext(), ":|", Toast.LENGTH_SHORT).show();
+                                    m = 2;
+                                } else if (resultado == arrayMedia.get(1)) {
+                                    Toast.makeText(getApplicationContext(), ":|", Toast.LENGTH_SHORT).show();
+                                    m = 2;
+                                } else if (resultado == arrayMedia.get(0)){
+                                    Toast.makeText(getApplicationContext(), "felicidade ganhou!!!", Toast.LENGTH_SHORT).show();
+                                    m = 3;
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "depressão", Toast.LENGTH_SHORT).show();
+                                    m = 1;
+                                }
+                                //m = (arrayMedia.get(0)+arrayMedia.get(1)+arrayMedia.get(2))/3;
+                                //int valor = (int) Math.round(m);
+                                integerArrayList.add((int) m);
+                                arrayMedia.clear();
+                            }
+
                         }
                     }
 
@@ -327,6 +344,10 @@ public class Stats extends AppCompatActivity {
                 }
             });
         }
+            //aqui
+        }
+        }, 1000);
+        Toast.makeText(getApplicationContext(), String.valueOf(integerArrayList), Toast.LENGTH_SHORT).show();
     }
 
     public void animFab(){

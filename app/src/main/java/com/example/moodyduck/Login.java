@@ -20,16 +20,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class Login extends AppCompatActivity {
+    String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
     EditText email, senha;
     CheckBox cbp;
     ProgressBar pB;
+    boolean temDados;
+    int dia, mes, ano;
+    Calendar c = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,9 @@ public class Login extends AppCompatActivity {
         senha = findViewById(R.id.campoSenha);
         pB = findViewById(R.id.progressBar);
         cbp = findViewById(R.id.checkBox);
+        dia = c.get(Calendar.DAY_OF_MONTH);
+        mes = c.get(Calendar.MONTH);
+        ano = c.get(Calendar.YEAR);
         lembrarSenha();
     }
 
@@ -46,9 +56,27 @@ public class Login extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String checkbox = preferences.getString("lembrarSenha", "");
         if(checkbox.equals("true")){
-            startActivity(new Intent(Login.this, Home.class));
-        } else if(checkbox.equals("false")){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia));
+            path.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    temDados = snapshot.hasChildren();
+                    Toast.makeText(getApplicationContext(), temDados+"", Toast.LENGTH_SHORT).show();
+                    if(temDados = false){
+                        path.child("feliz").setValue(0);
+                        path.child("neutro").setValue(0);
+                        path.child("triste").setValue(0);
+                    }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            startActivity(new Intent(Login.this, Home.class));
         }
 
         cbp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -84,6 +112,25 @@ public class Login extends AppCompatActivity {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia));
+                    path.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            temDados = snapshot.hasChildren();
+                            if(temDados = false) {
+                                path.child("feliz").setValue(0);
+                                path.child("neutro").setValue(0);
+                                path.child("triste").setValue(0);
+                            }
+                            Toast.makeText(getApplicationContext(), "tem valores? "+temDados, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                     if (task.isSuccessful()) {
                         pB.setVisibility(View.VISIBLE);
                         new Handler().postDelayed(new Runnable() {
@@ -92,6 +139,7 @@ public class Login extends AppCompatActivity {
                                 startActivity(new Intent(Login.this, Home.class));
                             }
                         }, 3000);
+
                     } else {
                         String erro;
 
