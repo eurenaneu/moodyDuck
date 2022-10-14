@@ -12,7 +12,7 @@
         app:backgroundTint="@color/ciano">
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/txtPopup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -38,9 +38,9 @@
             android:textColor="@color/white"
             app:backgroundTint="@color/cianoescuro"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView12"
-            app:layout_constraintStart_toStartOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintEnd_toStartOf="@+id/txtPopup"
+            app:layout_constraintStart_toStartOf="@+id/txtPopup"
+            app:layout_constraintTop_toBottomOf="@+id/txtPopup" />
 
         <Button
             android:id="@+id/bFake"
@@ -55,9 +55,9 @@
             android:textColor="@color/white"
             app:backgroundTint="@color/cianoescuro"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView12"
-            app:layout_constraintStart_toEndOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintEnd_toEndOf="@+id/txtPopup"
+            app:layout_constraintStart_toEndOf="@+id/txtPopup"
+            app:layout_constraintTop_toBottomOf="@+id/txtPopup" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

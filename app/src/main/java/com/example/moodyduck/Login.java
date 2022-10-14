@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
     EditText email, senha;
     CheckBox cbp;
     ProgressBar pB;
-    boolean temDados;
+    boolean temDados = false;
     int dia, mes, ano;
     Calendar c = Calendar.getInstance();
 
@@ -63,18 +63,29 @@ public class Login extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     temDados = snapshot.hasChildren();
                     Toast.makeText(getApplicationContext(), temDados+"", Toast.LENGTH_SHORT).show();
-                    if(temDados = false){
-                        path.child("feliz").setValue(0);
-                        path.child("neutro").setValue(0);
-                        path.child("triste").setValue(0);
+                    if(!temDados) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                path.child("feliz").setValue(0);
+                                path.child("neutro").setValue(0);
+                                path.child("triste").setValue(0);
+                            }
+                        }, 1000);
                     }
                 }
+
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
+            if(temDados = false) {
+                path.child("feliz").setValue(0);
+                path.child("neutro").setValue(0);
+                path.child("triste").setValue(0);
+            }
 
             startActivity(new Intent(Login.this, Home.class));
         }

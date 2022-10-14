@@ -53,7 +53,7 @@ public class Stats extends AppCompatActivity {
     LineChart lineChart;
     int p, r;
     Timer timer = null;
-    long tempo = 4000;
+    long tempo = 3000;
     Calendar c = Calendar.getInstance();
 
     //nav
@@ -154,8 +154,9 @@ public class Stats extends AppCompatActivity {
         lineChart.setTouchEnabled(false);
         lineChart.setPinchZoom(false);
         lineChart.getAxisRight().setEnabled(false);
-        YAxis yAxis = lineChart.getAxisLeft();
-        yAxis.setEnabled(true);
+        lineChart.getAxisLeft().setAxisMinimum(0f);
+        lineChart.getAxisLeft().setAxisMaximum(3f);
+        lineChart.getAxisLeft().setEnabled(true);
         lineChart.getXAxis().setEnabled(false);
         lineChart.getAxisRight().setDrawGridLines(false);
         lineChart.getAxisLeft().setDrawGridLines(false);
@@ -208,7 +209,8 @@ public class Stats extends AppCompatActivity {
         lineDataset.setDrawValues(false);
         Typeface tf = Typeface.createFromAsset(this.getAssets(), "qckbold.ttf");
         lineDataset.setValueTypeface(tf);
-        lineDataset.setDrawCircles(false);
+        lineDataset.setDrawCircles(true);
+        lineDataset.setCircleColor(ContextCompat.getColor(this, R.color.amalero));
         lineDataset.setColor(ContextCompat.getColor(this, R.color.amalero));
         LineData lineData = new LineData(lineDataset);
         lineChart.setData(lineData);
@@ -315,22 +317,16 @@ public class Stats extends AppCompatActivity {
                             if(c == 3){
                                 int resultado = Collections.max(arrayMedia);
                                 if(resultado == arrayMedia.get(0) && resultado == arrayMedia.get(1) && resultado == arrayMedia.get(2)) {
-                                    Toast.makeText(getApplicationContext(), ":|", Toast.LENGTH_SHORT).show();
                                     m = 2;
                                 } else if (resultado == arrayMedia.get(1)) {
-                                    Toast.makeText(getApplicationContext(), ":|", Toast.LENGTH_SHORT).show();
                                     m = 2;
                                 } else if (resultado == arrayMedia.get(0)){
-                                    Toast.makeText(getApplicationContext(), "felicidade ganhou!!!", Toast.LENGTH_SHORT).show();
                                     m = 3;
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "depressão", Toast.LENGTH_SHORT).show();
                                     m = 1;
                                 }
-                                //m = (arrayMedia.get(0)+arrayMedia.get(1)+arrayMedia.get(2))/3;
-                                //int valor = (int) Math.round(m);
-                                integerArrayList.add((int) m);
                                 arrayMedia.clear();
+                                integerArrayList.add((int) m);
                             }
 
                         }
@@ -344,10 +340,11 @@ public class Stats extends AppCompatActivity {
                 }
             });
         }
-            //aqui
+          //aqui
         }
         }, 1000);
-        Toast.makeText(getApplicationContext(), String.valueOf(integerArrayList), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), integerArrayList+"", Toast.LENGTH_SHORT).show();
+
     }
 
     public void animFab(){
