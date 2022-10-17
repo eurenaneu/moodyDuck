@@ -1,41 +1,45 @@
 package com.example.moodyduck;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
 public class FormRegistro extends AppCompatActivity {
+    String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
     AlertDialog alerta;
+    static String humor;
+    int h;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_registro);
+        Toast.makeText(getApplicationContext(), humor, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.custom_dialog, null);
-        TextView txt_pop = findViewById(R.id.txtPopup);
-        Button deslogar = view.findViewById(R.id.bDeslogar);
-        Button naoDeslogar = view.findViewById(R.id.bFake);
-        txt_pop.setText("Deseja retornar à tela inicial? Todo o seu progresso será descartado.");
-        deslogar.setOnClickListener(new View.OnClickListener() {
+        View view = getLayoutInflater().inflate(R.layout.custom_dialog2, null);
+        Button descartar = view.findViewById(R.id.bDescartar);
+        Button naoDescartar = view.findViewById(R.id.bFake);
+        descartar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar c = Calendar.getInstance();
@@ -43,12 +47,25 @@ public class FormRegistro extends AppCompatActivity {
                 int mes = c.get(Calendar.MONTH);
                 int dia = c.get(Calendar.DAY_OF_MONTH);
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                //DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).child(humor);
+                DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).child(humor);
+                path.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        h = Integer.parseInt(snapshot.getValue().toString());
+                        h--;
+                        path.setValue(h);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 startActivity(new Intent(getApplicationContext(), Home.class));
                 finish();
             }
         });
-        naoDeslogar.setOnClickListener(new View.OnClickListener() {
+        naoDescartar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alerta.dismiss();

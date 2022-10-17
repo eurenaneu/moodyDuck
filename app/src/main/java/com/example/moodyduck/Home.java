@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +17,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
 
@@ -112,7 +109,7 @@ public class Home extends AppCompatActivity {
     public void onBackPressed(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.custom_dialog, null);
-        Button deslogar = view.findViewById(R.id.bDeslogar);
+        Button deslogar = view.findViewById(R.id.bDescartar);
         Button naoDeslogar = view.findViewById(R.id.bFake);
         deslogar.setOnClickListener(new View.OnClickListener() {
             @Override

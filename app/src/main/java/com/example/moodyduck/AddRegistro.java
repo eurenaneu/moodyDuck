@@ -44,7 +44,7 @@ public class AddRegistro extends AppCompatActivity {
     Date dataHoraAtual = new Date();
     int dia, mes, ano, hora, min, h;
     String data, horario;
-    static String tData;
+    static String tData, hForm;
     TextView tvData;
     Button bVoltar;
 
@@ -201,6 +201,8 @@ public class AddRegistro extends AppCompatActivity {
                 if (snapshot.exists()) {
                     h = Integer.parseInt(snapshot.getValue().toString());
                     Toast.makeText(getApplicationContext(), String.valueOf(h), Toast.LENGTH_SHORT).show();
+                    hForm = humor;
+                    FormRegistro.humor = AddRegistro.hForm;
                     h++;
                 }
             }
