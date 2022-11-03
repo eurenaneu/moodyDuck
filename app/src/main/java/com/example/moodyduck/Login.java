@@ -13,7 +13,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,7 +61,6 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     temDados = snapshot.hasChildren();
-                    Toast.makeText(getApplicationContext(), temDados+"", Toast.LENGTH_SHORT).show();
                     if(!temDados) {
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -88,6 +86,8 @@ public class Login extends AppCompatActivity {
             }
 
             startActivity(new Intent(Login.this, Home.class));
+
+
         }
 
         cbp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -134,7 +134,6 @@ public class Login extends AppCompatActivity {
                                 path.child("neutro").setValue(0);
                                 path.child("triste").setValue(0);
                             }
-                            Toast.makeText(getApplicationContext(), "tem valores? "+temDados, Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

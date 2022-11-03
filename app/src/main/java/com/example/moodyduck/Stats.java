@@ -154,9 +154,7 @@ public class Stats extends AppCompatActivity {
         lineChart.setTouchEnabled(false);
         lineChart.setPinchZoom(false);
         lineChart.getAxisRight().setEnabled(false);
-        lineChart.getAxisLeft().setAxisMinimum(0f);
-        lineChart.getAxisLeft().setAxisMaximum(3f);
-        lineChart.getAxisLeft().setEnabled(true);
+        lineChart.getAxisLeft().setEnabled(false);
         lineChart.getXAxis().setEnabled(false);
         lineChart.getAxisRight().setDrawGridLines(false);
         lineChart.getAxisLeft().setDrawGridLines(false);
@@ -296,7 +294,7 @@ public class Stats extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
                                       @Override
                                       public void run() {
-        for(int j = 0; j < 32; j++) {
+        for(int j = 1; j < 32; j++) {
 
             integerArrayList = new ArrayList<>();
 
@@ -326,6 +324,7 @@ public class Stats extends AppCompatActivity {
                                     m = 1;
                                 }
                                 arrayMedia.clear();
+                                Toast.makeText(getApplicationContext(), m+"", Toast.LENGTH_SHORT).show();
                                 integerArrayList.add((int) m);
                             }
 
@@ -343,7 +342,7 @@ public class Stats extends AppCompatActivity {
           //aqui
         }
         }, 1000);
-        Toast.makeText(getApplicationContext(), integerArrayList+"", Toast.LENGTH_SHORT).show();
+
 
     }
 
