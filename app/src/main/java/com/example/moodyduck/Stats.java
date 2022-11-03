@@ -3,6 +3,7 @@ package com.example.moodyduck;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -46,15 +47,16 @@ import java.util.TimerTask;
 
 public class Stats extends AppCompatActivity {
     String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
-    List<Entry> lineArrayList = new ArrayList<>();
     ArrayList<Integer> integerArrayList = new ArrayList<>();
+    List<Entry> lineArrayList = new ArrayList<>();
     TextView tTitulo, tProximo, tAnterior;
+    Calendar c = Calendar.getInstance();
     View bProximo, bAnterior;
     LineChart lineChart;
-    int p, r;
     Timer timer = null;
     long tempo = 3000;
-    Calendar c = Calendar.getInstance();
+    RecyclerView rv;
+    int p, r;
 
     //nav
     BottomNavigationView bnv;
@@ -73,40 +75,12 @@ public class Stats extends AppCompatActivity {
         tTitulo = findViewById(R.id.txtGraphTitle);
         bAnterior = findViewById(R.id.bBack);
         bProximo = findViewById(R.id.bNext);
+        recyclerSetup();
         tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+", "+c.get(Calendar.YEAR));
         setupGrafico();
         visualizarDados();
         inicializarNav();
-        fabio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                animFab();
-            }
-        });
-
-        fabOntem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddRegistro.tData = "Ontem";
-                startActivity(new Intent(Stats.this, AddRegistro.class));
-            }
-        });
-
-        fabHoje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddRegistro.tData = "Hoje";
-                startActivity(new Intent(Stats.this, AddRegistro.class));
-            }
-        });
-
-        fabOutro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddRegistro.tData = "Outro dia";
-                startActivity(new Intent(Stats.this, AddRegistro.class));
-            }
-        });
+        fabOnClicks();
 
         bnv.setSelectedItemId(R.id.estatisticas);
         bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -145,6 +119,39 @@ public class Stats extends AppCompatActivity {
             };
             timer.scheduleAtFixedRate(tarefa, tempo, tempo);
         }
+    }
+
+    public void fabOnClicks(){
+        fabio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animFab();
+            }
+        });
+
+        fabOntem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Ontem";
+                startActivity(new Intent(Stats.this, AddRegistro.class));
+            }
+        });
+
+        fabHoje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Hoje";
+                startActivity(new Intent(Stats.this, AddRegistro.class));
+            }
+        });
+
+        fabOutro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRegistro.tData = "Outro dia";
+                startActivity(new Intent(Stats.this, AddRegistro.class));
+            }
+        });
     }
 
     public void setupGrafico(){
@@ -214,6 +221,14 @@ public class Stats extends AppCompatActivity {
         lineChart.setData(lineData);
         lineChart.invalidate();
 
+    }
+
+    public void recyclerSetup(){
+        rv = findViewById(R.id.rv);
+        rv.setHasFixedSize(true);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        //ref.child("Users").child(user.getUid()).child("Objetivos").child()
     }
 
     public void visualizarDados(){

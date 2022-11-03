@@ -240,6 +240,7 @@
         app:layout_constraintTop_toTopOf="@+id/bNext" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="45dp"
         android:layout_height="221dp"
         android:layout_marginStart="16dp"

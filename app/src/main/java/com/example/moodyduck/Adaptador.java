@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
     Context c;
-    ArrayList<Resultados> resultados;
+    ArrayList<Objetivos> objetivos;
 
-    public Adaptador(Context c, ArrayList<Resultados> resultados) {
+    public Adaptador(Context c, ArrayList<Objetivos> objetivos) {
         this.c = c;
-        this.resultados = resultados;
+        this.objetivos = objetivos;
     }
 
     @NonNull
@@ -30,24 +30,22 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull Adaptador.MyViewHolder holder, int position) {
-        Resultados r = resultados.get(position);
-        holder.t.setText(r.data);
-        holder.a.setText(r.area);
-        holder.p.setText(r.profissao);
+        Objetivos o = objetivos.get(position);
+        holder.t.setText(o.nome);
+        holder.c.setText(o.progresso);
     }
 
     @Override
     public int getItemCount() {
-        return resultados.size();
+        return objetivos.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView t, p, a;
+        TextView t, c;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            t = itemView.findViewById(R.id.dataCard);
-            p = itemView.findViewById(R.id.profCard);
-            a = itemView.findViewById(R.id.areaCard);
+            t = itemView.findViewById(R.id.nomeTxt);
+            c = itemView.findViewById(R.id.conclusasTxt);
         }
     }
 }
