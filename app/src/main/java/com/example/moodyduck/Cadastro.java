@@ -59,7 +59,7 @@ public class Cadastro extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    salvarUser(e, s);
+                    salvarUser(e);
                     Snackbar snackbar = Snackbar.make(v, "OPA", Snackbar.LENGTH_SHORT);
                     snackbar.show();
                     irHome();
@@ -85,7 +85,7 @@ public class Cadastro extends AppCompatActivity {
         });
     }
 
-    public void salvarUser(String e, String s){
+    public void salvarUser(String e){
         String u = nome.getText().toString();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(u).build();
@@ -93,7 +93,6 @@ public class Cadastro extends AppCompatActivity {
         Map<String, Object> usuarios = new HashMap<>();
         usuarios.put("nome", u);
         usuarios.put("email", e);
-        usuarios.put("senha", s);
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db.child("Users").child(userId).setValue(usuarios);

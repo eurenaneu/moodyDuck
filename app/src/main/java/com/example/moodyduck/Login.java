@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -123,25 +124,8 @@ public class Login extends AppCompatActivity {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia));
-                    path.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            temDados = snapshot.hasChildren();
-                            if(temDados = false) {
-                                path.child("feliz").setValue(0);
-                                path.child("neutro").setValue(0);
-                                path.child("triste").setValue(0);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
                     if (task.isSuccessful()) {
+                        gerarDados();
                         pB.setVisibility(View.VISIBLE);
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -166,5 +150,26 @@ public class Login extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void gerarDados(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia));
+        path.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                temDados = snapshot.hasChildren();
+                if(!temDados) {
+                    path.child("feliz").setValue(0);
+                    path.child("neutro").setValue(0);
+                    path.child("triste").setValue(0);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

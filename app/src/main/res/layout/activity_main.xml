@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/ciano"
     android:backgroundTintMode="screen"
-    tools:context=".MainActivity">
+    tools:context=".Entrada">
 
     <TextView
         android:id="@+id/txtAppname"

@@ -200,7 +200,6 @@ public class AddRegistro extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     h = Integer.parseInt(snapshot.getValue().toString());
-                    Toast.makeText(getApplicationContext(), String.valueOf(h), Toast.LENGTH_SHORT).show();
                     hForm = humor;
                     FormRegistro.humor = AddRegistro.hForm;
                     h++;

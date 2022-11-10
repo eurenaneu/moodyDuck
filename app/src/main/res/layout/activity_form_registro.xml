@@ -38,9 +38,10 @@
             android:id="@+id/viewSocial"
             android:layout_width="350dp"
             android:layout_height="140dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/boxregistro"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -259,6 +260,36 @@
             app:layout_constraintEnd_toEndOf="@+id/bSalvar"
             app:layout_constraintStart_toStartOf="@+id/bSalvar"
             app:layout_constraintTop_toBottomOf="@+id/bSalvar" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
+            app:layout_constraintEnd_toStartOf="@+id/toggleButton2"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
+            app:layout_constraintStart_toStartOf="@+id/viewSocial"
+            app:layout_constraintEnd_toEndOf="@+id/viewSocial"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/toggleButton2"
+            app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

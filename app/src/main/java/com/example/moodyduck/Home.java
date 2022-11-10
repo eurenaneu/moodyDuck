@@ -110,7 +110,7 @@ public class Home extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.custom_dialog, null);
         Button deslogar = view.findViewById(R.id.bDescartar);
-        Button naoDeslogar = view.findViewById(R.id.bFake);
+        Button naoDeslogar = view.findViewById(R.id.bNaoDescartar);
         deslogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +118,7 @@ public class Home extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("lembrarSenha", "false");
                 editor.apply();
-                startActivity(new Intent(Home.this, MainActivity.class));
+                startActivity(new Intent(Home.this, Entrada.class));
                 finish();
                 FirebaseAuth.getInstance().signOut();
             }

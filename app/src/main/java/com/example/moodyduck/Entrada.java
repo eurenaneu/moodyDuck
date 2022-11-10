@@ -8,7 +8,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class Entrada extends AppCompatActivity {
     TextView alexandre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

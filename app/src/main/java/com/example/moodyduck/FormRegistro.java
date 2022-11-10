@@ -30,7 +30,18 @@ public class FormRegistro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_registro);
-        Toast.makeText(getApplicationContext(), humor, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        addValor();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        removerValor();
     }
 
     @Override
@@ -38,29 +49,11 @@ public class FormRegistro extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.custom_dialog2, null);
         Button descartar = view.findViewById(R.id.bDescartar);
-        Button naoDescartar = view.findViewById(R.id.bFake);
+        Button naoDescartar = view.findViewById(R.id.bNaoDescartar);
         descartar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                int ano = c.get(Calendar.YEAR);
-                int mes = c.get(Calendar.MONTH);
-                int dia = c.get(Calendar.DAY_OF_MONTH);
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).child(humor);
-                path.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        h = Integer.parseInt(snapshot.getValue().toString());
-                        h--;
-                        path.setValue(h);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                removerValor();
                 startActivity(new Intent(getApplicationContext(), Home.class));
                 finish();
             }
@@ -74,5 +67,57 @@ public class FormRegistro extends AppCompatActivity {
         builder.setView(view);
         alerta = builder.create();
         alerta.show();
+    }
+
+    private void removerValor() {
+        Calendar c = Calendar.getInstance();
+        int ano = c.get(Calendar.YEAR);
+        int mes = c.get(Calendar.MONTH);
+        int dia = c.get(Calendar.DAY_OF_MONTH);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).child(humor);
+        path.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                h = Integer.parseInt(snapshot.getValue().toString());
+                if(snapshot.getValue() != null) {
+                    if (h != 0) {
+                        h--;
+                        path.setValue(h);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void addValor() {
+        Calendar c = Calendar.getInstance();
+        int ano = c.get(Calendar.YEAR);
+        int mes = c.get(Calendar.MONTH);
+        int dia = c.get(Calendar.DAY_OF_MONTH);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).child(humor);
+        path.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                h = Integer.parseInt(snapshot.getValue().toString());
+                if(snapshot.getValue() != null) {
+                    h++;
+                    path.setValue(h);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
