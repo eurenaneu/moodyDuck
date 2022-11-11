@@ -235,20 +235,22 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
-            android:layout_width="320dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/boxnotes"
             android:ems="10"
             android:fontFamily="@font/qckbold"
-            android:background="@color/transparent"
             android:hint="Adicionar nota"
             android:inputType="textPersonName"
-            android:textSize="14sp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp"
             android:textColor="#70B2AA"
             android:textColorHint="#70B2AA"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/viewAnotacoes"
             app:layout_constraintEnd_toEndOf="@+id/viewAnotacoes"
             app:layout_constraintStart_toStartOf="@+id/viewAnotacoes"
-            app:layout_constraintTop_toTopOf="@+id/viewAnotacoes" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloAnotacoes" />
 
         <TextView
             android:id="@+id/textView11"
