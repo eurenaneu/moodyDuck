@@ -83,6 +83,7 @@
 
         <View
             android:id="@+id/viewSono"
+
             android:layout_width="350dp"
             android:layout_height="140dp"
             android:layout_marginTop="30dp"
@@ -263,70 +264,93 @@
 
         <ToggleButton
             android:id="@+id/toggleFamilia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="20dp"
+            android:background="@drawable/togglefamilia"
             android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
             app:layout_constraintEnd_toStartOf="@+id/toggleAmigos"
             app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
 
         <ToggleButton
             android:id="@+id/toggleAmigos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/toggleamigos"
             android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
-            app:layout_constraintStart_toStartOf="@+id/viewSocial"
             app:layout_constraintEnd_toEndOf="@+id/viewSocial"
+            app:layout_constraintStart_toStartOf="@+id/viewSocial"
             app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
 
         <ToggleButton
             android:id="@+id/toggleEncontro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ToggleButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@id/toggleAmigos"
+            android:background="@drawable/toggleencontro"
+            android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
+            app:layout_constraintStart_toEndOf="@id/toggleAmigos"
             app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
 
         <ToggleButton
-            android:id="@+id/toggleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/toggleLivros"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="115dp"
+            android:background="@drawable/togglelivros"
             android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
             app:layout_constraintStart_toStartOf="@+id/viewPassatempo"
             app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
 
         <ToggleButton
-            android:id="@+id/toggleButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:id="@+id/toggleFilmes"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/togglefilmes"
             android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
-            app:layout_constraintEnd_toStartOf="@+id/toggleButton"
-            app:layout_constraintTop_toTopOf="@+id/viewPassatempo" />
+            app:layout_constraintEnd_toStartOf="@+id/toggleLivros"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
 
         <ToggleButton
-            android:id="@+id/toggleButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/toggleDescanso"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="115dp"
+            android:background="@drawable/toggledescanso"
             android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
             app:layout_constraintEnd_toEndOf="@+id/viewPassatempo"
             app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
 
         <ToggleButton
-            android:id="@+id/toggleButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:id="@+id/toggleFestas"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/togglefestas"
             android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
-            app:layout_constraintStart_toEndOf="@+id/toggleButton3"
+            app:layout_constraintStart_toEndOf="@+id/toggleDescanso"
             app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,6 +69,10 @@ public class FormRegistro extends AppCompatActivity {
         alerta.show();
     }
 
+    public void onCustomToggleClick(View view){
+        Toast.makeText(getApplicationContext(), "brincadeira", Toast.LENGTH_SHORT).show();
+    }
+
     private void removerValor() {
         Calendar c = Calendar.getInstance();
         int ano = c.get(Calendar.YEAR);
