@@ -262,17 +262,17 @@
             app:layout_constraintTop_toBottomOf="@+id/bSalvar" />
 
         <ToggleButton
-            android:id="@+id/toggleButton"
+            android:id="@+id/toggleFamilia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:text="ToggleButton"
             app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
-            app:layout_constraintEnd_toStartOf="@+id/toggleButton2"
+            app:layout_constraintEnd_toStartOf="@+id/toggleAmigos"
             app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
 
         <ToggleButton
-            android:id="@+id/toggleButton2"
+            android:id="@+id/toggleAmigos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ToggleButton"
@@ -282,14 +282,52 @@
             app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
 
         <ToggleButton
-            android:id="@+id/toggleButton3"
+            android:id="@+id/toggleEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ToggleButton"
             android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@id/toggleButton2"
+            app:layout_constraintStart_toEndOf="@id/toggleAmigos"
             app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
             app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
+            app:layout_constraintStart_toStartOf="@+id/viewPassatempo"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
+            app:layout_constraintEnd_toStartOf="@+id/toggleButton"
+            app:layout_constraintTop_toTopOf="@+id/viewPassatempo" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
+            app:layout_constraintEnd_toEndOf="@+id/viewPassatempo"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
+            app:layout_constraintStart_toEndOf="@+id/toggleButton3"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
