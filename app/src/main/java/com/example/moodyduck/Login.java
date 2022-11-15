@@ -34,7 +34,6 @@ public class Login extends AppCompatActivity {
     EditText email, senha;
     CheckBox cbp;
     ProgressBar pB;
-    boolean temDados = false;
     int dia, mes, ano;
     Calendar c = Calendar.getInstance();
 
@@ -56,39 +55,7 @@ public class Login extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String checkbox = preferences.getString("lembrarSenha", "");
         if(checkbox.equals("true")){
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia));
-            path.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    temDados = snapshot.hasChildren();
-                    if(!temDados) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                path.child("feliz").setValue(0);
-                                path.child("neutro").setValue(0);
-                                path.child("triste").setValue(0);
-                            }
-                        }, 1000);
-                    }
-                }
-
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-            if(temDados = false) {
-                path.child("feliz").setValue(0);
-                path.child("neutro").setValue(0);
-                path.child("triste").setValue(0);
-            }
-
             startActivity(new Intent(Login.this, Home.class));
-
-
         }
 
         cbp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -125,7 +92,6 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        gerarDados();
                         pB.setVisibility(View.VISIBLE);
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -150,26 +116,5 @@ public class Login extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    public void gerarDados(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia));
-        path.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                temDados = snapshot.hasChildren();
-                if(!temDados) {
-                    path.child("feliz").setValue(0);
-                    path.child("neutro").setValue(0);
-                    path.child("triste").setValue(0);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 }

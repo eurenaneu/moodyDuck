@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -41,10 +42,10 @@ public class AddRegistro extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
     ImageButton bFeliz, bNeutro, bTriste;
     Calendar c = Calendar.getInstance();
+    static String tData, registrodata;
     Date dataHoraAtual = new Date();
-    int dia, mes, ano, hora, min, h;
+    int dia, mes, ano, hora, min;
     String data, horario;
-    static String tData, hForm;
     TextView tvData;
     Button bVoltar;
 
@@ -193,30 +194,11 @@ public class AddRegistro extends AppCompatActivity {
     }
 
     public void comecarRegistro(String humor){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(String.valueOf(dia)).child(humor);
-        path.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    h = Integer.parseInt(snapshot.getValue().toString());
-                    hForm = humor;
-                    FormRegistro.humor = AddRegistro.hForm;
-                    h++;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                path.setValue(h);
-            }
-        }, 2000);
+        FormRegistro.humor = humor;
+        FormRegistro.horario = f24.format(dataHoraAtual);
+        FormRegistro.dia = dia;
+        FormRegistro.mes = mes;
+        FormRegistro.ano = ano;
         startActivity(new Intent(this, FormRegistro.class));
     }
 }

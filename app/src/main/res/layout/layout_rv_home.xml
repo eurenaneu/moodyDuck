@@ -1,0 +1,55 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#00000000" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="380dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/boxregistro">
+
+        <ImageView
+            android:id="@+id/imgHumor"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/placeholder_feliz" />
+
+        <TextView
+            android:id="@+id/cardHorario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="DD/MM/YYYY - HH:MM"
+            android:textColor="@color/amalero"
+            android:fontFamily="@font/qcksemi"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/imgHumor"
+            app:layout_constraintTop_toTopOf="@+id/imgHumor" />
+
+        <TextView
+            android:id="@+id/cardHumor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="HUMOR"
+            android:fontFamily="@font/qcksemi"
+            android:textColor="@color/amalero"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/imgHumor"
+            app:layout_constraintTop_toBottomOf="@+id/cardHorario" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

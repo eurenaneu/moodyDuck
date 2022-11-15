@@ -6,13 +6,38 @@
     android:layout_height="match_parent"
     android:background="@color/ciano">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center_horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:clipToPadding="false"
+            android:paddingBottom="60dp"
+            android:paddingTop="20dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#00000000"
-        app:backgroundTint="#00000000"
+        android:background="#ffffff"
+        app:backgroundTint="#ffffff"
         app:elevation="0dp"
         app:fabCradleMargin="0dp"
         app:fabCradleRoundedCornerRadius="0dp"
@@ -22,9 +47,10 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
             android:background="@drawable/bottom_nav_corner"
             app:itemIconSize="25dp"
+            app:elevation="0dp"
+            android:layout_marginRight="16dp"
             app:itemIconTint="@drawable/mauri"
             app:itemTextColor="@drawable/mauri"
             app:labelVisibilityMode="unlabeled"
@@ -115,6 +141,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
+        android:visibility="gone"
         android:background="@drawable/shape_create" />
 
     <ImageView
@@ -125,6 +152,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="95dp"
         app:layout_anchor="@id/botaoCriar"
+        android:visibility="gone"
         app:srcCompat="@drawable/edit" />
 
     <TextView
@@ -138,6 +166,7 @@
         android:textColor="@color/ciano"
         android:textSize="13sp"
         app:layout_anchor="@+id/botaoCriar"
+        android:visibility="gone"
         app:layout_anchorGravity="center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

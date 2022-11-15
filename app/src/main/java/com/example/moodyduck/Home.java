@@ -3,6 +3,8 @@ package com.example.moodyduck;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,17 +20,27 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Home extends AppCompatActivity {
-    Calendar c = Calendar.getInstance();
-    TextView t;
-    Animation fabOpen, fabClose, fabUp, fabDown;
-    BottomNavigationView bnv;
-    AlertDialog alerta;
     FloatingActionButton fabio, fabHoje, fabOutro, fabOntem;
+    Animation fabOpen, fabClose, fabUp, fabDown;
+    Calendar c = Calendar.getInstance();
+    ArrayList<Registros> registros = new ArrayList<>();
     boolean estaAberto = false;
+    BottomNavigationView bnv;
+    Adaptador adaptador;
+    AlertDialog alerta;
+    RecyclerView rv;
+    TextView t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,9 @@ public class Home extends AppCompatActivity {
         fabOntem = findViewById(R.id.fabOntem);
         fabHoje = findViewById(R.id.fabHoje);
         fabOutro = findViewById(R.id.fabOutro);
+        rv = findViewById(R.id.rv);
+        rv.setHasFixedSize(true);
+        setupHistorico();
 
         //anims
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.anim_open);
@@ -153,6 +168,43 @@ public class Home extends AppCompatActivity {
             fabHoje.setClickable(true);
             fabOutro.setClickable(true);
             estaAberto = true;
+        }
+    }
+
+    public void setupHistorico(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("Users").child(user.getUid()).child("Registros").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    try {
+                        String data = dataSnapshot.child("data").getValue().toString();
+                        String horario = dataSnapshot.child("horario").getValue().toString();
+                        String humor = dataSnapshot.child("nome").getValue().toString();
+                        switchHumor(humor);
+                        Registros r = new Registros(humor.toUpperCase(), data.replace(".","/")+" - "+horario);
+                        registros.add(r);
+                        adaptador = new Adaptador(getApplicationContext(), registros);
+                        rv.setAdapter(adaptador);
+                        rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        adaptador.notifyDataSetChanged();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private void switchHumor(String humor){
+        switch (humor){
+            case "feliz":
+
         }
     }
 }
