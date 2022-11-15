@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -93,7 +94,7 @@ public class Home extends AppCompatActivity {
         fabOutro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddRegistro.tData = "Outro dia";
+                AddRegistro.tData = "Hoje";
                 startActivity(new Intent(Home.this, AddRegistro.class));
             }
         });
@@ -174,21 +175,31 @@ public class Home extends AppCompatActivity {
     public void setupHistorico(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
         ref.child("Users").child(user.getUid()).child("Registros").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     try {
+                        int setImg = 0;
                         String data = dataSnapshot.child("data").getValue().toString();
                         String horario = dataSnapshot.child("horario").getValue().toString();
                         String humor = dataSnapshot.child("nome").getValue().toString();
-                        switchHumor(humor);
-                        Registros r = new Registros(humor.toUpperCase(), data.replace(".","/")+" - "+horario);
+
+                        if(humor.equals("feliz")) {
+                            setImg = 3;
+                        } else if(humor.equals("neutro")){
+                            setImg = 2;
+                        } else if(humor.equals("triste")){
+                            setImg = 1;
+                        }
+
+                        Registros r = new Registros(humor.toUpperCase(), data.replace(".","/")+" - "+horario, setImg);
                         registros.add(r);
                         adaptador = new Adaptador(getApplicationContext(), registros);
                         rv.setAdapter(adaptador);
                         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        adaptador.notifyDataSetChanged();
+                        adaptador.notify();
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -199,12 +210,5 @@ public class Home extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-    }
-
-    private void switchHumor(String humor){
-        switch (humor){
-            case "feliz":
-
-        }
     }
 }

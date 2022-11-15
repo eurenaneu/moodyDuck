@@ -2,6 +2,7 @@ package com.example.moodyduck;
 
 public class Registros {
     String nome, horario, data;
+    int img;
 
     public Registros(String nome, String horario, String data) {
         this.nome = nome;
@@ -14,7 +15,21 @@ public class Registros {
         this.data = data;
     }
 
+    public Registros(String nome, String data, int img){
+        this.nome = nome;
+        this.data = data;
+        this.img = img;
+    }
+
     public Registros() {
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
     }
 
     public String getData() {

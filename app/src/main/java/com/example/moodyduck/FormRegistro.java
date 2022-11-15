@@ -13,7 +13,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.SimpleFormatter;
 
 public class FormRegistro extends AppCompatActivity {
     String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
@@ -54,44 +56,10 @@ public class FormRegistro extends AppCompatActivity {
 
     public void salvarRegistro(View view){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(dia+"-"+nomeMes[mes]+"-"+ano+" - "+horario+":"+c.get(Calendar.SECOND));
+        SimpleDateFormat dt = new SimpleDateFormat("ss");
+        String childName = dia+"-"+nomeMes[mes]+"-"+ano+" - "+horario+":"+dt.format(c.get(Calendar.SECOND));
+        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(childName);
         Registros r = new Registros(humor, horario, dia+"."+(mes+1)+"."+ano);
-        /*path.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                switch (humor) {
-                    case "feliz":
-                        if (snapshot.child("feliz").exists()) {
-                            int valor = Integer.parseInt(snapshot.child("feliz").getValue().toString()) + 1;
-                            path.child("feliz").setValue(valor);
-                        } else {
-                            path.child("feliz").setValue(1);
-                        }
-                        break;
-                    case "neutro":
-                        if (snapshot.child("neutro").exists()) {
-                            int valor = Integer.parseInt(snapshot.child("neutro").getValue().toString()) + 1;
-                            path.child("neutro").setValue(valor);
-                        } else {
-                            path.child("neutro").setValue(1);
-                        }
-                        break;
-                    case "triste":
-                        if (snapshot.child("triste").exists()) {
-                            int valor = Integer.parseInt(snapshot.child("triste").getValue().toString()) + 1;
-                            path.child("triste").setValue(valor);
-                        } else {
-                            path.child("triste").setValue(1);
-                        }
-                        break;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
         path.setValue(r);
         startActivity(new Intent(this, Home.class));
     }

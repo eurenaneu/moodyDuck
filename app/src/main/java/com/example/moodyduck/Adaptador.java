@@ -34,6 +34,13 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
         Registros r = registros.get(position);
         holder.humor.setText(r.nome);
         holder.horario.setText(r.data);
+        if(r.img == 3) {
+            holder.imgHumor.setBackgroundResource(R.drawable.placeholder_feliz);
+        } else if(r.img == 2) {
+            holder.imgHumor.setBackgroundResource(R.drawable.placeholder_neutro);
+        } else if(r.img == 1){
+            holder.imgHumor.setBackgroundResource(R.drawable.placeholder_triste);
+        }
     }
 
     @Override
@@ -43,10 +50,12 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView horario, humor;
+        ImageView imgHumor;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             humor = itemView.findViewById(R.id.cardHumor);
             horario = itemView.findViewById(R.id.cardHorario);
+            imgHumor = itemView.findViewById(R.id.imgHumor);
         }
     }
 }

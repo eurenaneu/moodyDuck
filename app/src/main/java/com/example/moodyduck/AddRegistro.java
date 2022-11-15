@@ -42,7 +42,7 @@ public class AddRegistro extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
     ImageButton bFeliz, bNeutro, bTriste;
     Calendar c = Calendar.getInstance();
-    static String tData, registrodata;
+    static String tData;
     Date dataHoraAtual = new Date();
     int dia, mes, ano, hora, min;
     String data, horario;
@@ -58,13 +58,19 @@ public class AddRegistro extends AppCompatActivity {
         bFeliz = findViewById(R.id.imageFeliz);
         bNeutro = findViewById(R.id.imageNeutro);
         bTriste = findViewById(R.id.imageTriste);
-        dia = c.get(Calendar.DAY_OF_MONTH);
-        mes = c.get(Calendar.MONTH);
-        ano = c.get(Calendar.YEAR);
+
+        if(tData.equals("ontem")){
+            dia = c.get(Calendar.DAY_OF_MONTH)-1;
+        } else {
+            dia = c.get(Calendar.DAY_OF_MONTH);
+            mes = c.get(Calendar.MONTH);
+            ano = c.get(Calendar.YEAR);
+        }
         c.set(dia, mes, ano);
         horario = f24.format(dataHoraAtual);
         preEscolha();
         setarData();
+
         bVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,11 +111,6 @@ public class AddRegistro extends AppCompatActivity {
             data = tData+", "+dia+" de "+nomeMes[mes]+", "+ horario;
             tvData.setText(data);
         }
-
-        else if(tData.equals("Outro dia")){
-            data = tData+", "+(dia-3)+" de "+nomeMes[mes]+", "+ horario;
-            tvData.setText(data);
-        }
     }
 
     public void setarData(){
@@ -142,6 +143,7 @@ public class AddRegistro extends AppCompatActivity {
                     else if(dayOfMonth == dia-1){
                         tData = "Ontem";
                     }
+
                     else if(dayOfMonth == dia-2){
                         tData = "Anteontem";
                     }
