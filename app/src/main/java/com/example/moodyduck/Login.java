@@ -13,19 +13,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -41,8 +34,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        email = findViewById(R.id.campoEmail);
-        senha = findViewById(R.id.campoSenha);
+        email = findViewById(R.id.campoSenhaAntiga);
+        senha = findViewById(R.id.campoSenhaNova);
         pB = findViewById(R.id.progressBar);
         cbp = findViewById(R.id.checkBox);
         dia = c.get(Calendar.DAY_OF_MONTH);
@@ -93,6 +86,9 @@ public class Login extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         pB.setVisibility(View.VISIBLE);
+                        Snackbar snackbar = Snackbar.make(v, "Conectado com sucesso", 2000);
+                        snackbar.setBackgroundTint(Color.rgb(48, 207, 122));
+                        snackbar.show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {

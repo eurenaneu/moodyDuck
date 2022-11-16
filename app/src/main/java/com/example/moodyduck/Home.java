@@ -15,7 +15,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,7 +38,6 @@ public class Home extends AppCompatActivity {
     boolean estaAberto = false;
     BottomNavigationView bnv;
     Adaptador adaptador;
-    AlertDialog alerta;
     RecyclerView rv;
     TextView t;
 
@@ -47,7 +45,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setTheme(R.style.Theme_MoodyDuckSecondary);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_backup);
         bnv = findViewById(R.id.bottom_nav);
         fabio = findViewById(R.id.fab);
         fabOntem = findViewById(R.id.fabOntem);
@@ -75,6 +73,33 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        fabOnClicks();
+
+        bnv.setSelectedItemId(R.id.registros);
+        bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.registros:
+                        return true;
+                    case R.id.estatisticas:
+                        startActivity(new Intent(Home.this, Stats.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.calendario:
+                        startActivity(new Intent(Home.this, Calendario.class));
+                        return true;
+                    case R.id.config:
+                        startActivity(new Intent(Home.this, Config.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void fabOnClicks() {
         fabOntem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,56 +123,6 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(Home.this, AddRegistro.class));
             }
         });
-
-        bnv.setSelectedItemId(R.id.registros);
-        bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case R.id.registros:
-                        return true;
-                    case R.id.estatisticas:
-                        startActivity(new Intent(Home.this, Stats.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.calendario:
-                        startActivity(new Intent(Home.this, Calendario.class));
-                        return true;
-                    case R.id.config:
-                        startActivity(new Intent(Home.this, Config.class));
-                        return true;
-                }
-                return false;
-            }
-        });
-    }
-
-    public void onBackPressed(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.custom_dialog, null);
-        Button deslogar = view.findViewById(R.id.bDescartar);
-        Button naoDeslogar = view.findViewById(R.id.bNaoDescartar);
-        deslogar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("lembrarSenha", "false");
-                editor.apply();
-                startActivity(new Intent(Home.this, Entrada.class));
-                finish();
-                FirebaseAuth.getInstance().signOut();
-            }
-        });
-        naoDeslogar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alerta.dismiss();
-            }
-        });
-        builder.setView(view);
-        alerta = builder.create();
-        alerta.show();
     }
 
     public void animFab(){

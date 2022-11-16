@@ -51,9 +51,9 @@
             app:itemIconSize="25dp"
             app:elevation="0dp"
             android:layout_marginRight="16dp"
-            app:itemIconTint="@drawable/mauri"
-            app:itemTextColor="@drawable/mauri"
-            app:labelVisibilityMode="unlabeled"
+            app:itemIconTint="@drawable/toggle_color"
+            app:itemTextColor="@drawable/toggle_color"
+            app:labelVisibilityMode="selected"
             app:menu="@menu/menu_home" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -141,8 +141,8 @@
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
-        android:visibility="gone"
-        android:background="@drawable/shape_create" />
+        android:background="@drawable/shape_aviso"
+        android:visibility="visible" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -151,8 +151,8 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="95dp"
+        android:visibility="visible"
         app:layout_anchor="@id/botaoCriar"
-        android:visibility="gone"
         app:srcCompat="@drawable/edit" />
 
     <TextView
@@ -165,8 +165,8 @@
         android:text="Não esqueça de preencher o seu diário"
         android:textColor="@color/ciano"
         android:textSize="13sp"
+        android:visibility="visible"
         app:layout_anchor="@+id/botaoCriar"
-        android:visibility="gone"
         app:layout_anchorGravity="center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

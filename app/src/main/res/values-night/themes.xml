@@ -17,6 +17,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.MoodyDuck.Splash" parent="Theme.MoodyDuck">
+        <item name="android:statusBarColor">@color/ciano</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+    </style>
+
     <style name="Theme.MoodyDuck.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MoodyDuck.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

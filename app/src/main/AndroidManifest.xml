@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoodyDuck.Splash">
         <activity
+            android:name=".AlterarSenha"
+            android:exported="false" />
+        <activity
             android:name=".FormRegistro"
             android:exported="false" />
         <activity

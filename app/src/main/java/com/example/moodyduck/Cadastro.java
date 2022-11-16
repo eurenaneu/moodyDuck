@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,7 +16,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
@@ -41,8 +39,8 @@ public class Cadastro extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
         aviso = findViewById(R.id.avisoSenhas);
         nome = findViewById(R.id.campoUser);
-        email = findViewById(R.id.campoEmail);
-        senha = findViewById(R.id.campoSenha);
+        email = findViewById(R.id.campoSenhaAntiga);
+        senha = findViewById(R.id.campoSenhaNova);
         confirma = findViewById(R.id.campoConfirma);
         fab = findViewById(R.id.fab);
         aviso.setVisibility(View.GONE);
@@ -60,7 +58,8 @@ public class Cadastro extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     salvarUser(e);
-                    Snackbar snackbar = Snackbar.make(v, "OPA", Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(v, "Conta criada com sucesso", Snackbar.LENGTH_SHORT);
+                    snackbar.setBackgroundTint(Color.rgb(48, 207, 122));
                     snackbar.show();
                     irHome();
                 } else {

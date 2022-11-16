@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.logging.SimpleFormatter;
 
 public class FormRegistro extends AppCompatActivity {
     String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
@@ -33,7 +32,7 @@ public class FormRegistro extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.custom_dialog2, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_returnhome, null);
         Button descartar = view.findViewById(R.id.bDescartar);
         Button naoDescartar = view.findViewById(R.id.bNaoDescartar);
         descartar.setOnClickListener(new View.OnClickListener() {
