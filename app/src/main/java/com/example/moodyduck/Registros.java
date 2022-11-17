@@ -1,22 +1,22 @@
 package com.example.moodyduck;
 
 public class Registros {
-    String nome, horario, data;
+    String humor, horario, data;
     int img;
 
-    public Registros(String nome, String horario, String data) {
-        this.nome = nome;
+    public Registros(String humor, String horario, String data) {
+        this.humor = humor;
         this.horario = horario;
         this.data = data;
     }
 
-    public Registros(String nome, String data){
-        this.nome = nome;
+    public Registros(String humor, String data){
+        this.humor = humor;
         this.data = data;
     }
 
-    public Registros(String nome, String data, int img){
-        this.nome = nome;
+    public Registros(String humor, String data, int img){
+        this.humor = humor;
         this.data = data;
         this.img = img;
     }
@@ -40,12 +40,12 @@ public class Registros {
         this.data = data;
     }
 
-    public String getNome() {
-        return nome;
+    public String getHumor() {
+        return humor;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setHumor(String humor) {
+        this.humor = humor;
     }
 
     public String getHorario() {

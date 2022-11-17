@@ -305,8 +305,38 @@ public class Stats extends AppCompatActivity {
         tTitulo.setText(mes+", "+ano);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
+        integerArrayList = new ArrayList<>();
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //ArrayList<Integer> arrayMedia = new ArrayList<>();
 
-        new Handler().postDelayed(new Runnable() {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    String humor = dataSnapshot.child("humor").getValue().toString();
+                    String teste = dataSnapshot.child("data").getValue().toString();
+                    String[] teste2 = teste.split(".", 2);
+                    Toast.makeText(getApplicationContext(), teste.replace(teste2[1], ""), Toast.LENGTH_SHORT).show();
+                    switch (humor) {
+                        case "feliz":
+                            integerArrayList.add(3);
+                            break;
+                        case "neutro":
+                            integerArrayList.add(2);
+                            break;
+                        case "triste":
+                            integerArrayList.add(1);
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        /*new Handler().postDelayed(new Runnable() {
                                       @Override
                                       public void run() {
         for(int j = 1; j < 32; j++) {
@@ -356,7 +386,7 @@ public class Stats extends AppCompatActivity {
         }
           //aqui
         }
-        }, 1000);
+        }, 1000);*/
 
 
     }

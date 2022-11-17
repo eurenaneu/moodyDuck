@@ -3,8 +3,11 @@ package com.example.moodyduck;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 
@@ -57,6 +60,16 @@ public class AlterarSenha extends AppCompatActivity {
                                     snackbar.setBackgroundTint(Color.rgb(48, 207, 122));
                                     snackbar.setTextColor(Color.WHITE);
                                     snackbar.show();
+                                    SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putString("lembrarSenha", "false");
+                                    editor.apply();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(new Intent(getApplicationContext(), Home.class));
+                                        }
+                                    }, 2000);
                                 } else {
                                     Snackbar snackbar = Snackbar.make(view, "Algo de errado ocorreu, tente novamente", 2000);
                                     snackbar.setBackgroundTint(Color.rgb(255, 87, 84));

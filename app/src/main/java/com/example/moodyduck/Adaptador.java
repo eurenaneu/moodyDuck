@@ -32,7 +32,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull Adaptador.MyViewHolder holder, int position) {
         Registros r = registros.get(position);
-        holder.humor.setText(r.nome);
+        holder.humor.setText(r.humor);
         holder.horario.setText(r.data);
         if(r.img == 3) {
             holder.imgHumor.setBackgroundResource(R.drawable.placeholder_feliz);

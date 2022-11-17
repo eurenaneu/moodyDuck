@@ -83,14 +83,14 @@ public class Home extends AppCompatActivity {
                     case R.id.registros:
                         return true;
                     case R.id.estatisticas:
-                        startActivity(new Intent(Home.this, Stats.class));
+                        startActivity(new Intent(getApplicationContext(), Stats.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.calendario:
-                        startActivity(new Intent(Home.this, Calendario.class));
+                        startActivity(new Intent(getApplicationContext(), Calendario.class));
                         return true;
                     case R.id.config:
-                        startActivity(new Intent(Home.this, Config.class));
+                        startActivity(new Intent(getApplicationContext(), Config.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }
@@ -104,7 +104,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AddRegistro.tData = "Ontem";
-                startActivity(new Intent(Home.this, AddRegistro.class));
+                startActivity(new Intent(getApplicationContext(), AddRegistro.class));
             }
         });
 
@@ -112,7 +112,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AddRegistro.tData = "Hoje";
-                startActivity(new Intent(Home.this, AddRegistro.class));
+                startActivity(new Intent(getApplicationContext(), AddRegistro.class));
             }
         });
 
@@ -120,7 +120,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AddRegistro.tData = "Hoje";
-                startActivity(new Intent(Home.this, AddRegistro.class));
+                startActivity(new Intent(getApplicationContext(), AddRegistro.class));
             }
         });
     }
@@ -150,8 +150,10 @@ public class Home extends AppCompatActivity {
     public void setupHistorico(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-
-        ref.child("Users").child(user.getUid()).child("Registros").addValueEventListener(new ValueEventListener() {
+        String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
+        String ano = String.valueOf(c.get(Calendar.YEAR));
+        String mes = nomeMes[c.get(Calendar.MONTH)];
+        ref.child("Users").child(user.getUid()).child("Registros").child(ano).child(mes).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -159,7 +161,7 @@ public class Home extends AppCompatActivity {
                         int setImg = 0;
                         String data = dataSnapshot.child("data").getValue().toString();
                         String horario = dataSnapshot.child("horario").getValue().toString();
-                        String humor = dataSnapshot.child("nome").getValue().toString();
+                        String humor = dataSnapshot.child("humor").getValue().toString();
 
                         if(humor.equals("feliz")) {
                             setImg = 3;

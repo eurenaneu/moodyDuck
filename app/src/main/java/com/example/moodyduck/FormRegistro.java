@@ -57,7 +57,7 @@ public class FormRegistro extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         SimpleDateFormat dt = new SimpleDateFormat("ss");
         String childName = dia+"-"+nomeMes[mes]+"-"+ano+" - "+horario+":"+dt.format(c.get(Calendar.SECOND));
-        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(childName);
+        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(childName);
         Registros r = new Registros(humor, horario, dia+"."+(mes+1)+"."+ano);
         path.setValue(r);
         startActivity(new Intent(this, Home.class));
