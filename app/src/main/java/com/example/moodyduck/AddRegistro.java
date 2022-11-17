@@ -58,19 +58,16 @@ public class AddRegistro extends AppCompatActivity {
         bFeliz = findViewById(R.id.imageFeliz);
         bNeutro = findViewById(R.id.imageNeutro);
         bTriste = findViewById(R.id.imageTriste);
-
-        if(tData.equals("ontem")){
-            dia = c.get(Calendar.DAY_OF_MONTH)-1;
-        } else {
-            dia = c.get(Calendar.DAY_OF_MONTH);
-            mes = c.get(Calendar.MONTH);
-            ano = c.get(Calendar.YEAR);
-        }
+        preEscolha();
         c.set(dia, mes, ano);
         horario = f24.format(dataHoraAtual);
-        preEscolha();
+        data = tData+", "+dia+" de "+nomeMes[mes]+", "+ horario;
+        tvData.setText(data);
         setarData();
+        onClicks();
+    }
 
+    public void onClicks(){
         bVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,16 +98,41 @@ public class AddRegistro extends AppCompatActivity {
     }
 
     public void preEscolha(){
-        //pre-escolha
-        if(tData.equals("Ontem")){
-            data = tData+", "+(dia-1)+" de "+nomeMes[mes]+", "+ horario;
-            tvData.setText(data);
+        //CONTINUAR AQUI
+        int diminuirMes = 0;
+
+        if(tData.equals("ontem")){
+            int ontem = c.get(Calendar.DAY_OF_MONTH) - 1;
+
+            if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
+                dia = 31 + ontem;
+                diminuirMes++;
+            } else if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 != 0){
+                dia = 30 + ontem;
+                diminuirMes++;
+            } else {
+                dia = c.get(Calendar.DAY_OF_MONTH) - 1;
+            }
+        } else if(tData.equals("outro dia")){
+
+            int outroDia = c.get(Calendar.DAY_OF_MONTH) - 2;
+
+            if(outroDia < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
+                dia = 31 + outroDia;
+                diminuirMes++;
+            } else if(outroDia < 1 && (c.get(Calendar.MONTH)+1)%2 != 0){
+                dia = 30 + outroDia;
+                diminuirMes++;
+            } else {
+                dia = c.get(Calendar.DAY_OF_MONTH) - 2;
+            }
+
+        } else {
+            dia = c.get(Calendar.DAY_OF_MONTH);
         }
 
-        else if(tData.equals("Hoje")){
-            data = tData+", "+dia+" de "+nomeMes[mes]+", "+ horario;
-            tvData.setText(data);
-        }
+        mes = c.get(Calendar.MONTH) - diminuirMes;
+        ano = c.get(Calendar.YEAR);
     }
 
     public void setarData(){
@@ -138,20 +160,20 @@ public class AddRegistro extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 if(month == mes && year == ano){
-                    if(dayOfMonth == dia)
-                        tData = "Hoje";
-                    else if(dayOfMonth == dia-1){
-                        tData = "Ontem";
-                    }
+                    //if(dayOfMonth == dia)
+                    //    tData = "Hoje";
+                    //else if(dayOfMonth == dia-1){
+                    //    tData = "Ontem";
+                    //}
 
-                    else if(dayOfMonth == dia-2){
-                        tData = "Anteontem";
-                    }
-                    else{
-                        tData = "Outro dia";
-                    }
+                    //else if(dayOfMonth == dia-2){
+                    //    tData = "Anteontem";
+                    //}
+                    //else{
+                    //    tData = "Outro dia";
+                    //}
                 } else {
-                    tData = "Outro dia";
+                    tData = "outro dia";
                 }
 
                 if(year != ano){

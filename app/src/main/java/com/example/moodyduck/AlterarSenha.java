@@ -60,10 +60,6 @@ public class AlterarSenha extends AppCompatActivity {
                                     snackbar.setBackgroundTint(Color.rgb(48, 207, 122));
                                     snackbar.setTextColor(Color.WHITE);
                                     snackbar.show();
-                                    SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putString("lembrarSenha", "false");
-                                    editor.apply();
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {

@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class FormRegistro extends AppCompatActivity {
@@ -55,8 +54,7 @@ public class FormRegistro extends AppCompatActivity {
 
     public void salvarRegistro(View view){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        SimpleDateFormat dt = new SimpleDateFormat("ss");
-        String childName = dia+"-"+nomeMes[mes]+"-"+ano+" - "+horario+":"+dt.format(c.get(Calendar.SECOND));
+        String childName = dia+"-"+nomeMes[mes]+"-"+ano+" - "+horario+":"+c.get(Calendar.SECOND);
         DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(childName);
         Registros r = new Registros(humor, horario, dia+"."+(mes+1)+"."+ano);
         path.setValue(r);

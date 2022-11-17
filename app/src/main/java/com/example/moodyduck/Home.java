@@ -103,7 +103,7 @@ public class Home extends AppCompatActivity {
         fabOntem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddRegistro.tData = "Ontem";
+                AddRegistro.tData = "ontem";
                 startActivity(new Intent(getApplicationContext(), AddRegistro.class));
             }
         });
@@ -111,7 +111,7 @@ public class Home extends AppCompatActivity {
         fabHoje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddRegistro.tData = "Hoje";
+                AddRegistro.tData = "hoje";
                 startActivity(new Intent(getApplicationContext(), AddRegistro.class));
             }
         });
@@ -119,7 +119,7 @@ public class Home extends AppCompatActivity {
         fabOutro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddRegistro.tData = "Hoje";
+                AddRegistro.tData = "outro dia";
                 startActivity(new Intent(getApplicationContext(), AddRegistro.class));
             }
         });
