@@ -7,13 +7,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormRegistro extends AppCompatActivity {
     String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
@@ -55,9 +61,12 @@ public class FormRegistro extends AppCompatActivity {
     public void salvarRegistro(View view){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String childName = dia+"-"+nomeMes[mes]+"-"+ano+" - "+horario+":"+c.get(Calendar.SECOND);
-        DatabaseReference path = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(childName);
-        Registros r = new Registros(humor, horario, dia+"."+(mes+1)+"."+ano);
-        path.setValue(r);
+        String data = dia+"/"+(mes+1)+"/"+ano;
+        String[] myDate = data.split("/");
+        Date date = new Date(Integer.parseInt(myDate[2]), Integer.parseInt(myDate[1]), Integer.parseInt(myDate[0]));
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(childName);
+        Registros r = new Registros(humor, horario, dia+"/"+(mes+1)+"/"+ano, date.getTime());
+        ref.setValue(r);
         startActivity(new Intent(this, Home.class));
     }
 }

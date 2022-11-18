@@ -153,25 +153,16 @@ public class Home extends AppCompatActivity {
         String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
         String ano = String.valueOf(c.get(Calendar.YEAR));
         String mes = nomeMes[c.get(Calendar.MONTH)];
-        ref.child("Users").child(user.getUid()).child("Registros").child(ano).child(mes).addValueEventListener(new ValueEventListener() {
+        ref.child("Users").child(user.getUid()).child("Registros").child(ano).child(mes).orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     try {
-                        int setImg = 0;
                         String data = dataSnapshot.child("data").getValue().toString();
                         String horario = dataSnapshot.child("horario").getValue().toString();
                         String humor = dataSnapshot.child("humor").getValue().toString();
 
-                        if(humor.equals("feliz")) {
-                            setImg = 3;
-                        } else if(humor.equals("neutro")){
-                            setImg = 2;
-                        } else if(humor.equals("triste")){
-                            setImg = 1;
-                        }
-
-                        Registros r = new Registros(humor.toUpperCase(), data.replace(".","/")+" - "+horario, setImg);
+                        Registros r = new Registros(humor.toUpperCase(), data+" - "+horario);
                         registros.add(r);
                         adaptador = new Adaptador(getApplicationContext(), registros);
                         rv.setAdapter(adaptador);

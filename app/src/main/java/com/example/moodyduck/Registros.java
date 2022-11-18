@@ -2,35 +2,31 @@ package com.example.moodyduck;
 
 public class Registros {
     String humor, horario, data;
-    int img;
+    long timestamp;
 
-    public Registros(String humor, String horario, String data) {
+    public Registros(String humor, String horario, String data, long timestamp) { // constructor para registro
         this.humor = humor;
         this.horario = horario;
         this.data = data;
+        this.timestamp = timestamp;
     }
 
-    public Registros(String humor, String data){
+    public Registros(String humor, String data){ // constructor para recyclerview
         this.humor = humor;
         this.data = data;
-    }
-
-    public Registros(String humor, String data, int img){
-        this.humor = humor;
-        this.data = data;
-        this.img = img;
     }
 
     public Registros() {
     }
 
-    public int getImg() {
-        return img;
+    public long getTimestamp() {
+        return timestamp;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
+
 
     public String getData() {
         return data;

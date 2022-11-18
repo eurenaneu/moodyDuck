@@ -34,11 +34,12 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
         Registros r = registros.get(position);
         holder.humor.setText(r.humor);
         holder.horario.setText(r.data);
-        if(r.img == 3) {
+
+        if(r.humor.equals("FELIZ")) {
             holder.imgHumor.setBackgroundResource(R.drawable.placeholder_feliz);
-        } else if(r.img == 2) {
+        } else if(r.humor.equals("NEUTRO")) {
             holder.imgHumor.setBackgroundResource(R.drawable.placeholder_neutro);
-        } else if(r.img == 1){
+        } else if(r.humor.equals("TRISTE")){
             holder.imgHumor.setBackgroundResource(R.drawable.placeholder_triste);
         }
     }
