@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarEntry;
@@ -56,7 +57,7 @@ public class Stats extends AppCompatActivity {
     Timer timer = null;
     long tempo = 3000;
     RecyclerView rv;
-    int p, r;
+    int qtd, r;
 
     //nav
     BottomNavigationView bnv;
@@ -73,10 +74,10 @@ public class Stats extends AppCompatActivity {
         tProximo = findViewById(R.id.txtProximo);
         tAnterior = findViewById(R.id.txtAnterior);
         tTitulo = findViewById(R.id.txtGraphTitle);
-        bAnterior = findViewById(R.id.bBack);
-        bProximo = findViewById(R.id.bNext);
-        recyclerSetup();
+        bAnterior = findViewById(R.id.bAnterior);
+        bProximo = findViewById(R.id.bProximo);
         tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+", "+c.get(Calendar.YEAR));
+        recyclerSetup();
         setupGrafico();
         visualizarDados();
         inicializarNav();
@@ -113,7 +114,7 @@ public class Stats extends AppCompatActivity {
                     try {
                         montaGrafico();
                     } catch (Exception e){
-
+                        e.printStackTrace();
                     }
                 }
             };
@@ -172,9 +173,7 @@ public class Stats extends AppCompatActivity {
     }
 
     public void onBackPressed(){
-        startActivity(new Intent(this, Home.class));
-        finish();
-        overridePendingTransition(0, 0);
+        this.moveTaskToBack(true);
     }
 
     public void inicializarNav(){
@@ -191,14 +190,14 @@ public class Stats extends AppCompatActivity {
         fabDown = AnimationUtils.loadAnimation(this, R.anim.anim_baixo);
     }
 
-    public void avançarMes(View v){
-        p++;
+    public void mesProximo(View v){
+        qtd++;
         visualizarDados();
         Toast.makeText(getApplicationContext(), "somou", Toast.LENGTH_SHORT).show();
     }
 
-    public void voltarMes(View v){
-        p--;
+    public void mesAnterior(View v){
+        qtd--;
         visualizarDados();
         Toast.makeText(getApplicationContext(), "diminuiu", Toast.LENGTH_SHORT).show();
     }
@@ -220,7 +219,6 @@ public class Stats extends AppCompatActivity {
         LineData lineData = new LineData(lineDataset);
         lineChart.setData(lineData);
         lineChart.invalidate();
-
     }
 
     public void recyclerSetup(){
@@ -228,94 +226,32 @@ public class Stats extends AppCompatActivity {
         rv.setHasFixedSize(true);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        //ref.child("Users").child(user.getUid()).child("Objetivos").child()
+        ref.child("Users").child(user.getUid()).child("Objetivos").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //continuar
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void visualizarDados(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String mes = "";
-        //ano menor que o atual
-        if(c.get(Calendar.YEAR)-r != c.get(Calendar.YEAR)){
-            try {
-                mes = nomeMes[11 + p];
-                if (mes.equals("janeiro")) {
-                    tAnterior.setText("dezembro");
-                } else {
-                    tAnterior.setText(nomeMes[11 + p - 1]);
-                }
+        String mes = nomeMes[c.get(Calendar.MONTH)+qtd];
+        String ano = String.valueOf(c.get(Calendar.YEAR));
 
-                if(mes.equals("dezembro")){
-                    tProximo.setText("janeiro");
-                } else {
-                    tProximo.setText(nomeMes[11 + p + 1]);
-                }
-            } catch (ArrayIndexOutOfBoundsException e){
-                r++;
-                p = 0;
-                mes = nomeMes[11 + p];
-                if(mes.equals("janeiro")){
-                    tAnterior.setText("dezembro");
-                } else {
-                    tAnterior.setText(nomeMes[11 + p - 1]);
-                }
-
-                if(mes.equals("dezembro")){
-                    tProximo.setText("janeiro");
-                } else {
-                    tProximo.setText(nomeMes[11 + p + 1]);
-                }
-            }
-            // ano atual
-        } else {
-            try {
-                mes = nomeMes[c.get(Calendar.MONTH) + p];
-                if(nomeMes[c.get(Calendar.MONTH)+p].equals("janeiro")){
-                    tAnterior.setText("dezembro");
-                } else {
-                    tAnterior.setText(nomeMes[c.get(Calendar.MONTH)+p-1]);
-                }
-
-                if(mes.equals("dezembro")){
-                    tProximo.setText("janeiro");
-                } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
-                    tProximo.setText("mês atual");
-                } else {
-                    tProximo.setText(nomeMes[c.get(Calendar.MONTH)+p+1]);
-                }
-            } catch (ArrayIndexOutOfBoundsException e) {
-                r++;
-                p = 0;
-                mes = nomeMes[11+p];
-                if(nomeMes[11+p].equals("janeiro")){
-                    tAnterior.setText("dezembro");
-                } else {
-                    tAnterior.setText(nomeMes[11 + p - 1]);
-                }
-
-                if(mes.equals("dezembro")){
-                    tProximo.setText("janeiro");
-                } else if(mes.equals(nomeMes[c.get(Calendar.MONTH)])) {
-                    tProximo.setText("mês atual");
-                } else {
-                    tProximo.setText(nomeMes[11 + p + 1]);
-                }
-            }
-        }
-        String ano = String.valueOf(c.get(Calendar.YEAR)-r);
-        tTitulo.setText(mes+", "+ano);
-
+        Toast.makeText(getApplicationContext(), mes+" "+ano, Toast.LENGTH_SHORT).show();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
         integerArrayList = new ArrayList<>();
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //ArrayList<Integer> arrayMedia = new ArrayList<>();
-
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String humor = dataSnapshot.child("humor").getValue().toString();
-                    String teste = dataSnapshot.child("data").getValue().toString();
-                    String[] teste2 = teste.split(".", 2);
-                    Toast.makeText(getApplicationContext(), teste.replace(teste2[1], ""), Toast.LENGTH_SHORT).show();
                     switch (humor) {
                         case "feliz":
                             integerArrayList.add(3);
@@ -329,65 +265,11 @@ public class Stats extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-        /*new Handler().postDelayed(new Runnable() {
-                                      @Override
-                                      public void run() {
-        for(int j = 1; j < 32; j++) {
-
-            integerArrayList = new ArrayList<>();
-
-            ref.child(String.valueOf(j)).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    ArrayList<Integer> arrayMedia = new ArrayList<>();
-
-                    double m;
-                    int c = 0;
-
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        for (int i = 0; i <= snapshot.getChildrenCount(); i++) {
-                            c++;
-                            //Toast.makeText(getApplicationContext(), c+"", Toast.LENGTH_SHORT).show();
-                            int data = Integer.parseInt(String.valueOf(snapshot.getValue()));
-                            arrayMedia.add(data);
-                            if(c == 3){
-                                int resultado = Collections.max(arrayMedia);
-                                if(resultado == arrayMedia.get(0) && resultado == arrayMedia.get(1) && resultado == arrayMedia.get(2)) {
-                                    m = 2;
-                                } else if (resultado == arrayMedia.get(1)) {
-                                    m = 2;
-                                } else if (resultado == arrayMedia.get(0)){
-                                    m = 3;
-                                } else {
-                                    m = 1;
-                                }
-                                arrayMedia.clear();
-                                Toast.makeText(getApplicationContext(), m+"", Toast.LENGTH_SHORT).show();
-                                integerArrayList.add((int) m);
-                            }
-
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-          //aqui
-        }
-        }, 1000);*/
-
 
     }
 

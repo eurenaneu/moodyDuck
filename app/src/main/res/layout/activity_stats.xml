@@ -249,5 +249,23 @@
         app:layout_constraintStart_toStartOf="@+id/viewObjetivo"
         app:layout_constraintTop_toBottomOf="@+id/txtObjetivo" />
 
+    <Button
+        android:id="@+id/bAnterior"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
+
+    <Button
+        android:id="@+id/bProximo"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

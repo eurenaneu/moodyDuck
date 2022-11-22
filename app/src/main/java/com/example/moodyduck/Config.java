@@ -84,7 +84,6 @@ public class Config extends AppCompatActivity {
     }
 
     public void onBackPressed(){
-        startActivity(new Intent(this, Home.class));
-        finish();
+        this.moveTaskToBack(true);
     }
 }

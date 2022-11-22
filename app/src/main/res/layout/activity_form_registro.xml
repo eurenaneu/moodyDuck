@@ -197,16 +197,6 @@
             app:layout_constraintStart_toStartOf="@+id/viewObjetivos"
             app:layout_constraintTop_toBottomOf="@+id/viewTarefas" />
 
-        <View
-            android:id="@+id/viewAnotacoes"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/boxnotes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAnotacoes" />
-
         <TextView
             android:id="@+id/tituloAnotacoes"
             android:layout_width="wrap_content"
@@ -217,25 +207,25 @@
             android:text="Anotações"
             android:textColor="@color/amalero"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/viewAnotacoes"
+            app:layout_constraintStart_toStartOf="@+id/campoNotas"
             app:layout_constraintTop_toBottomOf="@+id/viewObjetivos" />
 
         <ImageButton
             android:id="@+id/bSalvar"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="120dp"
-            android:background="@drawable/ph_salvar"
             android:adjustViewBounds="true"
+            android:background="@drawable/ph_salvar"
             android:onClick="salvarRegistro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewAnotacoes" />
+            app:layout_constraintTop_toBottomOf="@+id/campoNotas" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/campoNotas"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:background="@drawable/boxnotes"
@@ -248,9 +238,8 @@
             android:textColor="#70B2AA"
             android:textColorHint="#70B2AA"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/viewAnotacoes"
-            app:layout_constraintEnd_toEndOf="@+id/viewAnotacoes"
-            app:layout_constraintStart_toStartOf="@+id/viewAnotacoes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tituloAnotacoes" />
 
         <TextView

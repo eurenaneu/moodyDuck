@@ -101,7 +101,7 @@ public class AddRegistro extends AppCompatActivity {
         //CONTINUAR AQUI
         int diminuirMes = 0;
 
-        if(tData.equals("ontem")){
+        if(tData.equals("Ontem")){
             int ontem = c.get(Calendar.DAY_OF_MONTH) - 1;
 
             if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
@@ -113,7 +113,7 @@ public class AddRegistro extends AppCompatActivity {
             } else {
                 dia = c.get(Calendar.DAY_OF_MONTH) - 1;
             }
-        } else if(tData.equals("outro dia")){
+        } else if(tData.equals("Outro dia")){
 
             int outroDia = c.get(Calendar.DAY_OF_MONTH) - 2;
 
@@ -159,21 +159,9 @@ public class AddRegistro extends AppCompatActivity {
         setListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                if(month == mes && year == ano){
-                    //if(dayOfMonth == dia)
-                    //    tData = "Hoje";
-                    //else if(dayOfMonth == dia-1){
-                    //    tData = "Ontem";
-                    //}
-
-                    //else if(dayOfMonth == dia-2){
-                    //    tData = "Anteontem";
-                    //}
-                    //else{
-                    //    tData = "Outro dia";
-                    //}
+                if(month == c.get(Calendar.MONTH) && year == ano){
                 } else {
-                    tData = "outro dia";
+                    tData = "Outro dia";
                 }
 
                 if(year != ano){
