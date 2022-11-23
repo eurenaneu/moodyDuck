@@ -67,9 +67,9 @@ public class Config extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("lembrarSenha", "false");
                 editor.apply();
+                FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), Entrada.class));
                 finish();
-                FirebaseAuth.getInstance().signOut();
             }
         });
         naoDeslogar.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +84,7 @@ public class Config extends AppCompatActivity {
     }
 
     public void onBackPressed(){
-        this.moveTaskToBack(true);
+        startActivity(new Intent(getApplicationContext(), Home.class));
+        this.finish();
     }
 }

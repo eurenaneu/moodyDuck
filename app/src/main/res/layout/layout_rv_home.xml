@@ -34,7 +34,7 @@
             android:fontFamily="@font/qcksemi"
             android:text="DD/MM/YYYY - HH:MM"
             android:textColor="@color/amalero"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/imgHumor"
             app:layout_constraintTop_toTopOf="@+id/imgHumor" />
 

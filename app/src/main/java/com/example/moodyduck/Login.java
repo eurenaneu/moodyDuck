@@ -46,6 +46,11 @@ public class Login extends AppCompatActivity {
         lembrarSenha();
     }
 
+    /*public void onBackPressed(){
+        startActivity(new Intent(getApplicationContext(), Entrada.class));
+        this.finish();
+    }*/
+
     public void lembrarSenha(){
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String checkbox = preferences.getString("lembrarSenha", "");

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,11 +54,12 @@ public class Stats extends AppCompatActivity {
     TextView tTitulo, tProximo, tAnterior;
     Calendar c = Calendar.getInstance();
     View bProximo, bAnterior;
+    ProgressBar progressBar;
     LineChart lineChart;
     Timer timer = null;
     long tempo = 3000;
     RecyclerView rv;
-    int qtd, r;
+    int qtd;
 
     //nav
     BottomNavigationView bnv;
@@ -71,9 +73,10 @@ public class Stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_stats);
-        tProximo = findViewById(R.id.txtProximo);
+        progressBar = findViewById(R.id.progressBarChart);
         tAnterior = findViewById(R.id.txtAnterior);
         tTitulo = findViewById(R.id.txtGraphTitle);
+        tProximo = findViewById(R.id.txtProximo);
         bAnterior = findViewById(R.id.bAnterior);
         bProximo = findViewById(R.id.bProximo);
         tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+", "+c.get(Calendar.YEAR));
@@ -113,6 +116,7 @@ public class Stats extends AppCompatActivity {
                 public void run() {
                     try {
                         montaGrafico();
+                        progressBar.setVisibility(View.INVISIBLE);
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -163,10 +167,12 @@ public class Stats extends AppCompatActivity {
         lineChart.setPinchZoom(false);
         lineChart.getAxisRight().setEnabled(false);
         lineChart.getAxisLeft().setEnabled(false);
-        lineChart.getXAxis().setEnabled(false);
+        lineChart.getAxisLeft().setAxisMaximum(3f);
+        lineChart.getAxisLeft().setAxisMinimum(1f);
+        lineChart.getXAxis().setEnabled(true);
+        lineChart.getXAxis().setDrawGridLines(true);
         lineChart.getAxisRight().setDrawGridLines(false);
-        lineChart.getAxisLeft().setDrawGridLines(false);
-        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.getAxisLeft().setDrawGridLines(true);
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setBorderColor(Color.WHITE);
         lineChart.getLegend().setEnabled(false);
@@ -246,10 +252,10 @@ public class Stats extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), mes+" "+ano, Toast.LENGTH_SHORT).show();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
-        integerArrayList = new ArrayList<>();
         ref.orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                integerArrayList = new ArrayList<>();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String humor = dataSnapshot.child("humor").getValue().toString();
                     switch (humor) {

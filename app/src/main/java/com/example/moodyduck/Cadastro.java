@@ -46,6 +46,11 @@ public class Cadastro extends AppCompatActivity {
         aviso.setVisibility(View.GONE);
     }
 
+    /*public void onBackPressed(){
+        startActivity(new Intent(getApplicationContext(), Entrada.class));
+        this.finish();
+    }*/
+
     public void irHome(){
         startActivity(new Intent(this, Home.class));
     }

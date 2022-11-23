@@ -3,6 +3,7 @@ package com.example.moodyduck;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -38,8 +39,8 @@ public class Entrada extends AppCompatActivity {
 
     public void quack(){
         divider.setText("quack?");
-        cadastro.setText("Quack");
-        login.setText("Quack");
+        cadastro.setText("quack");
+        login.setText("quack");
         bemvindo.setText("Quack quack quack quack!");
         String text = "<font color=#ffffff>Quack</font><font color=#fffab9>Quack</font><font color=#ffffff>!</font>";
         appName.setText(Html.fromHtml(text));
