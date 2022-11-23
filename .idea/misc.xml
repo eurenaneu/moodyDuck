@@ -20,6 +20,7 @@
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/checked.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/coisa.xml" value="0.2203125" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/ic_checkmark.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/ic_ontem.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/mauri.xml" value="0.2203125" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/pipocaon.xml" value="0.1" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/shape_create.xml" value="0.2203125" />
@@ -39,7 +40,8 @@
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_cadastro.xml" value="0.7349624060150376" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_calendario.xml" value="0.25" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_config.xml" value="0.25" />
-        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_form_registro.xml" value="0.33" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_entrada.xml" value="0.17753623188405798" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_form_registro.xml" value="0.24861111111111112" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_home_backup.xml" value="0.25" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_jogoda_velha.xml" value="0.1816123188405797" />

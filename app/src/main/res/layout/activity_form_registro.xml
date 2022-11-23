@@ -18,6 +18,7 @@
             android:layout_marginStart="31dp"
             android:layout_marginTop="31dp"
             android:background="@drawable/ic_ontem"
+            app:backgroundTint="@color/amalero"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -212,12 +213,12 @@
 
         <ImageButton
             android:id="@+id/bSalvar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="120dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/ph_salvar"
+            android:background="@drawable/ic_salvar"
             android:onClick="salvarRegistro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -250,6 +251,7 @@
             android:fontFamily="@font/qckbold"
             android:text="Salvar"
             android:textColor="@color/amalero"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/bSalvar"
             app:layout_constraintStart_toStartOf="@+id/bSalvar"
             app:layout_constraintTop_toBottomOf="@+id/bSalvar" />

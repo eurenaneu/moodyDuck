@@ -44,7 +44,8 @@ public class AddRegistro extends AppCompatActivity {
     Calendar c = Calendar.getInstance();
     static String tData;
     Date dataHoraAtual = new Date();
-    int dia, mes, ano, hora, min;
+    int padraoDia, padraoMes, padraoAno; // default
+    int dia, mes, ano, hora, min; // send
     String data, horario;
     TextView tvData;
     Button bVoltar;
@@ -59,9 +60,9 @@ public class AddRegistro extends AppCompatActivity {
         bNeutro = findViewById(R.id.imageNeutro);
         bTriste = findViewById(R.id.imageTriste);
         preEscolha();
-        c.set(dia, mes, ano);
+        c.set(padraoAno, padraoMes, padraoAno);
         horario = f24.format(dataHoraAtual);
-        data = tData+", "+dia+" de "+nomeMes[mes]+", "+ horario;
+        data = tData+", "+padraoDia+" de "+nomeMes[padraoMes]+", "+ horario;
         tvData.setText(data);
         setarData();
         onClicks();
@@ -104,42 +105,44 @@ public class AddRegistro extends AppCompatActivity {
         if(tData.equals("Ontem")){
             int ontem = c.get(Calendar.DAY_OF_MONTH) - 1;
 
-            if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
-                dia = 31 + ontem;
+            if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 != 0){
+                Toast.makeText(getApplicationContext(), "31", Toast.LENGTH_SHORT).show();
+                padraoDia = 31 + ontem;
                 diminuirMes++;
-            } else if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 != 0){
-                dia = 30 + ontem;
+            } else if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
+                Toast.makeText(getApplicationContext(), "30", Toast.LENGTH_SHORT).show();
+                padraoDia = 30 + ontem;
                 diminuirMes++;
             } else {
-                dia = c.get(Calendar.DAY_OF_MONTH) - 1;
+                padraoDia = c.get(Calendar.DAY_OF_MONTH) - 1;
             }
         } else if(tData.equals("Outro dia")){
 
             int outroDia = c.get(Calendar.DAY_OF_MONTH) - 2;
 
-            if(outroDia < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
-                dia = 31 + outroDia;
+            if(outroDia < 1 && (c.get(Calendar.MONTH)+1)%2 != 0){
+                padraoDia = 31 + outroDia;
                 diminuirMes++;
-            } else if(outroDia < 1 && (c.get(Calendar.MONTH)+1)%2 != 0){
-                dia = 30 + outroDia;
+            } else if(outroDia < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
+                padraoDia = 30 + outroDia;
                 diminuirMes++;
             } else {
-                dia = c.get(Calendar.DAY_OF_MONTH) - 2;
+                padraoDia = c.get(Calendar.DAY_OF_MONTH) - 2;
             }
 
         } else {
-            dia = c.get(Calendar.DAY_OF_MONTH);
+            padraoDia = c.get(Calendar.DAY_OF_MONTH);
         }
 
-        mes = c.get(Calendar.MONTH) - diminuirMes;
-        ano = c.get(Calendar.YEAR);
+        padraoMes = c.get(Calendar.MONTH) - diminuirMes;
+        padraoAno = c.get(Calendar.YEAR);
     }
 
     public void setarData(){
         tvData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddRegistro.this, android.R.style.Theme_Holo_Dialog_MinWidth,setListener,ano,mes,dia);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddRegistro.this, android.R.style.Theme_Holo_Dialog_MinWidth,setListener,padraoAno,padraoMes,padraoDia);
                 datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 String md = "01/01/2000 00:00:01";
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -159,12 +162,21 @@ public class AddRegistro extends AppCompatActivity {
         setListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                if(month == c.get(Calendar.MONTH) && year == ano){
+                if(year == padraoAno && month == padraoMes){
+                    if(dayOfMonth == padraoDia){
+                        tData = "Hoje";
+                    }
+                    else if(dayOfMonth == padraoDia-1) {
+                        tData = "Ontem";
+                    }
+                    else {
+                        tData = "Outro dia";
+                    }
                 } else {
                     tData = "Outro dia";
                 }
 
-                if(year != ano){
+                if(year != padraoAno){
                     data = tData+", "+dayOfMonth+" de "+nomeMes[month]+" de "+year;
                 } else {
                     data = tData + ", " + dayOfMonth + " de " + nomeMes[month];

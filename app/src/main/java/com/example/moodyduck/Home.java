@@ -99,6 +99,10 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    public void onBackPressed(){
+        this.moveTaskToBack(true);
+    }
+
     private void fabOnClicks() {
         fabOntem.setOnClickListener(new View.OnClickListener() {
             @Override
