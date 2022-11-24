@@ -112,11 +112,14 @@ public class Stats extends AppCompatActivity {
         if(timer == null){
             timer = new Timer();
             TimerTask tarefa = new TimerTask() {
+                boolean progress = true;
                 @Override
                 public void run() {
                     try {
                         montaGrafico();
-                        progressBar.setVisibility(View.INVISIBLE);
+                        if(progress) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -165,17 +168,29 @@ public class Stats extends AppCompatActivity {
         lineChart.getDescription().setEnabled(false);
         lineChart.setTouchEnabled(false);
         lineChart.setPinchZoom(false);
-        lineChart.getAxisRight().setEnabled(false);
-        lineChart.getAxisLeft().setEnabled(false);
-        lineChart.getAxisLeft().setAxisMaximum(3f);
-        lineChart.getAxisLeft().setAxisMinimum(1f);
-        lineChart.getXAxis().setEnabled(true);
-        lineChart.getXAxis().setDrawGridLines(true);
-        lineChart.getAxisRight().setDrawGridLines(false);
-        lineChart.getAxisLeft().setDrawGridLines(true);
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setBorderColor(Color.WHITE);
         lineChart.getLegend().setEnabled(false);
+
+        // xAxis settings
+        lineChart.getXAxis().setEnabled(false);
+        lineChart.getXAxis().setDrawGridLines(false);
+
+        // rightAxis settings
+        lineChart.getAxisRight().setEnabled(false);
+        lineChart.getAxisRight().setDrawGridLines(false);
+        lineChart.getAxisLeft().setEnabled(false);
+
+        // yAxis settings
+        lineChart.getAxisLeft().setAxisMaximum(3f);
+        lineChart.getAxisLeft().setAxisMinimum(1f);
+        lineChart.getAxisLeft().setEnabled(true);
+        lineChart.getAxisLeft().setLabelCount(3, true);
+        lineChart.getAxisLeft().setDrawGridLines(true);
+        lineChart.getAxisLeft().setGridColor(Color.rgb(112, 178, 170));
+        lineChart.getAxisLeft().setGridLineWidth(2f);
+        lineChart.getAxisLeft().setTextColor(Color.TRANSPARENT);
+        lineChart.getAxisLeft().setDrawAxisLine(false);
     }
 
     public void onBackPressed(){
@@ -219,8 +234,9 @@ public class Stats extends AppCompatActivity {
         lineDataset.setDrawValues(false);
         Typeface tf = Typeface.createFromAsset(this.getAssets(), "qckbold.ttf");
         lineDataset.setValueTypeface(tf);
-        lineDataset.setDrawCircles(true);
-        lineDataset.setCircleColor(ContextCompat.getColor(this, R.color.amalero));
+        lineDataset.setDrawCircles(false);
+        lineDataset.setLineWidth(2f);
+        //lineDataset.setCircleColor(ContextCompat.getColor(this, R.color.amalero));
         lineDataset.setColor(ContextCompat.getColor(this, R.color.amalero));
         LineData lineData = new LineData(lineDataset);
         lineChart.setData(lineData);

@@ -1,19 +1,16 @@
 package com.example.moodyduck;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,7 +42,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setTheme(R.style.Theme_MoodyDuckSecondary);
-        setContentView(R.layout.activity_home_backup);
+        setContentView(R.layout.activity_home);
         bnv = findViewById(R.id.bottom_nav);
         fabio = findViewById(R.id.fab);
         fabOntem = findViewById(R.id.fabOntem);
