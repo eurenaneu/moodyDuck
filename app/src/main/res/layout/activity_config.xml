@@ -30,192 +30,202 @@
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toTopOf="@id/view3" />
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="60dp"
-    android:fillViewport="true">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/ciano"
-        tools:context=".Config">
+        android:fillViewport="true"
+        android:paddingTop="60dp">
 
-        <View
-            android:id="@+id/viewSpacer"
-            android:layout_width="300dp"
-            android:layout_height="3dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtInfo" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ciano"
+            tools:context=".Config">
 
-        <TextView
-            android:id="@+id/txtHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/qckbold"
-            android:text="Seus dados"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bLembretes"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="36dp"
+                app:cardBackgroundColor="#4D000000"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bRelatorioM">
 
-        <TextView
-            android:id="@+id/txtInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/qckbold"
-            android:text="email, senha"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/txtHeader"
-            app:layout_constraintStart_toStartOf="@+id/txtHeader"
-            app:layout_constraintTop_toBottomOf="@+id/txtHeader" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/bObjetivos"
-            android:layout_width="324dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="42dp"
-            android:background="@drawable/shape_aviso"
-            android:text="Objetivos"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="#B3D9D4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewSpacer" />
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="Lembretes"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/qckbold"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/bRelatorioS"
-            android:layout_width="324dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="42dp"
-            android:background="@drawable/shape_aviso"
-            android:text="Relatório Semanal"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="#B3D9D4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bObjetivos" />
+                    <Switch
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:text="Switch"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/bRelatorioM"
-            android:layout_width="324dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="42dp"
-            android:background="@drawable/shape_aviso"
-            android:text="Relatório Mensal"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="#B3D9D4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bRelatorioS" />
+            <View
+                android:id="@+id/viewSpacer"
+                android:layout_width="300dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtInfo" />
 
-        <Button
-            android:id="@+id/bLembretes"
-            android:layout_width="324dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="42dp"
-            android:background="@drawable/shape_aviso"
-            android:text="Lembretes"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="#B3D9D4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bRelatorioM" />
+            <TextView
+                android:id="@+id/txtHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/qckbold"
+                android:text="Seus dados"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/bHorario"
-            android:layout_width="324dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="42dp"
-            android:background="@drawable/shape_aviso"
-            android:text="Horário"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="#B3D9D4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bLembretes" />
+            <TextView
+                android:id="@+id/txtInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/qckbold"
+                android:text="email, senha"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/txtHeader"
+                app:layout_constraintStart_toStartOf="@+id/txtHeader"
+                app:layout_constraintTop_toBottomOf="@+id/txtHeader" />
 
-        <Button
-            android:id="@+id/bAlterarSenha"
-            android:layout_width="324dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="42dp"
-            android:background="@drawable/shape_aviso"
-            android:text="Alterar Senha"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="#B3D9D4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bHorario" />
+            <Button
+                android:id="@+id/bObjetivos"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/shape_button_config"
+                android:fontFamily="@font/qckbold"
+                android:text="Objetivos"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewSpacer" />
 
-        <Button
-            android:id="@+id/bDeslogar"
-            android:layout_width="324dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="42dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/shape_aviso"
-            android:text="Sair"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:backgroundTint="#B3D9D4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bAlterarSenha"
-            app:layout_constraintVertical_bias="0.01" />
+            <Button
+                android:id="@+id/bRelatorioS"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_button_config"
+                android:fontFamily="@font/qckbold"
+                android:text="Relatório Semanal"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bObjetivos" />
+
+            <Button
+                android:id="@+id/bRelatorioM"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_button_config"
+                android:fontFamily="@font/qckbold"
+                android:text="Relatório Mensal"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bRelatorioS" />
+
+            <Button
+                android:id="@+id/bHorario"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_button_config"
+                android:fontFamily="@font/qckbold"
+                android:text="Horário"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bLembretes" />
+
+            <Button
+                android:id="@+id/bAlterarSenha"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/shape_button_config"
+                android:fontFamily="@font/qckbold"
+                android:text="Alterar Senha"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bHorario" />
+
+            <Button
+                android:id="@+id/bDeslogar"
+                android:layout_width="324dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_button_config"
+                android:fontFamily="@font/qckbold"
+                android:text="Sair"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bAlterarSenha"
+                app:layout_constraintVertical_bias="0.01" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,11 +14,9 @@
         android:fontFamily="@font/qckbold"
         android:text="MoodyDuck!"
         android:textSize="42dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgMoody"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imgMoody" />
 
     <ImageView
         android:id="@+id/imgMoody"
@@ -34,7 +32,7 @@
         android:id="@+id/bCadastro"
         android:layout_width="266dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/qckbold"
         android:letterSpacing="0"
         android:onClick="irCadastro"
@@ -52,7 +50,7 @@
         android:layout_width="266dp"
         android:layout_height="60dp"
         android:layout_marginTop="34dp"
-        android:layout_marginBottom="54dp"
+        android:layout_marginBottom="45dp"
         android:fontFamily="@font/qckbold"
         android:letterSpacing="0"
         android:onClick="irLogin"

@@ -95,6 +95,7 @@ public class Login extends AppCompatActivity {
                         pB.setVisibility(View.VISIBLE);
                         Snackbar snackbar = Snackbar.make(v, "Conectado com sucesso", 2000);
                         snackbar.setBackgroundTint(Color.rgb(48, 207, 122));
+                        snackbar.setTextColor(Color.WHITE);
                         snackbar.show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
