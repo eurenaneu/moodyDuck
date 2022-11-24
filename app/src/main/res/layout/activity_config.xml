@@ -47,7 +47,7 @@
                 android:layout_width="325dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="36dp"
-                app:cardBackgroundColor="#4D000000"
+                app:cardBackgroundColor="#598580"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,18 +56,19 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:onClick="ativarLembretes">
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch1"
+                        android:id="@+id/switchLembretes"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
-                        app:track="@drawable/custom_track"
-                        app:thumbTint="@color/amalero"
+                        android:thumb="@drawable/custom_thumb"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:track="@drawable/custom_track" />
 
                     <TextView
                         android:id="@+id/textView2"
@@ -134,7 +135,7 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                app:backgroundTint="#000000"
+                app:backgroundTint="#598580"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewSpacer" />
@@ -151,7 +152,7 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                app:backgroundTint="#000000"
+                app:backgroundTint="#598580"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bObjetivos" />
@@ -168,7 +169,7 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                app:backgroundTint="#000000"
+                app:backgroundTint="#598580"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bRelatorioS" />
@@ -184,8 +185,8 @@
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
+                app:backgroundTint="#598580"
                 android:textSize="16sp"
-                app:backgroundTint="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bLembretes" />
@@ -202,7 +203,7 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                app:backgroundTint="#000000"
+                app:backgroundTint="#598580"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bHorario" />
@@ -220,7 +221,7 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                app:backgroundTint="#000000"
+                app:backgroundTint="#598580"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
