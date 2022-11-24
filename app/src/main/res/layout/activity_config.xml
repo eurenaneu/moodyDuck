@@ -58,6 +58,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="15dp"
+                        app:track="@drawable/custom_track"
+                        app:thumbTint="@color/amalero"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
@@ -69,18 +80,6 @@
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switch1"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_marginEnd="15dp"
-                        app:showText="false"
-                        app:track="@drawable/custom_track"
-                        android:thumb="@drawable/custom_thumb"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
