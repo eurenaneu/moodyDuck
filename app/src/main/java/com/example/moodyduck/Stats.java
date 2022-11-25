@@ -20,9 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -40,26 +38,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Stats extends AppCompatActivity {
-    String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
-    ArrayList<Integer> integerArrayList = new ArrayList<>();
-    List<Entry> lineArrayList = new ArrayList<>();
-    TextView tTitulo, tProximo, tAnterior;
-    Calendar c = Calendar.getInstance();
-    View bProximo, bAnterior;
-    ProgressBar progressBar;
-    LineChart lineChart;
-    Timer timer = null;
+    String[] nomeMes = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
+    ArrayList<Integer> integerArrayList = new ArrayList<>(); // array importado para lineArray
+    List<Entry> lineArrayList = new ArrayList<>(); // array para gráfico
+    TextView tTitulo, tProximo, tAnterior; // nome dos meses no botão
+    Calendar c = Calendar.getInstance(); // candelario
+    Button bProximo, bAnterior; // avançar e voltar meses
+    ProgressBar progressBar; // loading do calendario
+    LineChart lineChart; // grafico
+    Timer timer = null; // timer para carregar o gráfico
     long tempo = 3000;
-    RecyclerView rv;
-    int qtd;
+    RecyclerView rv; // recyclerObjetivos
+    int qtd; // soma/subtração de mes
 
     //nav
     BottomNavigationView bnv;
@@ -79,7 +74,7 @@ public class Stats extends AppCompatActivity {
         tProximo = findViewById(R.id.txtProximo);
         bAnterior = findViewById(R.id.bAnterior);
         bProximo = findViewById(R.id.bProximo);
-        tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+", "+c.get(Calendar.YEAR));
+        tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+" "+c.get(Calendar.YEAR));
         recyclerSetup();
         setupGrafico();
         visualizarDados();
@@ -162,6 +157,10 @@ public class Stats extends AppCompatActivity {
         });
     }
 
+    public void onBackPressed(){
+        this.moveTaskToBack(true);
+    }
+
     public void setupGrafico(){
         lineChart = findViewById(R.id.linechart);
         lineChart.setNoDataText("");
@@ -193,10 +192,6 @@ public class Stats extends AppCompatActivity {
         lineChart.getAxisLeft().setDrawAxisLine(false);
     }
 
-    public void onBackPressed(){
-        this.moveTaskToBack(true);
-    }
-
     public void inicializarNav(){
         bnv = findViewById(R.id.bottom_nav);
         fabio = findViewById(R.id.fab);
@@ -213,12 +208,33 @@ public class Stats extends AppCompatActivity {
 
     public void mesProximo(View v){
         qtd++;
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String ano = String.valueOf(c.get(Calendar.YEAR));
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("Users").child(uid).child("Registros").child(ano).child(nomeMes[c.get(Calendar.MONTH)+qtd])
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (!snapshot.exists()){
+                            qtd++;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
         visualizarDados();
         Toast.makeText(getApplicationContext(), "somou", Toast.LENGTH_SHORT).show();
     }
 
     public void mesAnterior(View v){
         qtd--;
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String ano = String.valueOf(c.get(Calendar.YEAR));
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        // verificar se mes existe. se não existir, continuar diminuindo qtd
         visualizarDados();
         Toast.makeText(getApplicationContext(), "diminuiu", Toast.LENGTH_SHORT).show();
     }
@@ -234,39 +250,20 @@ public class Stats extends AppCompatActivity {
         lineDataset.setDrawValues(false);
         Typeface tf = Typeface.createFromAsset(this.getAssets(), "qckbold.ttf");
         lineDataset.setValueTypeface(tf);
-        lineDataset.setDrawCircles(false);
+        lineDataset.setDrawCircles(true);
         lineDataset.setLineWidth(2f);
-        //lineDataset.setCircleColor(ContextCompat.getColor(this, R.color.amalero));
+        lineDataset.setCircleColor(ContextCompat.getColor(this, R.color.amalero));
         lineDataset.setColor(ContextCompat.getColor(this, R.color.amalero));
         LineData lineData = new LineData(lineDataset);
         lineChart.setData(lineData);
         lineChart.invalidate();
     }
 
-    public void recyclerSetup(){
-        rv = findViewById(R.id.rv);
-        rv.setHasFixedSize(true);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("Users").child(user.getUid()).child("Objetivos").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //continuar
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
     public void visualizarDados(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String mes = nomeMes[c.get(Calendar.MONTH)+qtd];
+        String mes = nomeMes[c.get(Calendar.MONTH)+qtd].toLowerCase();
         String ano = String.valueOf(c.get(Calendar.YEAR));
 
-        Toast.makeText(getApplicationContext(), mes+" "+ano, Toast.LENGTH_SHORT).show();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
         ref.orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
@@ -293,6 +290,24 @@ public class Stats extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void recyclerSetup(){
+        rv = findViewById(R.id.rv);
+        rv.setHasFixedSize(true);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("Users").child(user.getUid()).child("Objetivos").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //continuar
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void animFab(){

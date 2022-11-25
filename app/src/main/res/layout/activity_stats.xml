@@ -255,6 +255,7 @@
         android:layout_width="175dp"
         android:layout_height="50dp"
         android:background="#00FFFFFF"
+        android:onClick="mesAnterior"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5" />
@@ -288,7 +289,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imgNeutro"
         app:layout_constraintStart_toStartOf="@+id/imgNeutro"
         app:layout_constraintTop_toTopOf="@+id/linechart"
-        app:srcCompat="@drawable/placeholder_feliz" />
+        app:srcCompat="@drawable/img_feliz" />
 
     <ImageView
         android:id="@+id/imgNeutro"

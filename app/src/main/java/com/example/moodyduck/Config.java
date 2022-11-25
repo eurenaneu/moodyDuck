@@ -98,13 +98,13 @@ public class Config extends AppCompatActivity {
         switchLembretes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Snackbar snackbar;
                 if(b){
-                    Snackbar snackbar = Snackbar.make(view, "Lembretes ativados", 2000);
-                    snackbar.show();
+                    snackbar = Snackbar.make(view, "Lembretes ativados", 2000);
                 } else {
-                    Snackbar snackbar = Snackbar.make(view, "Lembretes desativados", 2000);
-                    snackbar.show();
+                    snackbar = Snackbar.make(view, "Lembretes desativados", 2000);
                 }
+                snackbar.show();
             }
         });
     }

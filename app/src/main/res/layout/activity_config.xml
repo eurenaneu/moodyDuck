@@ -56,8 +56,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:onClick="ativarLembretes">
+                    android:layout_height="match_parent">
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switchLembretes"
@@ -75,10 +74,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:text="Lembretes"
-                        android:textSize="16sp"
                         android:fontFamily="@font/qckbold"
+                        android:text="Lembretes"
                         android:textColor="@color/white"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -174,22 +173,51 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bRelatorioS" />
 
-            <Button
+            <androidx.cardview.widget.CardView
                 android:id="@+id/bHorario"
-                android:layout_width="324dp"
+                android:layout_width="325dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/shape_button_config"
-                android:fontFamily="@font/qckbold"
-                android:text="Horário"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#598580"
-                android:textSize="16sp"
+                app:cardBackgroundColor="#598580"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bLembretes" />
+                app:layout_constraintTop_toBottomOf="@+id/bLembretes">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txtHorario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/qckbold"
+                        android:text="Horário"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtTemporizador"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:fontFamily="@font/qckbold"
+                        android:onClick="ativarLembretes"
+                        android:text="23:59"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:id="@+id/bAlterarSenha"

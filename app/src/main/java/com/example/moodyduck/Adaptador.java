@@ -36,7 +36,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
         holder.horario.setText(r.data);
 
         if(r.humor.equals("FELIZ")) {
-            holder.imgHumor.setBackgroundResource(R.drawable.placeholder_feliz);
+            holder.imgHumor.setBackgroundResource(R.drawable.img_feliz);
         } else if(r.humor.equals("NEUTRO")) {
             holder.imgHumor.setBackgroundResource(R.drawable.placeholder_neutro);
         } else if(r.humor.equals("TRISTE")){
