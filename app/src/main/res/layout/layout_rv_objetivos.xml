@@ -4,43 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="#00FFFFFF"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF">
 
         <TextView
-            android:id="@+id/nomeTxt"
+            android:id="@+id/nomeObjetivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/qckbold"
             android:text="nome objetivo"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            android:textColor="@color/amalero"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imgObjetivo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/conclusasTxt"
+            android:id="@+id/textoSequencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/qck"
-            android:text="n% concluído"
+            android:text="sequencia atual: n"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView6"
-            app:layout_constraintTop_toBottomOf="@+id/nomeTxt" />
+            android:textColor="@color/amalero"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imgObjetivo"
+            app:layout_constraintTop_toBottomOf="@+id/nomeObjetivo" />
 
         <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imgObjetivo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />

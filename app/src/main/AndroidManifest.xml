@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoodyDuck.Splash">
         <activity
+            android:name=".ListaObjetivos"
+            android:exported="true" />
+        <activity
             android:name=".AlterarSenha"
             android:exported="false" />
         <activity

@@ -126,7 +126,7 @@ public class Home extends AppCompatActivity {
         });
     }
 
-    public void animFab(){
+    private void animFab(){
         if (estaAberto){
             fabio.startAnimation(fabClose);
             fabOntem.startAnimation(fabDown);
@@ -148,7 +148,7 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    public void setupHistorico(){
+    private void setupHistorico(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         String[] nomeMes = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};

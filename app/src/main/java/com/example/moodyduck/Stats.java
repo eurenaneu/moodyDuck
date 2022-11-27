@@ -124,7 +124,7 @@ public class Stats extends AppCompatActivity {
         }
     }
 
-    public void fabOnClicks(){
+    private void fabOnClicks(){
         fabio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +161,7 @@ public class Stats extends AppCompatActivity {
         this.moveTaskToBack(true);
     }
 
-    public void setupGrafico(){
+    private void setupGrafico(){
         lineChart = findViewById(R.id.linechart);
         lineChart.setNoDataText("");
         lineChart.getDescription().setEnabled(false);
@@ -192,7 +192,7 @@ public class Stats extends AppCompatActivity {
         lineChart.getAxisLeft().setDrawAxisLine(false);
     }
 
-    public void inicializarNav(){
+    private void inicializarNav(){
         bnv = findViewById(R.id.bottom_nav);
         fabio = findViewById(R.id.fab);
         fabOntem = findViewById(R.id.fabOntem);
@@ -206,7 +206,7 @@ public class Stats extends AppCompatActivity {
         fabDown = AnimationUtils.loadAnimation(this, R.anim.anim_baixo);
     }
 
-    public void mesProximo(View v){
+    private void mesProximo(View v){
         qtd++;
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String ano = String.valueOf(c.get(Calendar.YEAR));
@@ -229,7 +229,7 @@ public class Stats extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "somou", Toast.LENGTH_SHORT).show();
     }
 
-    public void mesAnterior(View v){
+    private void mesAnterior(View v){
         qtd--;
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String ano = String.valueOf(c.get(Calendar.YEAR));
@@ -239,7 +239,7 @@ public class Stats extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "diminuiu", Toast.LENGTH_SHORT).show();
     }
 
-    public void montaGrafico(){
+    private void montaGrafico(){
         lineChart.clear();
         lineArrayList = new ArrayList<>();
         for(int i = 0; i < integerArrayList.size(); i++) {
@@ -259,7 +259,7 @@ public class Stats extends AppCompatActivity {
         lineChart.invalidate();
     }
 
-    public void visualizarDados(){
+    private void visualizarDados(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String mes = nomeMes[c.get(Calendar.MONTH)+qtd].toLowerCase();
         String ano = String.valueOf(c.get(Calendar.YEAR));
@@ -292,7 +292,7 @@ public class Stats extends AppCompatActivity {
 
     }
 
-    public void recyclerSetup(){
+    private void recyclerSetup(){
         rv = findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -310,7 +310,7 @@ public class Stats extends AppCompatActivity {
         });
     }
 
-    public void animFab(){
+    private void animFab(){
         if (estaAberto){
             fabio.startAnimation(fabClose);
             fabOntem.startAnimation(fabDown);

@@ -175,15 +175,33 @@
             app:layout_constraintStart_toStartOf="@+id/viewTarefas"
             app:layout_constraintTop_toTopOf="@+id/viewTarefas" />
 
-        <View
-            android:id="@+id/viewObjetivos"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardObjetivos"
             android:layout_width="350dp"
-            android:layout_height="60dp"
+            android:layout_height="160dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/boxnotes"
+            app:cardBackgroundColor="#b4d9d5"
             app:layout_constraintEnd_toEndOf="parent"
+            app:cardCornerRadius="15dp"
+            android:elevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloObjetivos" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloObjetivos">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tituloObjetivos"
@@ -195,7 +213,7 @@
             android:text="Objetivos"
             android:textColor="@color/amalero"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/viewObjetivos"
+            app:layout_constraintStart_toStartOf="@+id/cardObjetivos"
             app:layout_constraintTop_toBottomOf="@+id/viewTarefas" />
 
         <TextView
@@ -209,7 +227,7 @@
             android:textColor="@color/amalero"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/campoNotas"
-            app:layout_constraintTop_toBottomOf="@+id/viewObjetivos" />
+            app:layout_constraintTop_toBottomOf="@+id/cardObjetivos" />
 
         <ImageButton
             android:id="@+id/bSalvar"

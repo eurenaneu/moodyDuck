@@ -16,9 +16,6 @@ public class Registros {
         this.data = data;
     }
 
-    public Registros() {
-    }
-
     public long getTimestamp() {
         return timestamp;
     }
@@ -26,7 +23,6 @@ public class Registros {
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
-
 
     public String getData() {
         return data;
