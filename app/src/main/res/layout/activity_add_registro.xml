@@ -64,12 +64,14 @@
         android:layout_height="80dp"
         android:layout_marginTop="90dp"
         android:adjustViewBounds="true"
-        android:background="@color/amalero"
+        android:background="#00FFFFFF"
         android:scaleType="centerCrop"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvData"
-        app:srcCompat="@drawable/placeholder_neutro" />
+        app:srcCompat="@drawable/img_neutro" />
 
     <ImageButton
         android:id="@+id/imageTriste"
@@ -77,21 +79,23 @@
         android:layout_height="80dp"
         android:layout_marginTop="90dp"
         android:adjustViewBounds="true"
-        android:background="@color/amalero"
+        android:background="#00FFFFFF"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageNeutro"
         app:layout_constraintTop_toBottomOf="@+id/tvData"
-        app:srcCompat="@drawable/placeholder_triste" />
+        app:srcCompat="@drawable/img_triste" />
 
     <TextView
         android:id="@+id/txtFeliz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="alegria"
+        android:layout_marginTop="5dp"
+        android:text="Feliz"
         android:fontFamily="@font/qckbold"
-        android:textColor="@color/amalero"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/imageFeliz"
         app:layout_constraintStart_toStartOf="@+id/imageFeliz"
         app:layout_constraintTop_toBottomOf="@+id/imageFeliz" />
@@ -100,10 +104,10 @@
         android:id="@+id/txtNeutro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="neutro :|"
+        android:layout_marginTop="5dp"
+        android:text="Neutro"
         android:fontFamily="@font/qckbold"
-        android:textColor="@color/amalero"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/imageNeutro"
         app:layout_constraintStart_toStartOf="@+id/imageNeutro"
         app:layout_constraintTop_toBottomOf="@+id/imageNeutro" />
@@ -112,10 +116,10 @@
         android:id="@+id/txtTriste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="depressao :cc"
+        android:layout_marginTop="5dp"
+        android:text="Triste"
         android:fontFamily="@font/qckbold"
-        android:textColor="@color/amalero"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/imageTriste"
         app:layout_constraintStart_toStartOf="@+id/imageTriste"
         app:layout_constraintTop_toBottomOf="@+id/imageTriste" />

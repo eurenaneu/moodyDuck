@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.moodyduck.Classes.Objetivos;
 import com.example.moodyduck.Classes.Registros;
@@ -31,6 +32,7 @@ public class FormRegistro extends AppCompatActivity {
     static int dia, mes, ano;
     AlertDialog alerta;
     Adaptador adaptador;
+    ImageButton bSalvar;
     ArrayList<Objetivos> objetivos = new ArrayList<>();
     static String humor, horario;
     RecyclerView rv;
@@ -39,9 +41,16 @@ public class FormRegistro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_registro);
+        bSalvar = findViewById(R.id.bSalvar);
         rv = findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         setupRecycler();
+        bSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                salvarRegistro();
+            }
+        });
     }
 
     private void setupRecycler() {
@@ -52,15 +61,17 @@ public class FormRegistro extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     try {
-                        String nome = dataSnapshot.child("nome").getValue().toString();
-                        int sequencia = Integer.parseInt(dataSnapshot.child("sequencia").getValue().toString());
+                        if (Boolean.parseBoolean(dataSnapshot.child("ativo").getValue().toString())) {
+                            String nome = dataSnapshot.child("nome").getValue().toString();
+                            int sequencia = Integer.parseInt(dataSnapshot.child("sequencia").getValue().toString());
 
-                        Objetivos o = new Objetivos(nome, sequencia);
-                        objetivos.add(o);
-                        adaptador = new Adaptador(getApplicationContext(), objetivos, 2);
-                        rv.setAdapter(adaptador);
-                        rv.setLayoutManager(new LinearLayoutManager(FormRegistro.this));
-                        adaptador.notify();
+                            Objetivos o = new Objetivos(nome, sequencia);
+                            objetivos.add(o);
+                            adaptador = new Adaptador(getApplicationContext(), objetivos, 2);
+                            rv.setAdapter(adaptador);
+                            rv.setLayoutManager(new LinearLayoutManager(FormRegistro.this));
+                            adaptador.notifyDataSetChanged();
+                        }
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -97,7 +108,7 @@ public class FormRegistro extends AppCompatActivity {
         alerta.show();
     }
 
-    private void salvarRegistro(View view){
+    private void salvarRegistro(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String childName = dia+"-"+nomeMes[mes]+"-"+ano+" - "+horario+":"+c.get(Calendar.SECOND);
         String data = dia+"/"+(mes+1)+"/"+ano;

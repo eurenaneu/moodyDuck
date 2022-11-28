@@ -7,17 +7,6 @@
     android:background="@color/ciano"
     tools:context=".TelaObjetivos">
 
-    <Button
-        android:id="@+id/bVoltar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/ic_seta_esquerda"
-        app:backgroundTint="@color/amalero"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view3" />
-
     <View
         android:id="@+id/view3"
         android:layout_width="match_parent"
@@ -41,5 +30,16 @@
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toTopOf="@id/view3" />
+
+    <Button
+        android:id="@+id/bVoltar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/ic_seta_esquerda"
+        app:backgroundTint="@color/amalero"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

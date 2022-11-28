@@ -53,10 +53,10 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     imgHumor.setBackgroundResource(R.drawable.img_feliz);
                     break;
                 case "NEUTRO":
-                    imgHumor.setBackgroundResource(R.drawable.placeholder_neutro);
+                    imgHumor.setBackgroundResource(R.drawable.img_neutro);
                     break;
                 case "TRISTE":
-                    imgHumor.setBackgroundResource(R.drawable.placeholder_triste);
+                    imgHumor.setBackgroundResource(R.drawable.img_triste);
                     break;
             }
         }

@@ -17,13 +17,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/qckbold"
             android:text="nome objetivo"
-            android:textColor="@color/amalero"
+            android:textColor="@color/cianoescuro"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/imgObjetivo"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/imgObjetivo" />
 
         <TextView
             android:id="@+id/textoSequencia"
@@ -33,7 +33,7 @@
             android:fontFamily="@font/qck"
             android:text="sequencia atual: n"
             android:textAlignment="center"
-            android:textColor="@color/amalero"
+            android:textColor="@color/cianoescuro"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/imgObjetivo"
             app:layout_constraintTop_toBottomOf="@+id/nomeObjetivo" />

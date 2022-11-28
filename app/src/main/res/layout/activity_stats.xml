@@ -300,7 +300,7 @@
         app:layout_constraintEnd_toStartOf="@+id/linechart"
         app:layout_constraintStart_toStartOf="@+id/view4"
         app:layout_constraintTop_toTopOf="@+id/linechart"
-        app:srcCompat="@drawable/placeholder_neutro" />
+        app:srcCompat="@drawable/img_neutro" />
 
     <ImageView
         android:id="@+id/imgTriste"
@@ -310,6 +310,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imgNeutro"
         app:layout_constraintStart_toStartOf="@+id/imgNeutro"
         app:layout_constraintBottom_toBottomOf="@+id/linechart"
-        app:srcCompat="@drawable/placeholder_triste" />
+        app:srcCompat="@drawable/img_triste" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
