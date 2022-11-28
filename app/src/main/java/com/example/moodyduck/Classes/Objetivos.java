@@ -1,4 +1,4 @@
-package com.example.moodyduck;
+package com.example.moodyduck.Classes;
 
 public class Objetivos {
     String nome;

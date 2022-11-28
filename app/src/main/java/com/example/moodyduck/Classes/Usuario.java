@@ -1,4 +1,4 @@
-package com.example.moodyduck;
+package com.example.moodyduck.Classes;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

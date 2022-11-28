@@ -1,16 +1,17 @@
 package com.example.moodyduck;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.moodyduck.Classes.Objetivos;
+import com.example.moodyduck.Classes.Registros;
 
 import java.util.ArrayList;
 
@@ -84,7 +85,7 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     nome.setText("Fazer exercícios");
                     break;
             }
-            sequencia.setText(String.valueOf(objetivos.getSequencia()));
+            sequencia.setText("Sequência atual: "+objetivos.getSequencia());
         }
     }
 
