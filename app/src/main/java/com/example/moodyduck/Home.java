@@ -84,8 +84,8 @@ public class Home extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), Stats.class));
                         overridePendingTransition(0, 0);
                         return true;
-                    case R.id.calendario:
-                        startActivity(new Intent(getApplicationContext(), Calendario.class));
+                    case R.id.objetivos:
+                        startActivity(new Intent(getApplicationContext(), TelaObjetivos.class));
                         return true;
                     case R.id.config:
                         startActivity(new Intent(getApplicationContext(), Config.class));
@@ -178,7 +178,6 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "putaria", Toast.LENGTH_SHORT).show();
             }
         });
     }

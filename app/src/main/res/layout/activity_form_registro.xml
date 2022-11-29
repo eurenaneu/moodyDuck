@@ -189,8 +189,23 @@
             app:layout_constraintTop_toBottomOf="@+id/tituloObjetivos">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtSemObjetivos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sem objetivos ativos :("
+                    android:fontFamily="@font/qckbold"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:layout_marginVertical="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"
@@ -203,6 +218,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -366,6 +382,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
             android:text="ToggleButton"
+            android:background="@drawable/togglesononeutro"
             android:textOff=" "
             android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewSono"
@@ -378,6 +395,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="35dp"
+            android:background="@drawable/togglesonobom"
             android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
@@ -389,6 +407,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="35dp"
+            android:background="@drawable/togglesonoruim"
             android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
@@ -402,6 +421,9 @@
             android:layout_marginStart="110dp"
             android:layout_marginBottom="20dp"
             android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglerestaurante"
             app:layout_constraintBottom_toBottomOf="@+id/viewAlimentacao"
             app:layout_constraintStart_toStartOf="@+id/viewAlimentacao"
             app:layout_constraintTop_toBottomOf="@+id/tituloAlimentacao" />
@@ -413,6 +435,9 @@
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="20dp"
             android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglesaudavel"
             app:layout_constraintBottom_toBottomOf="@+id/viewAlimentacao"
             app:layout_constraintEnd_toEndOf="@+id/viewAlimentacao"
             app:layout_constraintTop_toBottomOf="@+id/tituloAlimentacao" />
@@ -423,6 +448,9 @@
             android:layout_height="50dp"
             android:layout_marginEnd="30dp"
             android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglefastfood"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleRestaurante"
             app:layout_constraintEnd_toStartOf="@+id/toggleRestaurante" />
 
@@ -432,6 +460,9 @@
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
             android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglecaseira"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleSaudavel"
             app:layout_constraintStart_toEndOf="@+id/toggleSaudavel" />
 
@@ -441,6 +472,9 @@
             android:layout_height="50dp"
             android:layout_marginEnd="35dp"
             android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/toggleexercicio"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleAgua"
             app:layout_constraintEnd_toStartOf="@+id/toggleAgua" />
 
@@ -450,6 +484,9 @@
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
             android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/toggleagua"
             app:layout_constraintBottom_toBottomOf="@+id/viewSaude"
             app:layout_constraintEnd_toEndOf="@+id/viewSaude"
             app:layout_constraintStart_toStartOf="@+id/viewSaude"
@@ -461,8 +498,63 @@
             android:layout_height="50dp"
             android:layout_marginStart="35dp"
             android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglecaminhada"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleAgua"
             app:layout_constraintStart_toEndOf="@+id/toggleAgua" />
+
+        <ToggleButton
+            android:id="@+id/toggleFaxina"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/togglefaxina"
+            android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            app:layout_constraintBottom_toBottomOf="@+id/viewTarefas"
+            app:layout_constraintStart_toStartOf="@+id/viewTarefas"
+            app:layout_constraintTop_toBottomOf="@+id/tituloTarefas" />
+
+        <ToggleButton
+            android:id="@+id/toggleCozinhar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="110dp"
+            android:layout_marginBottom="20dp"
+            android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglecozinhar"
+            app:layout_constraintBottom_toBottomOf="@+id/viewTarefas"
+            app:layout_constraintEnd_toEndOf="@+id/viewTarefas"
+            app:layout_constraintTop_toBottomOf="@+id/tituloTarefas" />
+
+        <ToggleButton
+            android:id="@+id/toggleLavar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglelavar"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleCozinhar"
+            app:layout_constraintStart_toEndOf="@+id/toggleCozinhar" />
+
+        <ToggleButton
+            android:id="@+id/toggleCompras"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            android:text="ToggleButton"
+            android:textOn=" "
+            android:textOff=" "
+            android:background="@drawable/togglecompras"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleFaxina"
+            app:layout_constraintEnd_toStartOf="@+id/toggleFaxina" />
 
         <TextView
             android:id="@+id/txtFamilia"
@@ -669,6 +761,54 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/txtAgua"
             app:layout_constraintEnd_toEndOf="@+id/toggleCaminhada"
             app:layout_constraintStart_toStartOf="@+id/toggleCaminhada" />
+
+        <TextView
+            android:id="@+id/txtFaxina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/qckbold"
+            android:text="Faxina"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/toggleFaxina"
+            app:layout_constraintStart_toStartOf="@+id/toggleFaxina"
+            app:layout_constraintTop_toBottomOf="@+id/toggleFaxina" />
+
+        <TextView
+            android:id="@+id/txtCozinhar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/qckbold"
+            android:text="Cozinhar"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/toggleCozinhar"
+            app:layout_constraintStart_toStartOf="@+id/toggleCozinhar"
+            app:layout_constraintTop_toBottomOf="@+id/toggleCozinhar" />
+
+        <TextView
+            android:id="@+id/txtCompras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compras"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtFaxina"
+            app:layout_constraintEnd_toEndOf="@+id/toggleCompras"
+            app:layout_constraintStart_toStartOf="@+id/toggleCompras" />
+
+        <TextView
+            android:id="@+id/txtLavar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lavar roupas"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtCozinhar"
+            app:layout_constraintEnd_toEndOf="@+id/toggleLavar"
+            app:layout_constraintStart_toStartOf="@+id/toggleLavar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

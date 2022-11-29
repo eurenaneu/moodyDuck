@@ -19,6 +19,7 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<Objetivos> objetivos;
     int tipo = 1;
     Context c;
+
     public Adaptador(Context c, ArrayList<Registros> registros) {
         this.c = c;
         this.registros = registros;
@@ -30,17 +31,19 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class RegistroViewHolder extends RecyclerView.ViewHolder{
-        TextView horario, humor;
+        TextView horario, humor, notas;
         ImageView imgHumor;
         public RegistroViewHolder(@NonNull View itemView) {
             super(itemView);
             humor = itemView.findViewById(R.id.cardHumor);
             horario = itemView.findViewById(R.id.cardHorario);
             imgHumor = itemView.findViewById(R.id.imgHumor);
+            notas = itemView.findViewById(R.id.textoNotas);
         }
         public void bind(Registros registros){
             humor.setText(registros.getHumor());
             horario.setText(registros.getData());
+            notas.setText(registros.getNotas());
             switch (registros.getHumor()) {
                 case "FELIZ":
                     imgHumor.setBackgroundResource(R.drawable.img_feliz);
@@ -56,13 +59,12 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class ObjetivoViewHolder extends RecyclerView.ViewHolder{
-        TextView sequencia, nome;
+        TextView nome;
         ImageView imgObjetivo;
         CheckBox checkObjetivo;
         public ObjetivoViewHolder(@NonNull View itemView) {
             super(itemView);
             nome = itemView.findViewById(R.id.nomeObjetivo);
-            sequencia = itemView.findViewById(R.id.textoSequencia);
             imgObjetivo = itemView.findViewById(R.id.imgObjetivo);
             checkObjetivo = itemView.findViewById(R.id.checkObjetivo);
         }
@@ -78,7 +80,6 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     nome.setText("Fazer exercícios");
                     break;
             }
-            sequencia.setText("Sequência atual: "+objetivos.getSequencia());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -139,13 +140,3 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 }
-
-    /*public ArrayList<Objetivos> getSelected() {
-        ArrayList<Objetivos> selected = new ArrayList<>();
-        for(int i = 0; i<objetivos.size(); i++) {
-            if (objetivos.get(i).isChecked()) {
-                selected.add(objetivos.get(i));
-            }
-        }
-        return selected;
-    }*/

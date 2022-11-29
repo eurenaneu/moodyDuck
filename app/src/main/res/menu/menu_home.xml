@@ -18,9 +18,9 @@
         android:checkable="false"/>
 
     <item
-        android:id="@+id/calendario"
-        android:title="Calendário"
-        android:icon="@drawable/calendar" />
+        android:id="@+id/objetivos"
+        android:title="Objetivos"
+        android:icon="@drawable/objetivos" />
 
     <item
         android:id="@+id/config"

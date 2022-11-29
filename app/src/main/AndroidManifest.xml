@@ -25,9 +25,6 @@
             android:name=".Config"
             android:exported="false" />
         <activity
-            android:name=".Calendario"
-            android:exported="false" />
-        <activity
             android:name=".Stats"
             android:exported="false" />
         <activity

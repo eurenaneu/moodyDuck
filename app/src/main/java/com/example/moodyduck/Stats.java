@@ -92,8 +92,8 @@ public class Stats extends AppCompatActivity {
                         return true;
                     case R.id.estatisticas:
                         break;
-                    case R.id.calendario:
-                        startActivity(new Intent(Stats.this, Calendario.class));
+                    case R.id.objetivos:
+                        startActivity(new Intent(Stats.this, TelaObjetivos.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.config:

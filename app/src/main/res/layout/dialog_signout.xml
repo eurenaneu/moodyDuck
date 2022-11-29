@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="#00FFFFFF"
-    app:cardElevation="0dp"
-    app:cardCornerRadius="40dp">
+    app:cardCornerRadius="40dp"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,11 +15,12 @@
 
         <TextView
             android:id="@+id/txtPopup"
-            android:layout_width="wrap_content"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:fontFamily="@font/qckbold"
-            android:text="Deslogar? 🥺"
+            android:gravity="center"
+            android:text="Deseja desconectar da sua conta? Será preciso iniciar a sessão novamente"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/bDescartar"
@@ -31,7 +32,8 @@
             android:id="@+id/bDescartar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="200dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/boxdialog"
             android:fontFamily="@font/qckbold"
@@ -40,26 +42,22 @@
             android:textColor="@color/white"
             app:backgroundTint="@color/cianoescuro"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/txtPopup"
-            app:layout_constraintStart_toStartOf="@+id/txtPopup"
+            app:layout_constraintEnd_toEndOf="@+id/txtPopup"
             app:layout_constraintTop_toBottomOf="@+id/txtPopup" />
 
         <Button
             android:id="@+id/bNaoDescartar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginStart="200dp"
             android:background="@drawable/boxdialog"
             android:fontFamily="@font/qckbold"
             android:paddingHorizontal="30dp"
             android:text="NÃO"
             android:textColor="@color/white"
             app:backgroundTint="@color/cianoescuro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/txtPopup"
-            app:layout_constraintStart_toEndOf="@+id/txtPopup"
-            app:layout_constraintTop_toBottomOf="@+id/txtPopup" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/bDescartar"
+            app:layout_constraintStart_toStartOf="@+id/txtPopup" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

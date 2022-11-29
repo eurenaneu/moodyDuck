@@ -13,6 +13,7 @@ public class TelaObjetivos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_tela_objetivos);
         voltar = findViewById(R.id.bVoltar);
         voltar.setOnClickListener(new View.OnClickListener() {
@@ -27,4 +28,9 @@ public class TelaObjetivos extends AppCompatActivity {
         startActivity(new Intent(this, Home.class));
         this.finish();
     }
+
+    public void onBackPressed(){
+        this.moveTaskToBack(true);
+    }
+
 }

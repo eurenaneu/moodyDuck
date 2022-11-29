@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +34,8 @@ public class FormRegistro extends AppCompatActivity {
     AlertDialog alerta;
     Adaptador adaptador;
     ImageButton bSalvar;
+    EditText campoNotas;
+    TextView semObjetivos;
     ArrayList<Objetivos> objetivos = new ArrayList<>();
     static String humor, horario;
     RecyclerView rv;
@@ -40,6 +44,8 @@ public class FormRegistro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_registro);
+        campoNotas = findViewById(R.id.campoNotas);
+        semObjetivos = findViewById(R.id.txtSemObjetivos);
         bSalvar = findViewById(R.id.btnSalvar);
             bSalvar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,9 +78,8 @@ public class FormRegistro extends AppCompatActivity {
                     try {
                         if (Boolean.parseBoolean(dataSnapshot.child("ativo").getValue().toString())) {
                             String nome = dataSnapshot.child("nome").getValue().toString();
-                            int sequencia = Integer.parseInt(dataSnapshot.child("sequencia").getValue().toString());
 
-                            Objetivos o = new Objetivos(nome, sequencia);
+                            Objetivos o = new Objetivos(nome);
                             objetivos.add(o);
                             adaptador = new Adaptador(getApplicationContext(), objetivos, 2);
                             rv.setAdapter(adaptador);
@@ -82,6 +87,7 @@ public class FormRegistro extends AppCompatActivity {
                             adaptador.notify();
                         }
                     } catch (Exception e){
+                        //semObjetivos.setVisibility(View.VISIBLE);
                         e.printStackTrace();
                     }
                 }
@@ -122,10 +128,11 @@ public class FormRegistro extends AppCompatActivity {
         String childName = dia + "-" + nomeMes[mes] + "-" + ano + " - " + horario + ":" + c.get(Calendar.SECOND);
         String data = dia + "/" + (mes + 1) + "/" + ano;
         String[] myDate = data.split("/");
+        String notas = campoNotas.getText().toString();
         Date date = new Date(Integer.parseInt(myDate[2]), Integer.parseInt(myDate[1]), Integer.parseInt(myDate[0]));
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        Registros r = new Registros(humor, horario, data, date.getTime());
+        Registros r = new Registros(humor, horario, data, notas, date.getTime());
         ref.child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(childName).setValue(r);
         startActivity(new Intent(this, Home.class));
         setupSelectItems();

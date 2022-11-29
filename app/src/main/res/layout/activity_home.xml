@@ -97,7 +97,7 @@
             app:backgroundTint="@color/cianoescuro"
             app:elevation="4dp"
             app:shapeAppearanceOverlay="@style/FAB_Style"
-            app:srcCompat="@drawable/calendar"
+            app:srcCompat="@drawable/calendario"
             app:tint="@color/white"
             tools:ignore="SpeakableTextPresentCheck" />
 

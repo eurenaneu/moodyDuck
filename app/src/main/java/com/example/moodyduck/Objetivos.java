@@ -1,13 +1,24 @@
 package com.example.moodyduck;
 
 public class Objetivos {
-    boolean checked;
+    boolean checked, ativo;
     String nome;
-    int sequencia;
 
-    public Objetivos(String nome, int sequencia) {
+    public Objetivos(String nome) {
         this.nome = nome;
-        this.sequencia = sequencia;
+    }
+
+    public Objetivos(String nome, boolean ativo) {
+        this.nome = nome;
+        this.ativo = ativo;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public boolean isChecked() {
@@ -24,13 +35,5 @@ public class Objetivos {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getSequencia() {
-        return sequencia;
-    }
-
-    public void setSequencia(int sequencia) {
-        this.sequencia = sequencia;
     }
 }

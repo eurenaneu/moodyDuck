@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,11 +96,25 @@ public class Cadastro extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(u).build();
         user.updateProfile(profileUpdates);
+        ArrayList<Objetivos> addDefault = new ArrayList<>();
+        Objetivos dormirCedo = new Objetivos("dormirCedo", false);
+        Objetivos estudarMais = new Objetivos("estudarMais", false);
+        Objetivos comerSaudavel = new Objetivos("comerSaudavel", false);
+        Objetivos fazerExercicio = new Objetivos("fazerExercicio", false);
+        Objetivos realizarFaxina = new Objetivos("realizarFaxina", false);
+        addDefault.add(dormirCedo);
+        addDefault.add(estudarMais);
+        addDefault.add(comerSaudavel);
+        addDefault.add(fazerExercicio);
+        addDefault.add(realizarFaxina);
         Map<String, Object> usuarios = new HashMap<>();
         usuarios.put("nome", u);
         usuarios.put("email", e);
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db.child("Users").child(userId).setValue(usuarios);
+        for(int i = 0; i < addDefault.size(); i++) {
+            db.child("Users").child(userId).child("Objetivos").child(addDefault.get(i).getNome()).setValue(addDefault.get(i));
+        }
     }
 }
