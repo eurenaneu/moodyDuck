@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="360dp"
-        android:layout_height="160dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
         android:background="@drawable/boxregistro">
@@ -19,8 +19,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
             android:background="@drawable/img_feliz"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +49,18 @@
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/imgHumor"
             app:layout_constraintTop_toBottomOf="@+id/cardHorario" />
+
+        <TextView
+            android:id="@+id/textoNotas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/qck"
+            android:text="Notas"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/imgHumor"
+            app:layout_constraintTop_toBottomOf="@+id/cardHumor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -43,11 +43,24 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/app_pato"
+            app:layout_constraintStart_toEndOf="@id/checkObjetivo"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkObjetivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:button="@drawable/checkbox_custom"
+            android:clickable="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteY="23dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

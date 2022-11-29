@@ -136,9 +136,14 @@ public class AddRegistro extends AppCompatActivity {
 
         padraoMes = c.get(Calendar.MONTH) - diminuirMes;
         padraoAno = c.get(Calendar.YEAR);
+
+        dia = padraoDia;
+        mes = padraoMes;
+        ano = padraoAno;
     }
 
     public void setarData(){
+        Toast.makeText(getApplicationContext(), padraoDia+" "+padraoMes+" "+padraoAno, Toast.LENGTH_SHORT).show();
         tvData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,6 +3,7 @@ package com.example.moodyduck;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ public class Config extends AppCompatActivity {
     TextView txtInfo;
     AlertDialog alerta;
     SwitchCompat switchLembretes;
+    CardView bHorario;
     Button bRelatorioM, bAlterarSenha, bDeslogar;
 
     @Override
@@ -32,6 +34,7 @@ public class Config extends AppCompatActivity {
         bRelatorioM = findViewById(R.id.bRelatorioM);
         bAlterarSenha = findViewById(R.id.bAlterarSenha);
         bDeslogar = findViewById(R.id.bDeslogar);
+        bHorario = findViewById(R.id.bHorario);
         switchLembretes = findViewById(R.id.switchLembretes);
 
         // setar info

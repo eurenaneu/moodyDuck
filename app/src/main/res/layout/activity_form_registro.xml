@@ -113,6 +113,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/boxregistro"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewSono" />
 
@@ -231,7 +232,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardObjetivos" />
 
         <ImageButton
-            android:id="@+id/bSalvar"
+            android:id="@+id/btnSalvar"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="80dp"
@@ -249,7 +250,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/boxnotes"
             android:ems="10"
-            android:maxLength="250"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/qckbold"
             android:hint="Adicionar nota"
@@ -272,27 +272,26 @@
             android:text="Salvar"
             android:textColor="@color/amalero"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/bSalvar"
-            app:layout_constraintStart_toStartOf="@+id/bSalvar"
-            app:layout_constraintTop_toBottomOf="@+id/bSalvar" />
+            app:layout_constraintEnd_toEndOf="@+id/btnSalvar"
+            app:layout_constraintStart_toStartOf="@+id/btnSalvar"
+            app:layout_constraintTop_toBottomOf="@+id/btnSalvar" />
 
         <ToggleButton
             android:id="@+id/toggleFamilia"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/togglefamilia"
-            android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
-            app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
-            app:layout_constraintEnd_toStartOf="@+id/toggleAmigos"
-            app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleAmigos"
+            app:layout_constraintEnd_toStartOf="@+id/toggleAmigos" />
 
         <ToggleButton
             android:id="@+id/toggleAmigos"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/toggleamigos"
             android:text="ToggleButton"
             android:textOff=" "
@@ -306,22 +305,20 @@
             android:id="@+id/toggleEncontro"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:background="@drawable/toggleencontro"
-            android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
-            app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
-            app:layout_constraintStart_toEndOf="@id/toggleAmigos"
-            app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleAmigos"
+            app:layout_constraintStart_toEndOf="@id/toggleAmigos" />
 
         <ToggleButton
             android:id="@+id/toggleLivros"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="115dp"
+            android:layout_marginStart="112dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/togglelivros"
-            android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
@@ -332,22 +329,20 @@
             android:id="@+id/toggleFilmes"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/togglefilmes"
-            android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
-            app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
-            app:layout_constraintEnd_toStartOf="@+id/toggleLivros"
-            app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleLivros"
+            app:layout_constraintEnd_toStartOf="@+id/toggleLivros" />
 
         <ToggleButton
             android:id="@+id/toggleDescanso"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="115dp"
+            android:layout_marginEnd="112dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/toggledescanso"
-            android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
@@ -358,14 +353,322 @@
             android:id="@+id/toggleFestas"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:background="@drawable/togglefestas"
+            android:textOff=" "
+            android:textOn=" "
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleDescanso"
+            app:layout_constraintStart_toEndOf="@+id/toggleDescanso" />
+
+        <ToggleButton
+            android:id="@+id/toggleNeutro"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
             android:text="ToggleButton"
             android:textOff=" "
             android:textOn=" "
-            app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
-            app:layout_constraintStart_toEndOf="@+id/toggleDescanso"
-            app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
+            app:layout_constraintBottom_toBottomOf="@+id/viewSono"
+            app:layout_constraintEnd_toEndOf="@+id/viewSono"
+            app:layout_constraintStart_toStartOf="@+id/viewSono"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSono" />
+
+        <ToggleButton
+            android:id="@+id/toggleBom"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="35dp"
+            android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleNeutro"
+            app:layout_constraintEnd_toStartOf="@+id/toggleNeutro" />
+
+        <ToggleButton
+            android:id="@+id/toggleRuim"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:text="ToggleButton"
+            android:textOff=" "
+            android:textOn=" "
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleNeutro"
+            app:layout_constraintStart_toEndOf="@+id/toggleNeutro" />
+
+        <ToggleButton
+            android:id="@+id/toggleRestaurante"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginBottom="20dp"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewAlimentacao"
+            app:layout_constraintStart_toStartOf="@+id/viewAlimentacao"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAlimentacao" />
+
+        <ToggleButton
+            android:id="@+id/toggleSaudavel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="110dp"
+            android:layout_marginBottom="20dp"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewAlimentacao"
+            app:layout_constraintEnd_toEndOf="@+id/viewAlimentacao"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAlimentacao" />
+
+        <ToggleButton
+            android:id="@+id/toggleFastfood"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            android:text="ToggleButton"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleRestaurante"
+            app:layout_constraintEnd_toStartOf="@+id/toggleRestaurante" />
+
+        <ToggleButton
+            android:id="@+id/toggleCaseira"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:text="ToggleButton"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleSaudavel"
+            app:layout_constraintStart_toEndOf="@+id/toggleSaudavel" />
+
+        <ToggleButton
+            android:id="@+id/toggleExercicio"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="35dp"
+            android:text="ToggleButton"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleAgua"
+            app:layout_constraintEnd_toStartOf="@+id/toggleAgua" />
+
+        <ToggleButton
+            android:id="@+id/toggleAgua"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/viewSaude"
+            app:layout_constraintEnd_toEndOf="@+id/viewSaude"
+            app:layout_constraintStart_toStartOf="@+id/viewSaude"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSaude" />
+
+        <ToggleButton
+            android:id="@+id/toggleCaminhada"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="35dp"
+            android:text="ToggleButton"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleAgua"
+            app:layout_constraintStart_toEndOf="@+id/toggleAgua" />
+
+        <TextView
+            android:id="@+id/txtFamilia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Família"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtAmigos"
+            app:layout_constraintEnd_toEndOf="@+id/toggleFamilia"
+            app:layout_constraintStart_toStartOf="@+id/toggleFamilia" />
+
+        <TextView
+            android:id="@+id/txtAmigos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Amigos"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/toggleAmigos"
+            app:layout_constraintStart_toStartOf="@+id/toggleAmigos"
+            app:layout_constraintTop_toBottomOf="@+id/toggleAmigos" />
+
+        <TextView
+            android:id="@+id/txtEncontro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Encontro"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtAmigos"
+            app:layout_constraintEnd_toEndOf="@+id/toggleEncontro"
+            app:layout_constraintStart_toStartOf="@+id/toggleEncontro" />
+
+        <TextView
+            android:id="@+id/txtFilmes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filmes/TV"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtLivros"
+            app:layout_constraintEnd_toEndOf="@+id/toggleFilmes"
+            app:layout_constraintStart_toStartOf="@+id/toggleFilmes" />
+
+        <TextView
+            android:id="@+id/txtLivros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Livros"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/toggleLivros"
+            app:layout_constraintStart_toStartOf="@+id/toggleLivros"
+            app:layout_constraintTop_toBottomOf="@+id/toggleLivros" />
+
+        <TextView
+            android:id="@+id/txtDescanso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descanso"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/toggleDescanso"
+            app:layout_constraintStart_toStartOf="@+id/toggleDescanso"
+            app:layout_constraintTop_toBottomOf="@+id/toggleDescanso" />
+
+        <TextView
+            android:id="@+id/txtFestas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Festas"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtDescanso"
+            app:layout_constraintEnd_toEndOf="@+id/toggleFestas"
+            app:layout_constraintStart_toStartOf="@+id/toggleFestas" />
+
+        <TextView
+            android:id="@+id/txtSonoBom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sono bom"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtSonoNeutro"
+            app:layout_constraintEnd_toEndOf="@+id/toggleBom"
+            app:layout_constraintStart_toStartOf="@+id/toggleBom" />
+
+        <TextView
+            android:id="@+id/txtSonoNeutro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sono neutro"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/toggleNeutro"
+            app:layout_constraintStart_toStartOf="@+id/toggleNeutro"
+            app:layout_constraintTop_toBottomOf="@+id/toggleNeutro" />
+
+        <TextView
+            android:id="@+id/txtSonoRuim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sono ruim"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtSonoNeutro"
+            app:layout_constraintEnd_toEndOf="@+id/toggleRuim"
+            app:layout_constraintStart_toStartOf="@+id/toggleRuim" />
+
+        <TextView
+            android:id="@+id/txtRestaurante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurante"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/toggleRestaurante"
+            app:layout_constraintStart_toStartOf="@+id/toggleRestaurante"
+            app:layout_constraintTop_toBottomOf="@+id/toggleRestaurante" />
+
+        <TextView
+            android:id="@+id/txtSaudavel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saudável"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtRestaurante"
+            app:layout_constraintEnd_toEndOf="@+id/toggleSaudavel"
+            app:layout_constraintStart_toStartOf="@+id/toggleSaudavel" />
+
+        <TextView
+            android:id="@+id/txtCaseira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Caseira"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtSaudavel"
+            app:layout_constraintEnd_toEndOf="@+id/toggleCaseira"
+            app:layout_constraintStart_toStartOf="@+id/toggleCaseira" />
+
+        <TextView
+            android:id="@+id/txtFastfood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fast Food"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtRestaurante"
+            app:layout_constraintEnd_toEndOf="@+id/toggleFastfood"
+            app:layout_constraintStart_toStartOf="@+id/toggleFastfood" />
+
+        <TextView
+            android:id="@+id/txtAgua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Beber água"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/toggleAgua"
+            app:layout_constraintStart_toStartOf="@+id/toggleAgua"
+            app:layout_constraintTop_toBottomOf="@+id/toggleAgua" />
+
+        <TextView
+            android:id="@+id/txtExercicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercício"
+            android:textSize="12sp"
+            android:fontFamily="@font/qckbold"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtAgua"
+            app:layout_constraintEnd_toEndOf="@+id/toggleExercicio"
+            app:layout_constraintStart_toStartOf="@+id/toggleExercicio" />
+
+        <TextView
+            android:id="@+id/txtCaminhada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/qckbold"
+            android:text="Caminhada"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtAgua"
+            app:layout_constraintEnd_toEndOf="@+id/toggleCaminhada"
+            app:layout_constraintStart_toStartOf="@+id/toggleCaminhada" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,4 +1,4 @@
-package com.example.moodyduck.Classes;
+package com.example.moodyduck;
 
 public class Registros {
     String humor, horario, data;

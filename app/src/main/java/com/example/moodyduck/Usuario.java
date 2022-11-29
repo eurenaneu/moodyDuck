@@ -1,4 +1,4 @@
-package com.example.moodyduck.Classes;
+package com.example.moodyduck;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -13,11 +13,6 @@ public class Usuario{
     }
 
     public Usuario() {
-    }
-
-    public void cadastrarUser(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("Users").child(email).setValue(this);
     }
 
     public String getUser() {

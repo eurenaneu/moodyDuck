@@ -127,16 +127,12 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:button="@null"
-        android:drawableStart="@drawable/checkbox_custom"
-        android:drawablePadding="6dp"
-        android:paddingStart="0dp"
+        android:button="@drawable/checkbox_custom"
         android:checked="false"
         android:fontFamily="@font/qcksemi"
-        android:paddingLeft="5dp"
+        android:paddingStart="6dp"
         android:text="Lembrar minha senha"
         android:textColor="@color/amalero"
         android:textSize="12dp"
@@ -151,9 +147,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/amalero"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/txtEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
