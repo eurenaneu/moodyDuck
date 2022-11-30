@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 public class Entrada extends AppCompatActivity {
     TextView appName, bemvindo, divider;
-    ImageView imgMoody;
     Button cadastro, login;
 
     @Override
@@ -23,26 +22,10 @@ public class Entrada extends AppCompatActivity {
         setContentView(R.layout.activity_entrada);
         appName = findViewById(R.id.txtAppname);
         bemvindo = findViewById(R.id.txtBemvindo);
-        imgMoody = findViewById(R.id.imgMoody);
         cadastro = findViewById(R.id.bCadastro);
         login = findViewById(R.id.bLogin);
         divider = findViewById(R.id.divider);
         String text = "<font color=#ffffff>Moody</font><font color=#fffab9>Duck</font><font color=#ffffff>!</font>";
-        appName.setText(Html.fromHtml(text));
-        imgMoody.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                quack();
-            }
-        });
-    }
-
-    public void quack(){
-        divider.setText("quack?");
-        cadastro.setText("quack");
-        login.setText("quack");
-        bemvindo.setText("Quack quack quack quack!");
-        String text = "<font color=#ffffff>Quack</font><font color=#fffab9>Quack</font><font color=#ffffff>!</font>";
         appName.setText(Html.fromHtml(text));
     }
 
