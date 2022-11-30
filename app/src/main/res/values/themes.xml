@@ -22,6 +22,12 @@
         <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 
+    <style name="ThemeOverlay.App.MaterialTimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <!-- just override the colors used in the default style -->
+        <item name="colorOnPrimary">@color/ciano</item>
+        <item name="colorPrimary">@color/ciano</item>
+    </style>
+
     <style name="Theme.MoodyDuck.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MoodyDuck.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

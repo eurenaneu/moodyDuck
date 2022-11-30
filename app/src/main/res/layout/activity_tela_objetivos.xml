@@ -46,21 +46,34 @@
         android:id="@+id/btnSalvar"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="120dp"
         android:adjustViewBounds="true"
         android:background="@drawable/ic_salvar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="30dp"
+        android:onClick="atualizarObjetivos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/qckbold"
+        android:text="Salvar"
+        android:textColor="@color/amalero"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnSalvar"
+        app:layout_constraintStart_toStartOf="@+id/btnSalvar"
+        app:layout_constraintTop_toBottomOf="@+id/btnSalvar" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardDormir"
-        android:layout_width="350dp"
+        android:id="@+id/cardView"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        app:cardCornerRadius="15dp"
+        android:layout_marginTop="30dp"
         app:cardBackgroundColor="@color/cianomuitoescuro"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3">
@@ -69,39 +82,112 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imgDormir"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginVertical="15dp"
-                android:layout_marginStart="15dp"
-                android:background="@color/amalero"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/txtDormir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/qckbold"
-                android:text="Dormir 8 horas"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/imgDormir"
-                app:layout_constraintTop_toTopOf="@+id/imgDormir" />
-
-            <CheckBox
-                android:id="@+id/checkDormir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/checkbox_custom"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#ffffff"
+            app:backgroundTint="#ffffff"
+            app:elevation="0dp"
+            app:fabCradleMargin="0dp"
+            app:fabCradleRoundedCornerRadius="0dp"
+            app:fabCradleVerticalOffset="0dp">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_nav_corner"
+                app:itemIconSize="25dp"
+                app:elevation="0dp"
+                android:layout_marginRight="16dp"
+                app:itemIconTint="@drawable/toggle_color"
+                app:itemTextColor="@drawable/toggle_color"
+                app:labelVisibilityMode="selected"
+                app:menu="@menu/menu_home" />
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabOntem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginEnd="160dp"
+            android:layout_marginBottom="80dp"
+            android:clickable="true"
+            android:visibility="invisible"
+            app:backgroundTint="@color/cianoescuro"
+            app:elevation="4dp"
+            app:shapeAppearanceOverlay="@style/FAB_Style"
+            app:srcCompat="@drawable/ic_ontem"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabHoje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="100dp"
+            android:clickable="true"
+            android:visibility="invisible"
+            app:backgroundTint="@color/cianoescuro"
+            app:elevation="4dp"
+            app:shapeAppearanceOverlay="@style/FAB_Style"
+            app:srcCompat="@drawable/ic_hoje"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabOutro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginStart="160dp"
+            android:layout_marginBottom="80dp"
+            android:clickable="true"
+            android:visibility="invisible"
+            app:backgroundTint="@color/cianoescuro"
+            app:elevation="4dp"
+            app:shapeAppearanceOverlay="@style/FAB_Style"
+            app:srcCompat="@drawable/objetivos"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:backgroundTint="@color/cianoescuro"
+            app:elevation="4dp"
+            app:layout_anchor="@id/bottomAppBar"
+            app:shapeAppearanceOverlay="@style/FAB_Style"
+            app:srcCompat="@drawable/plus"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

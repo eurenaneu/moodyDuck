@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.*;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -76,15 +77,20 @@ public class FormRegistro extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     try {
-                        if (Boolean.parseBoolean(dataSnapshot.child("ativo").getValue().toString())) {
+                        boolean algumAtivo = Boolean.parseBoolean(dataSnapshot.child("checked").getValue().toString());
+                        if (algumAtivo) {
                             String nome = dataSnapshot.child("nome").getValue().toString();
-
                             Objetivos o = new Objetivos(nome);
                             objetivos.add(o);
                             adaptador = new Adaptador(getApplicationContext(), objetivos, 2);
                             rv.setAdapter(adaptador);
-                            rv.setLayoutManager(new LinearLayoutManager(FormRegistro.this));
+                            rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            semObjetivos.setVisibility(View.GONE);
                             adaptador.notify();
+                        }
+
+                        if (objetivos.isEmpty()){
+                            semObjetivos.setVisibility(View.VISIBLE);
                         }
                     } catch (Exception e){
                         //semObjetivos.setVisibility(View.VISIBLE);
@@ -133,7 +139,8 @@ public class FormRegistro extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
         Registros r = new Registros(humor, horario, data, notas, date.getTime());
-        ref.child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(childName).setValue(r);
+        DatabaseReference caminho = ref.child("Users").child(user.getUid()).child("Registros").child(String.valueOf(ano)).child(nomeMes[mes]).child(childName);
+        caminho.setValue(r);
         startActivity(new Intent(this, Home.class));
         setupSelectItems();
     }

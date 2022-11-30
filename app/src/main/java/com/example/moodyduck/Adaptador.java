@@ -9,6 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,16 +75,28 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imgObjetivo = itemView.findViewById(R.id.imgObjetivo);
             checkObjetivo = itemView.findViewById(R.id.checkObjetivo);
         }
+
         public void bind(Objetivos objetivos){
             switch (objetivos.getNome()){
                 case "dormirCedo":
-                    nome.setText("Dormir cedo");
+                    nome.setText("Dormir 8 horas");
+                    imgObjetivo.setBackgroundResource(R.drawable.dormir_cedo);
                     break;
                 case "estudarMais":
                     nome.setText("Estudar mais");
+                    imgObjetivo.setBackgroundResource(R.drawable.estudar_mais);
                     break;
-                case "fazerExercicios":
+                case "fazerExercicio":
                     nome.setText("Fazer exercícios");
+                    imgObjetivo.setBackgroundResource(R.drawable.fazer_exercicio);
+                    break;
+                case "realizarFaxina":
+                    nome.setText("Fazer faxina");
+                    imgObjetivo.setBackgroundResource(R.drawable.fazer_faxina);
+                    break;
+                case "comerSaudavel":
+                    nome.setText("Comer saudável");
+                    imgObjetivo.setBackgroundResource(R.drawable.comer_saudavel);
                     break;
             }
 
@@ -89,6 +108,59 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
         }
+
+        public void bindAlt(Objetivos objetivos){
+            switch (objetivos.getNome()){
+                case "dormirCedo":
+                    nome.setText("Dormir 8 horas");
+                    imgObjetivo.setBackgroundResource(R.drawable.dormir_cedo);
+                    break;
+                case "estudarMais":
+                    nome.setText("Estudar mais");
+                    imgObjetivo.setBackgroundResource(R.drawable.estudar_mais);
+                    break;
+                case "fazerExercicio":
+                    nome.setText("Fazer exercícios");
+                    imgObjetivo.setBackgroundResource(R.drawable.fazer_exercicio);
+                    break;
+                case "realizarFaxina":
+                    nome.setText("Fazer faxina");
+                    imgObjetivo.setBackgroundResource(R.drawable.fazer_faxina);
+                    break;
+                case "comerSaudavel":
+                    nome.setText("Comer saudável");
+                    imgObjetivo.setBackgroundResource(R.drawable.comer_saudavel);
+                    break;
+            }
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+            ref.child("Users").child(userId).child("Objetivos")
+                    .child(objetivos.nome).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean ativo = Boolean.parseBoolean(snapshot.child("checked").getValue().toString());
+                    checkObjetivo.setChecked(ativo);
+                    objetivos.setChecked(ativo);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    objetivos.setChecked(!objetivos.isChecked());
+                    checkObjetivo.setChecked(objetivos.isChecked());
+                }
+            });
+        }
+    }
+
+    public ArrayList<Objetivos> getObjetivos(){
+        return objetivos;
     }
 
     public ArrayList<Objetivos> getSelected(){
@@ -101,6 +173,16 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return selected;
     }
 
+    public ArrayList<Objetivos> getUnselected(){
+        ArrayList<Objetivos> unselected = new ArrayList<>();
+        for(int i = 0; i < objetivos.size(); i++){
+            if(!objetivos.get(i).isChecked()) {
+                unselected.add(objetivos.get(i));
+            }
+        }
+        return unselected;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -110,14 +192,22 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             view = inflater.inflate(R.layout.layout_rv_home, parent, false);
             return new RegistroViewHolder(view);
         } else {
-            view = inflater.inflate(R.layout.layout_rv_objetivos, parent, false);
+            int layout = R.layout.layout_rv_objetivos;
+            if(tipo == 3){
+                layout = R.layout.layout_rv_tela_objetivos;
+            }
+            view = inflater.inflate(layout, parent, false);
             return new ObjetivoViewHolder(view);
         }
     }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(getItemViewType(position) == TIPO_OBJETIVOS){
-            ((ObjetivoViewHolder) holder).bind(objetivos.get(position));
+            if(tipo == 2) {
+                ((ObjetivoViewHolder) holder).bind(objetivos.get(position));
+            } else if (tipo == 3){
+                ((ObjetivoViewHolder) holder).bindAlt(objetivos.get(position));
+            }
         }
         else {
             ((RegistroViewHolder) holder).bind(registros.get(position));
@@ -125,10 +215,10 @@ public class Adaptador extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
     @Override
     public int getItemViewType(int position) {
-        if(tipo == 2){
-            return TIPO_OBJETIVOS;
-        } else {
+        if(tipo == 1){
             return TIPO_REGISTROS;
+        } else {
+            return TIPO_OBJETIVOS;
         }
     }
     @Override

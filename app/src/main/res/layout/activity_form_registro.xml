@@ -209,10 +209,11 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginHorizontal="15dp"
                     android:paddingVertical="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -292,266 +293,230 @@
             app:layout_constraintStart_toStartOf="@+id/btnSalvar"
             app:layout_constraintTop_toBottomOf="@+id/btnSalvar" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleFamilia"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="25dp"
             android:background="@drawable/togglefamilia"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleAmigos"
             app:layout_constraintEnd_toStartOf="@+id/toggleAmigos" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleAmigos"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/toggleamigos"
-            android:text="ToggleButton"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@+id/viewSocial"
             app:layout_constraintEnd_toEndOf="@+id/viewSocial"
             app:layout_constraintStart_toStartOf="@+id/viewSocial"
             app:layout_constraintTop_toBottomOf="@+id/tituloSocial" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleEncontro"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
             android:background="@drawable/toggleencontro"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleAmigos"
             app:layout_constraintStart_toEndOf="@id/toggleAmigos" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleLivros"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="112dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/togglelivros"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
             app:layout_constraintStart_toStartOf="@+id/viewPassatempo"
             app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleFilmes"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="25dp"
             android:background="@drawable/togglefilmes"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleLivros"
             app:layout_constraintEnd_toStartOf="@+id/toggleLivros" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleDescanso"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="112dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/toggledescanso"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@+id/viewPassatempo"
             app:layout_constraintEnd_toEndOf="@+id/viewPassatempo"
             app:layout_constraintTop_toBottomOf="@+id/tituloPassatempo" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleFestas"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
             android:background="@drawable/togglefestas"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleDescanso"
             app:layout_constraintStart_toEndOf="@+id/toggleDescanso" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleNeutro"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="ToggleButton"
             android:background="@drawable/togglesononeutro"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@+id/viewSono"
             app:layout_constraintEnd_toEndOf="@+id/viewSono"
             app:layout_constraintStart_toStartOf="@+id/viewSono"
             app:layout_constraintTop_toBottomOf="@+id/tituloSono" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleBom"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="35dp"
             android:background="@drawable/togglesonobom"
-            android:text="ToggleButton"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleNeutro"
             app:layout_constraintEnd_toStartOf="@+id/toggleNeutro" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleRuim"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="35dp"
             android:background="@drawable/togglesonoruim"
-            android:text="ToggleButton"
-            android:textOff=" "
-            android:textOn=" "
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleNeutro"
             app:layout_constraintStart_toEndOf="@+id/toggleNeutro" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleRestaurante"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="110dp"
             android:layout_marginBottom="20dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
             android:background="@drawable/togglerestaurante"
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@+id/viewAlimentacao"
             app:layout_constraintStart_toStartOf="@+id/viewAlimentacao"
             app:layout_constraintTop_toBottomOf="@+id/tituloAlimentacao" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleSaudavel"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="20dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
             android:background="@drawable/togglesaudavel"
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@+id/viewAlimentacao"
             app:layout_constraintEnd_toEndOf="@+id/viewAlimentacao"
             app:layout_constraintTop_toBottomOf="@+id/tituloAlimentacao" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleFastfood"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="30dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
             android:background="@drawable/togglefastfood"
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleRestaurante"
             app:layout_constraintEnd_toStartOf="@+id/toggleRestaurante" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleCaseira"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
             android:background="@drawable/togglecaseira"
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleSaudavel"
             app:layout_constraintStart_toEndOf="@+id/toggleSaudavel" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleExercicio"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="35dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
-            android:background="@drawable/toggleexercicio"
+            android:background="@drawable/togglecaseira"
+            android:button="@null"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleAgua"
             app:layout_constraintEnd_toStartOf="@+id/toggleAgua" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleAgua"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
+            android:button="@null"
             android:background="@drawable/toggleagua"
             app:layout_constraintBottom_toBottomOf="@+id/viewSaude"
             app:layout_constraintEnd_toEndOf="@+id/viewSaude"
             app:layout_constraintStart_toStartOf="@+id/viewSaude"
             app:layout_constraintTop_toBottomOf="@+id/tituloSaude" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleCaminhada"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="35dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
+            android:button="@null"
             android:background="@drawable/togglecaminhada"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleAgua"
             app:layout_constraintStart_toEndOf="@+id/toggleAgua" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleFaxina"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="110dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/togglefaxina"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@+id/viewTarefas"
             app:layout_constraintStart_toStartOf="@+id/viewTarefas"
             app:layout_constraintTop_toBottomOf="@+id/tituloTarefas" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleCozinhar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="110dp"
             android:layout_marginBottom="20dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
+            android:button="@null"
             android:background="@drawable/togglecozinhar"
             app:layout_constraintBottom_toBottomOf="@+id/viewTarefas"
             app:layout_constraintEnd_toEndOf="@+id/viewTarefas"
             app:layout_constraintTop_toBottomOf="@+id/tituloTarefas" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleLavar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
+            android:button="@null"
             android:background="@drawable/togglelavar"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleCozinhar"
             app:layout_constraintStart_toEndOf="@+id/toggleCozinhar" />
 
-        <ToggleButton
+        <CheckBox
             android:id="@+id/toggleCompras"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="30dp"
-            android:text="ToggleButton"
-            android:textOn=" "
-            android:textOff=" "
+            android:button="@null"
             android:background="@drawable/togglecompras"
             app:layout_constraintBaseline_toBaselineOf="@+id/toggleFaxina"
             app:layout_constraintEnd_toStartOf="@+id/toggleFaxina" />

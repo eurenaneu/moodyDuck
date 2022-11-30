@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/qckbold"
-        android:text="Relatório Mensal"
+        android:text="Relatório do Mês"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
@@ -43,36 +43,13 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/linechart"
         android:layout_width="310dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toBottomOf="@id/view4"
-        app:layout_constraintStart_toEndOf="@id/imgNeutro"
+        android:layout_height="250dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="@id/view4"
-        app:layout_constraintTop_toBottomOf="@+id/txtGraphTitle" />
+        app:layout_constraintStart_toEndOf="@id/imgNeutro"
+        app:layout_constraintTop_toTopOf="@+id/view4" />
 
-    <View
-        android:id="@+id/viewObjetivo"
-        android:layout_width="360dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/chart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
-
-    <TextView
-        android:id="@+id/txtObjetivo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/qckbold"
-        android:text="Principais objetivos"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/viewObjetivo"
-        app:layout_constraintTop_toTopOf="@+id/viewObjetivo" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -170,17 +147,6 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <TextView
-        android:id="@+id/txtGraphTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/qckbold"
-        android:text="mes, ano"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
 
     <View
         android:id="@+id/view5"
@@ -193,81 +159,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-    <Button
-        android:id="@+id/bBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="15dp"
-        android:background="@drawable/ic_seta_esquerda"
-        app:backgroundTint="@color/ciano"
-        android:enabled="true"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/view5" />
-
-    <Button
-        android:id="@+id/bNext"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/ic_seta_direita"
-        app:backgroundTint="@color/ciano"
-        android:enabled="true"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/view5" />
-
-    <TextView
-        android:id="@+id/txtAnterior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="mes passado"
-        android:fontFamily="@font/qckbold"
-        android:textColor="@color/ciano"
-        app:layout_constraintBottom_toBottomOf="@+id/bBack"
-        app:layout_constraintStart_toEndOf="@+id/bBack"
-        app:layout_constraintTop_toTopOf="@+id/bBack" />
-
-    <TextView
-        android:id="@+id/txtProximo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:text="proximo ou atual"
-        android:textColor="@color/ciano"
-        android:fontFamily="@font/qckbold"
-        app:layout_constraintBottom_toBottomOf="@+id/bNext"
-        app:layout_constraintEnd_toStartOf="@+id/bNext"
-        app:layout_constraintTop_toTopOf="@+id/bNext" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="45dp"
-        android:layout_height="221dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="@+id/viewObjetivo"
-        app:layout_constraintTop_toBottomOf="@+id/txtObjetivo" />
-
-    <Button
-        android:id="@+id/bAnterior"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        android:onClick="mesAnterior"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/view5" />
-
-    <Button
-        android:id="@+id/bProximo"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/view5" />
 
     <ProgressBar
         android:id="@+id/progressBarChart"
@@ -311,5 +202,18 @@
         app:layout_constraintStart_toStartOf="@+id/imgNeutro"
         app:layout_constraintBottom_toBottomOf="@+id/linechart"
         app:srcCompat="@drawable/img_triste" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mes, ano"
+        android:textSize="20sp"
+        android:fontFamily="@font/qckbold"
+        android:textColor="@color/ciano"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

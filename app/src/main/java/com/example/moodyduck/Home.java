@@ -86,10 +86,10 @@ public class Home extends AppCompatActivity {
                         return true;
                     case R.id.objetivos:
                         startActivity(new Intent(getApplicationContext(), TelaObjetivos.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.config:
                         startActivity(new Intent(getApplicationContext(), Config.class));
-                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;

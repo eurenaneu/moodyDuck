@@ -15,9 +15,11 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -38,7 +40,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -52,9 +58,7 @@ public class Stats extends AppCompatActivity {
     ProgressBar progressBar; // loading do calendario
     LineChart lineChart; // grafico
     Timer timer = null; // timer para carregar o gráfico
-    long tempo = 3000;
-    RecyclerView rv; // recyclerObjetivos
-    int qtd; // soma/subtração de mes
+    long tempo = 3000;// recyclerObjetivos
 
     //nav
     BottomNavigationView bnv;
@@ -69,13 +73,8 @@ public class Stats extends AppCompatActivity {
         setTheme(R.style.Theme_MoodyDuckSecondary);
         setContentView(R.layout.activity_stats);
         progressBar = findViewById(R.id.progressBarChart);
-        tAnterior = findViewById(R.id.txtAnterior);
-        tTitulo = findViewById(R.id.txtGraphTitle);
-        tProximo = findViewById(R.id.txtProximo);
-        bAnterior = findViewById(R.id.bAnterior);
-        bProximo = findViewById(R.id.bProximo);
+        tTitulo = findViewById(R.id.textView);
         tTitulo.setText(nomeMes[c.get(Calendar.MONTH)]+" "+c.get(Calendar.YEAR));
-        recyclerSetup();
         setupGrafico();
         visualizarDados();
         inicializarNav();
@@ -91,14 +90,13 @@ public class Stats extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.estatisticas:
-                        break;
+                        return true;
                     case R.id.objetivos:
                         startActivity(new Intent(Stats.this, TelaObjetivos.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.config:
                         startActivity(new Intent(Stats.this, Config.class));
-                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
@@ -206,39 +204,6 @@ public class Stats extends AppCompatActivity {
         fabDown = AnimationUtils.loadAnimation(this, R.anim.anim_baixo);
     }
 
-    private void mesProximo(View v){
-        qtd++;
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String ano = String.valueOf(c.get(Calendar.YEAR));
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("Users").child(uid).child("Registros").child(ano).child(nomeMes[c.get(Calendar.MONTH)+qtd])
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (!snapshot.exists()){
-                            qtd++;
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-        visualizarDados();
-        Toast.makeText(getApplicationContext(), "somou", Toast.LENGTH_SHORT).show();
-    }
-
-    private void mesAnterior(View v){
-        qtd--;
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String ano = String.valueOf(c.get(Calendar.YEAR));
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        // verificar se mes existe. se não existir, continuar diminuindo qtd
-        visualizarDados();
-        Toast.makeText(getApplicationContext(), "diminuiu", Toast.LENGTH_SHORT).show();
-    }
-
     private void montaGrafico(){
         lineChart.clear();
         lineArrayList = new ArrayList<>();
@@ -261,7 +226,7 @@ public class Stats extends AppCompatActivity {
 
     private void visualizarDados(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String mes = nomeMes[c.get(Calendar.MONTH)+qtd].toLowerCase();
+        String mes = nomeMes[c.get(Calendar.MONTH)].toLowerCase();
         String ano = String.valueOf(c.get(Calendar.YEAR));
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Registros").child(ano).child(mes);
@@ -290,24 +255,6 @@ public class Stats extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void recyclerSetup(){
-        rv = findViewById(R.id.rv);
-        rv.setHasFixedSize(true);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("Users").child(user.getUid()).child("Objetivos").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //continuar
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     private void animFab(){

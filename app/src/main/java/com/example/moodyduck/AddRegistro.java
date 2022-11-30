@@ -106,11 +106,9 @@ public class AddRegistro extends AppCompatActivity {
             int ontem = c.get(Calendar.DAY_OF_MONTH) - 1;
 
             if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 != 0){
-                Toast.makeText(getApplicationContext(), "31", Toast.LENGTH_SHORT).show();
                 padraoDia = 31 + ontem;
                 diminuirMes++;
             } else if(ontem < 1 && (c.get(Calendar.MONTH)+1)%2 == 0){
-                Toast.makeText(getApplicationContext(), "30", Toast.LENGTH_SHORT).show();
                 padraoDia = 30 + ontem;
                 diminuirMes++;
             } else {
@@ -143,7 +141,6 @@ public class AddRegistro extends AppCompatActivity {
     }
 
     public void setarData(){
-        Toast.makeText(getApplicationContext(), padraoDia+" "+padraoMes+" "+padraoAno, Toast.LENGTH_SHORT).show();
         tvData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

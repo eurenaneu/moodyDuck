@@ -19,7 +19,7 @@
             android:layout_marginStart="15dp"
             android:fontFamily="@font/qckbold"
             android:text="nome objetivo"
-            android:textColor="@color/cianoescuro"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imgObjetivo"
             app:layout_constraintStart_toEndOf="@+id/imgObjetivo"

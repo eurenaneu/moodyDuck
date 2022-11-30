@@ -64,7 +64,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
                         android:clickable="false"
-                        android:onClick="ativarLembretes"
                         android:thumb="@drawable/custom_thumb"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -142,23 +141,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/viewSpacer" />
 
             <Button
-                android:id="@+id/bRelatorioS"
-                android:layout_width="324dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/shape_button_config"
-                android:fontFamily="@font/qckbold"
-                android:text="Relatório Semanal"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                app:backgroundTint="#598580"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bObjetivos" />
-
-            <Button
                 android:id="@+id/bRelatorioM"
                 android:layout_width="324dp"
                 android:layout_height="50dp"
@@ -173,7 +155,7 @@
                 app:backgroundTint="#598580"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bRelatorioS" />
+                app:layout_constraintTop_toBottomOf="@+id/bObjetivos" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/bHorario"
@@ -210,7 +192,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
                         android:fontFamily="@font/qckbold"
-                        android:onClick="ativarLembretes"
                         android:text="23:59"
                         android:textColor="@color/white"
                         android:textSize="16sp"
