@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 public class Home extends AppCompatActivity {
     FloatingActionButton fabio, fabHoje, fabOutro, fabOntem;
@@ -159,20 +160,21 @@ public class Home extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    try {
                         String data = dataSnapshot.child("data").getValue().toString();
                         String horario = dataSnapshot.child("horario").getValue().toString();
                         String humor = dataSnapshot.child("humor").getValue().toString();
 
                         Registros r = new Registros(humor.toUpperCase(), data+" - "+horario);
                         registros.add(r);
-                        adaptador = new Adaptador(getApplicationContext(), registros);
-                        rv.setAdapter(adaptador);
-                        rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        adaptador.notify();
-                    } catch (Exception e){
-                        e.printStackTrace();
                     }
+                try {
+                    Collections.reverse(registros);
+                    adaptador = new Adaptador(getApplicationContext(), registros);
+                    rv.setAdapter(adaptador);
+                    rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    adaptador.notify();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 

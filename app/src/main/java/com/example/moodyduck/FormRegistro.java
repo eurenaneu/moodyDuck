@@ -35,6 +35,7 @@ public class FormRegistro extends AppCompatActivity {
     AlertDialog alerta;
     Adaptador adaptador;
     ImageButton bSalvar;
+    Button bVoltar;
     EditText campoNotas;
     TextView semObjetivos;
     ArrayList<Objetivos> objetivos = new ArrayList<>();
@@ -54,9 +55,22 @@ public class FormRegistro extends AppCompatActivity {
                     salvarRegistros();
                 }
             });
+
+            bVoltar = findViewById(R.id.bVoltar);
+            bVoltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    voltar();
+                }
+            });
         rv = findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         setupRecycler();
+    }
+
+    private void voltar() {
+        startActivity(new Intent(getApplicationContext(), AddRegistro.class));
+        this.finish();
     }
 
     public void setupSelectItems(){ // ISSO AQUI MOSTRA OS OBJETIVOS SELECIONADOS

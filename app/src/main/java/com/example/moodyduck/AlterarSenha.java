@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,11 +42,23 @@ public class AlterarSenha extends AppCompatActivity {
             snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
             snackbar.setTextColor(Color.WHITE);
             snackbar.show();
-        } else if (newpswd.trim().isEmpty() || confirmnewpswd.trim().isEmpty()){
+        } else if (newpswd.trim().isEmpty() || confirmnewpswd.trim().isEmpty()) {
             Snackbar snackbar = Snackbar.make(view, "Campos de senha vazios", 2000);
             snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
             snackbar.setTextColor(Color.WHITE);
             snackbar.show();
+        } else if (user.getEmail() == null){
+            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("lembrarSenha", "false");
+            editor.apply();
+            try {
+                FirebaseAuth.getInstance().signOut();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Usuário não está autenticado", Toast.LENGTH_SHORT).show();
+            }
+            startActivity(new Intent(getApplicationContext(), Entrada.class));
+            finish();
         } else {
             AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), oldpswd);
             user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {

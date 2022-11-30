@@ -3,22 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/drawable/boxnotes.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/drawable/chart.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/drawable/checkbox_custom.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/drawable/checked.xml" value="0.3651041666666667" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_config.xml" value="0.3925133689839572" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_form_registro.xml" value="0.21446862996158772" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_home.xml" value="0.2341485507246377" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_login.xml" value="0.3489583333333333" />
+        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_config.xml" value="0.5311203319502075" />
         <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_stats.xml" value="0.5702127659574469" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_tela_objetivos.xml" value="0.3489583333333333" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/dialog_returnhome.xml" value="0.19114583333333332" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/dialog_signout.xml" value="0.33" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/layout_rv_home.xml" value="0.5" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/layout_rv_objetivos.xml" value="0.75" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/layout_rv_tela_objetivos.xml" value="0.3489583333333333" />
-        <entry key="..\:/Users/itzch/AndroidStudioProjects/moodyDuck/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/drawable/shape_create.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_config.xml" value="0.33" />
         <entry key="..\:/Users/lucas_rengel/AndroidStudioProjects/moodyDuck/app/src/main/res/layout/activity_login.xml" value="0.18645833333333334" />
@@ -43,35 +29,50 @@
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/splash_bg.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/teste.xml" value="0.1" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/testeporra.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/toggleagua.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/toggleamigos.xml" value="0.1" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglecaminhada.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglecaseira.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglecompras.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglecozinhar.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/toggledescanso.xml" value="0.1" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/toggleencontro.xml" value="0.1" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/toggleexercicio.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglefastfood.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglefaxina.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglefestas.xml" value="0.1" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglefilmes.xml" value="0.1" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglelavar.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglelivros.xml" value="0.1" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglepipoca.xml" value="0.1" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglerestaurante.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglesaudavel.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglesonobom.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglesononeutro.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/togglesonoruim.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/track.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/drawable/unchecked.xml" value="0.20260416666666667" />
-        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_add_registro.xml" value="0.33" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_add_registro.xml" value="0.5" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_alterar_senha.xml" value="0.33" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_cadastro.xml" value="0.7349624060150376" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_calendario.xml" value="0.25" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_config.xml" value="0.25" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_entrada.xml" value="0.17753623188405798" />
-        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_form_registro.xml" value="0.24861111111111112" />
-        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_home.xml" value="0.4514200298953662" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_form_registro.xml" value="0.22" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_home.xml" value="0.2790224032586558" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_home_backup.xml" value="0.25" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_jogoda_velha.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_semanal_stats.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_stats.xml" value="0.4326647564469914" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_tela_objetivos.xml" value="0.19273301737756715" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/activity_teste_chart.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/custom_dialog.xml" value="0.33" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/custom_dialog2.xml" value="0.22" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/dialog_signout.xml" value="0.22" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/layout_rv_home.xml" value="0.33" />
-        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/layout_rv_objetivos.xml" value="0.21" />
+        <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/layout/layout_rv_objetivos.xml" value="0.49584026622296173" />
         <entry key="..\:/Users/renan_p_machado/Downloads/moody/moodyDuck/app/src/main/res/menu/menu_home.xml" value="0.20416666666666666" />
       </map>
     </option>

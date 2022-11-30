@@ -48,11 +48,6 @@ public class Cadastro extends AppCompatActivity {
         aviso.setVisibility(View.GONE);
     }
 
-    /*public void onBackPressed(){
-        startActivity(new Intent(getApplicationContext(), Entrada.class));
-        this.finish();
-    }*/
-
     public void irHome(){
         startActivity(new Intent(this, Home.class));
     }
@@ -60,35 +55,50 @@ public class Cadastro extends AppCompatActivity {
     public void cadastrarUser(View v) {
         String e = email.getText().toString();
         String s = senha.getText().toString();
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    salvarUser(e);
-                    Snackbar snackbar = Snackbar.make(v, "Conta criada com sucesso", Snackbar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(Color.rgb(48, 207, 122));
-                    snackbar.show();
-                    irHome();
-                } else {
-                    String erro;
-                    try {
-                        throw task.getException();
-                    } catch (FirebaseAuthWeakPasswordException e) {
-                        erro = "Digite uma senha com, no mínimo, 6 caracteres";
-                    } catch (FirebaseAuthUserCollisionException e) {
-                        erro = "Essa conta já está cadastrada";
-                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                        erro = "E-mail inválido";
-                    } catch (Exception e) {
-                        erro = "Erro desconhecido";
+        String c = confirma.getText().toString();
+        String u = nome.getText().toString();
+
+        if(u.trim().isEmpty() || e.trim().isEmpty() || s.trim().isEmpty() || c.trim().isEmpty()) {
+            Snackbar snackbar = Snackbar.make(v, "Favor, preencher todos os campos corretamente", 2000);
+            snackbar.setTextColor(Color.WHITE);
+            snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
+            snackbar.show();
+        } else if (!s.equals(c)){
+            Snackbar snackbar = Snackbar.make(v, "Senhas não coincidem", 2000);
+            snackbar.setTextColor(Color.WHITE);
+            snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
+            snackbar.show();
+        } else {
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(e, s).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        salvarUser(e);
+                        Snackbar snackbar = Snackbar.make(v, "Conta criada com sucesso", 2000);
+                        snackbar.setBackgroundTint(Color.rgb(48, 207, 122));
+                        snackbar.show();
+                        irHome();
+                    } else {
+                        String erro;
+                        try {
+                            throw task.getException();
+                        } catch (FirebaseAuthWeakPasswordException e) {
+                            erro = "Digite uma senha com, no mínimo, 6 caracteres";
+                        } catch (FirebaseAuthUserCollisionException e) {
+                            erro = "Essa conta já está cadastrada";
+                        } catch (FirebaseAuthInvalidCredentialsException e) {
+                            erro = "E-mail inválido";
+                        } catch (Exception e) {
+                            erro = "Erro desconhecido";
+                        }
+                        Snackbar snackbar = Snackbar.make(v, erro, 2000);
+                        snackbar.setTextColor(Color.WHITE);
+                        snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
+                        snackbar.show();
                     }
-                    Snackbar snackbar = Snackbar.make(v, erro, Snackbar.LENGTH_SHORT);
-                    snackbar.setTextColor(Color.WHITE);
-                    snackbar.setBackgroundTint(Color.rgb(255, 87, 84));
-                    snackbar.show();
                 }
-            }
-        });
+            });
+        }
     }
 
     public void salvarUser(String e){
