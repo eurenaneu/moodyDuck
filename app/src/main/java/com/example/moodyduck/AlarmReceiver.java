@@ -18,7 +18,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "lembrete")
                 .setSmallIcon(R.drawable.app_pato)
-                .setContentTitle("Nos conte novidades")
+                .setContentTitle("Nos conte novidades!")
                 .setContentText("Não esqueça de adicionar algo no seu diário. \uD83D\uDE0A")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)

@@ -1,5 +1,6 @@
 package com.example.moodyduck;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -23,6 +24,11 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -53,6 +59,7 @@ public class Config extends AppCompatActivity {
         switchLembretes = findViewById(R.id.switchLembretes);
         txtTempo = findViewById(R.id.txtTemporizador);
         createNotificationChannel();
+        defaultAlarm();
 
         // setar info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -160,22 +167,55 @@ public class Config extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Lembrete desativado", Toast.LENGTH_SHORT).show();
     }
 
+    private void defaultAlarm() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+        ref.child("Registros").child(userId).child("alarme").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.getValue().toString() != null) {
+                    String alarme = snapshot.getValue().toString();
+                    String[] split = alarme.split(":");
+                    txtTempo.setText(alarme);
+
+                    c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(split[0]));
+                    c.set(Calendar.MINUTE, Integer.parseInt(split[1]));
+                    c.set(Calendar.SECOND, 0);
+                    c.set(Calendar.MILLISECOND, 0);
+                } else {
+                    c.set(Calendar.HOUR_OF_DAY, 19);
+                    c.set(Calendar.MINUTE, 0);
+                    c.set(Calendar.SECOND, 0);
+                    c.set(Calendar.MILLISECOND, 0);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        setAlarm();
+    }
+
     private void setAlarm() {
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent,0);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-        Toast.makeText(getApplicationContext(), "Lembrete ativado", Toast.LENGTH_SHORT).show();
     }
 
     private void mostrarTimePicker() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
         picker = new MaterialTimePicker.Builder()
                 .setTheme(R.style.ThemeOverlay_App_MaterialTimePicker)
                 .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setHour(12)
+                .setHour(19)
                 .setMinute(0)
                 .setTitleText("Selecione o horário do alarme")
                 .build();
@@ -194,20 +234,21 @@ public class Config extends AppCompatActivity {
                 c.set(Calendar.MILLISECOND, 0);
 
                 setAlarm();
+
+                ref.child("Users").child(userId).child("alarme").setValue(picker.getHour()+":"+picker.getMinute());
+                Toast.makeText(getApplicationContext(), "Lembrete ativado", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "lembreteCanal";
-            String description = "Canal de lembretes";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("lembrete", name, importance);
-            channel.setDescription(description);
+        CharSequence name = "lembreteCanal";
+        String description = "Canal de lembretes";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel("lembrete", name, importance);
+        channel.setDescription(description);
 
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 }
