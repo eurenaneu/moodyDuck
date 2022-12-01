@@ -156,6 +156,8 @@ public class Config extends AppCompatActivity {
     }
 
     private void cancelAlarm() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         Intent intent = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         if(alarmManager == null){
@@ -164,6 +166,7 @@ public class Config extends AppCompatActivity {
 
         alarmManager.cancel(pendingIntent);
 
+        ref.child("Users").child(userId).child("alarmeSwitch").setValue(false);
         Toast.makeText(getApplicationContext(), "Lembrete desativado", Toast.LENGTH_SHORT).show();
     }
 
@@ -171,11 +174,11 @@ public class Config extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        ref.child("Registros").child(userId).child("alarme").addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child("Users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.getValue() != null) {
-                    String alarme = snapshot.getValue().toString();
+                if(snapshot.child("alarme").getValue() != null) {
+                    String alarme = snapshot.child("alarme").getValue().toString();
                     String[] split = alarme.split(":");
                     txtTempo.setText(alarme);
 
@@ -187,6 +190,15 @@ public class Config extends AppCompatActivity {
                 }
                 c.set(Calendar.SECOND, 0);
                 c.set(Calendar.MILLISECOND, 0);
+
+                boolean alarmeAtivo = Boolean.parseBoolean(snapshot.child("alarmeSwitch").getValue().toString());
+                if(alarmeAtivo) {
+                    switchLembretes.setChecked(true);
+                    counter = 1;
+                } else {
+                    switchLembretes.setChecked(false);
+                    counter = 0;
+                }
             }
 
             @Override
@@ -233,7 +245,8 @@ public class Config extends AppCompatActivity {
 
                 setAlarm();
 
-                ref.child("Users").child(userId).child("alarme").setValue(picker.getHour()+":"+picker.getMinute());
+                ref.child("Users").child(userId).child("alarme").setValue(String.format("%02d:%02d", picker.getHour(),picker.getMinute()));
+                ref.child("Users").child(userId).child("alarmeSwitch").setValue(true);
                 Toast.makeText(getApplicationContext(), "Lembrete ativado", Toast.LENGTH_SHORT).show();
             }
         });

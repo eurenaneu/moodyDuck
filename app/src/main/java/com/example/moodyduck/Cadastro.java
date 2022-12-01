@@ -123,6 +123,7 @@ public class Cadastro extends AppCompatActivity {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db.child("Users").child(userId).setValue(usuarios);
+        db.child("Users").child(userId).child("alarmeSwitch").setValue(false);
         for(int i = 0; i < addDefault.size(); i++) {
             db.child("Users").child(userId).child("Objetivos").child(addDefault.get(i).getNome()).setValue(addDefault.get(i));
         }
