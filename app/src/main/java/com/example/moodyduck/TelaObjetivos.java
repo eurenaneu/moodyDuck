@@ -195,7 +195,7 @@ public class TelaObjetivos extends AppCompatActivity {
                     }
 
                 } catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "erro", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -205,6 +205,8 @@ public class TelaObjetivos extends AppCompatActivity {
 
             }
         });
+
+        voltar();
     }
 
     private void voltar(){
