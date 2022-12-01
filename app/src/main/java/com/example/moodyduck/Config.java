@@ -174,21 +174,19 @@ public class Config extends AppCompatActivity {
         ref.child("Registros").child(userId).child("alarme").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.getValue().toString() != null) {
+                if(snapshot.getValue() != null) {
                     String alarme = snapshot.getValue().toString();
                     String[] split = alarme.split(":");
                     txtTempo.setText(alarme);
 
                     c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(split[0]));
                     c.set(Calendar.MINUTE, Integer.parseInt(split[1]));
-                    c.set(Calendar.SECOND, 0);
-                    c.set(Calendar.MILLISECOND, 0);
                 } else {
                     c.set(Calendar.HOUR_OF_DAY, 19);
                     c.set(Calendar.MINUTE, 0);
-                    c.set(Calendar.SECOND, 0);
-                    c.set(Calendar.MILLISECOND, 0);
                 }
+                c.set(Calendar.SECOND, 0);
+                c.set(Calendar.MILLISECOND, 0);
             }
 
             @Override
